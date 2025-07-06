@@ -16,7 +16,7 @@
   }
 
   .header-container {
-    @apply max-w-site mx-auto px-6 flex items-center;
+    @apply max-w-site mx-auto px-6 flex items-center relative;
     justify-content: space-between;
   }
 
@@ -61,6 +61,7 @@
 
   .main-navigation {
     @apply hidden lg:flex items-center space-x-8 relative;
+    position: static;
   }
 
   .nav-menu-item {
@@ -84,8 +85,10 @@
   }
 
   .mega-menu {
-    @apply absolute left-1/2 transform -translate-x-1/2 bg-white shadow-lg border-t border-mainstay-green opacity-0 invisible transition-all duration-300 z-40;
+    @apply absolute bg-white shadow-lg border-t-2 border-mainstay-green opacity-0 invisible transition-all duration-300 z-40;
     top: calc(100% + 30px) !important;
+    left: 50%;
+    transform: translateX(-50%);
     width: 1340px;
     margin-top: 1rem;
   }
