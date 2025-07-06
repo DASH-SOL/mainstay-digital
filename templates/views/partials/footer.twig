@@ -1,0 +1,43 @@
+<footer class="site-footer">
+    <div class="site-container">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>{{ site.name }}</h3>
+                {% if site.description %}
+                    <p class="text-gray-300">{{ site.description }}</p>
+                {% endif %}
+            </div>
+
+            <div class="footer-contact">
+                <h4 class="text-lg font-semibold mb-4 text-mainstay-secondary">Contact Info</h4>
+                <p class="text-gray-300 mb-2">Email: info@mainstaydigital.com</p>
+                <p class="text-gray-300">Phone: (555) 123-4567</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4 class="text-lg font-semibold mb-4 text-mainstay-secondary">Quick Links</h4>
+                {% if footer_menu and footer_menu.items %}
+                    <ul class="space-y-2">
+                        {% for item in footer_menu.items %}
+                            <li>
+                                <a href="{{ item.url }}" class="text-gray-300 hover:text-white transition-colors">
+                                    {{ item.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <div class="mt-6">
+                    <a href="/contact" class="btn-mainstay-secondary">
+                        Get Started Today
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; {{ "now"|date("Y") }} {{ site.name }}. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

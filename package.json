@@ -1,0 +1,16 @@
+{
+  "name": "mainstay-digital-theme",
+  "version": "1.0.0",
+  "description": "Mainstay Digital WordPress Theme with Tailwind CSS",
+  "scripts": {
+    "build-css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/main.css",
+    "watch-css": "tailwindcss -i ./assets/css/src/main.css -o ./assets/css/main.css --watch",
+    "dev": "npm run watch-css",
+    "build": "npm run build-css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24"
+  }
+}

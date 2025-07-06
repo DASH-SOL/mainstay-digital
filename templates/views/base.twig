@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+<head>
+    <meta charset="{{ site.charset }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    {{ wp_head() }}
+</head>
+<body class="{{ body_class }}">
+    
+    {% include 'partials/header.twig' %}
+    
+    <main id="main" class="main-content" role="main">
+        {% block content %}
+            <div class="container">
+                <h1>Default Content Block</h1>
+                <p>This content should be overridden by child templates.</p>
+            </div>
+        {% endblock %}
+    </main>
+    
+    {% include 'partials/footer.twig' %}
+    
+    {{ wp_footer() }}
+</body>
+</html>

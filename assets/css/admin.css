@@ -1,0 +1,40 @@
+.customize-control-mainstay_logo_width,
+.customize-control-mainstay_logo_height {
+  margin-bottom: 15px;
+}
+
+.customize-control-mainstay_logo_width input,
+.customize-control-mainstay_logo_height input {
+  width: 80px;
+}
+
+.customize-section-mainstay_logo_section {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.mainstay-logo-preview {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.mainstay-logo-preview img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+}
+
+.wp-core-ui .button-primary.mainstay-btn {
+  background: #0edd7a;
+  border-color: #0edd7a;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.wp-core-ui .button-primary.mainstay-btn:hover {
+  background: #0cc269;
+  border-color: #0cc269;
+}

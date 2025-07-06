@@ -1,0 +1,56 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="site-container">
+        <header class="text-center mb-12">
+            <h1 class="page-title">
+                {% if is_home %}
+                    Latest Posts
+                {% else %}
+                    {{ page_title }}
+                {% endif %}
+            </h1>
+        </header>
+
+        {% if posts %}
+            <div class="posts-grid">
+                {% for post in posts %}
+                    <article class="post-card">
+                        {% if post.thumbnail %}
+                            <div class="post-image">
+                                <a href="{{ post.link }}">
+                                    <img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.thumbnail.alt }}">
+                                </a>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="post-content">
+                            <h2 class="mb-3">
+                                <a href="{{ post.link }}" class="post-title">{{ post.title }}</a>
+                            </h2>
+                            
+                            <div class="post-meta">
+                                <span>{{ post.date }}</span>
+                                <span>by {{ post.author.display_name }}</span>
+                            </div>
+                            
+                            <div class="post-excerpt">
+                                {{ post.preview(30) }}
+                            </div>
+                            
+                            <a href="{{ post.link }}" class="btn-mainstay-outline btn-mainstay-small">
+                                Read More →
+                            </a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-16 bg-gray-50 rounded-xl">
+                <h2 class="text-2xl font-semibold text-mainstay-primary mb-4">No posts found</h2>
+                <p class="text-gray-600 mb-6">It looks like nothing was found at this location.</p>
+                <a href="{{ site.url }}/wp-admin/post-new.php" class="btn-mainstay">Create your first post</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

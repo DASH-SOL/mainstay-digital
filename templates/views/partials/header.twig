@@ -1,0 +1,82 @@
+<header class="site-header">
+    <div class="header-container">
+        <div class="header-left">
+            <div class="logo-container">
+                <a href="{{ site.url }}" class="flex items-center">
+                    {% if custom_logo %}
+                        <img src="{{ custom_logo.url }}" 
+                             alt="{{ custom_logo.alt }}" 
+                             class="custom-logo"
+                             style="width: {{ logo_settings.width }}px; height: {{ logo_settings.height }}px; object-fit: contain;">
+                    {% else %}
+                        <span class="logo-slashes">///</span>
+                        <span class="logo-text">MAINSTAY</span>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+
+        <div class="header-center">
+            {% if primary_menu and primary_menu.items %}
+                <nav class="main-navigation" role="navigation">
+                    {% for item in primary_menu.items %}
+                        <a href="{{ item.url }}" class="nav-menu-item">
+                            {{ item.title }}
+                        </a>
+                    {% endfor %}
+                </nav>
+            {% endif %}
+        </div>
+
+        <div class="header-right">
+            <div class="cta-button-container">
+                <a href="/contact" class="btn-mainstay">
+                    Get in touch
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span class="mobile-menu-line"></span>
+                <span class="mobile-menu-line"></span>
+                <span class="mobile-menu-line"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo-container">
+                {% if custom_logo %}
+                    <img src="{{ custom_logo.url }}" 
+                         alt="{{ custom_logo.alt }}" 
+                         class="custom-logo mobile-logo"
+                         style="width: {{ logo_settings.width * 0.8 }}px; height: {{ logo_settings.height * 0.8 }}px; object-fit: contain;">
+                {% else %}
+                    <span class="logo-slashes">///</span>
+                    <span class="logo-text">MAINSTAY</span>
+                {% endif %}
+            </div>
+            <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close mobile menu">
+                ✕
+            </button>
+        </div>
+
+        {% if primary_menu and primary_menu.items %}
+            <nav class="mobile-menu-nav">
+                {% for item in primary_menu.items %}
+                    <a href="{{ item.url }}" class="mobile-nav-item">
+                        {{ item.title }}
+                    </a>
+                {% endfor %}
+            </nav>
+        {% endif %}
+
+        <div class="mobile-cta">
+            <a href="/contact" class="mobile-cta-button">
+                Get in touch
+            </a>
+        </div>
+    </div>
+</header>
