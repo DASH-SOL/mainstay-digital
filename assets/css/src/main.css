@@ -84,7 +84,7 @@
   }
 
   .mega-menu {
-    @apply absolute left-1/2 transform -translate-x-1/2 bg-white shadow-lg border-t-4 border-mainstay-green opacity-0 invisible transition-all duration-300 z-40;
+    @apply absolute left-1/2 transform -translate-x-1/2 bg-white shadow-lg border-t border-mainstay-green opacity-0 invisible transition-all duration-300 z-40;
     top: calc(100% + 30px) !important;
     width: 1340px;
     margin-top: 1rem;
@@ -149,11 +149,11 @@
   }
 
   .btn-mainstay {
-    @apply font-rubik font-normal bg-white text-gray-900 border border-mainstay-green-border rounded transition-all duration-300 inline-block text-center no-underline;
+    @apply font-rubik font-normal bg-white text-gray-900 border border-mainstay-green-border transition-all duration-300 inline-block text-center no-underline;
     border-width: 1.75px;
     font-size: 15px;
     line-height: 107.7%;
-    padding: 10px 25px;
+    padding: 16px 25px;
     box-shadow: 7px 7px 0px -1px #0edd7a;
   }
 

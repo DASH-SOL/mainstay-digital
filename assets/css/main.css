@@ -774,7 +774,7 @@ video {
   z-index: 40;
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  border-top-width: 4px;
+  border-top-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(14 221 122 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -890,7 +890,6 @@ video {
 
 .btn-mainstay {
   display: inline-block;
-  border-radius: 0.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(0 183 108 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -907,7 +906,7 @@ video {
   border-width: 1.75px;
   font-size: 15px;
   line-height: 107.7%;
-  padding: 10px 25px;
+  padding: 16px 25px;
   box-shadow: 7px 7px 0px -1px #0edd7a;
 }
 
@@ -929,7 +928,6 @@ video {
 
 .btn-mainstay-small {
   display: inline-block;
-  border-radius: 0.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(0 183 108 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -946,7 +944,7 @@ video {
   border-width: 1.75px;
   font-size: 15px;
   line-height: 107.7%;
-  padding: 10px 25px;
+  padding: 16px 25px;
   box-shadow: 7px 7px 0px -1px #0edd7a;
 }
 
@@ -973,7 +971,6 @@ video {
 
 .btn-mainstay-secondary {
   display: inline-block;
-  border-radius: 0.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(0 183 108 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -990,7 +987,7 @@ video {
   border-width: 1.75px;
   font-size: 15px;
   line-height: 107.7%;
-  padding: 10px 25px;
+  padding: 16px 25px;
   box-shadow: 7px 7px 0px -1px #0edd7a;
 }
 
@@ -1030,7 +1027,6 @@ video {
 
 .btn-mainstay-outline {
   display: inline-block;
-  border-radius: 0.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(0 183 108 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -1047,7 +1043,7 @@ video {
   border-width: 1.75px;
   font-size: 15px;
   line-height: 107.7%;
-  padding: 10px 25px;
+  padding: 16px 25px;
   box-shadow: 7px 7px 0px -1px #0edd7a;
 }
 
@@ -1240,7 +1236,6 @@ video {
 
 .mobile-cta-button {
   display: inline-block;
-  border-radius: 0.25rem;
   --tw-border-opacity: 1;
   border-color: rgb(0 183 108 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -1257,7 +1252,7 @@ video {
   border-width: 1.75px;
   font-size: 15px;
   line-height: 107.7%;
-  padding: 10px 25px;
+  padding: 16px 25px;
   box-shadow: 7px 7px 0px -1px #0edd7a;
 }
 
