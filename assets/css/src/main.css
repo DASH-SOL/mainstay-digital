@@ -27,7 +27,7 @@
 
   .header-center {
     @apply flex-1 flex justify-end items-center;
-    margin-right: 2rem;
+    margin-right: 2rem;sfsf
   }
 
   .header-right {
