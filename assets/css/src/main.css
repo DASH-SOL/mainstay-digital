@@ -84,63 +84,68 @@
   }
 
   .mega-menu {
-    @apply absolute top-full left-1/2 transform -translate-x-1/2 w-screen max-w-6xl bg-white shadow-2xl border-t-4 border-mainstay-green opacity-0 invisible transition-all duration-300 z-40;
+    @apply absolute left-1/2 transform -translate-x-1/2 bg-white shadow-lg border-t-4 border-mainstay-green opacity-0 invisible transition-all duration-300 z-40;
+    top: calc(100% + 30px) !important;
+    width: 1340px;
     margin-top: 1rem;
-    min-height: 300px;
   }
 
   .nav-menu-item.has-children:hover .mega-menu {
     @apply opacity-100 visible;
+    top: calc(100% + 10px);
     margin-top: 0;
   }
 
   .mega-menu-container {
-    @apply p-8;
+    @apply grid grid-cols-12 gap-8 p-8;
   }
 
-  .mega-menu-header {
-    @apply mb-8;
+  .mega-menu-left {
+    @apply col-span-4;
+  }
+
+  .mega-menu-right {
+    @apply col-span-8;
   }
 
   .mega-menu-title {
-    @apply font-rubik font-medium text-gray-900 mb-4;
+    @apply font-rubik font-medium text-black mb-4;
+    font-family: Rubik;
+    font-weight: 500;
     font-size: 38px;
     line-height: 100%;
     letter-spacing: 0%;
-    font-weight: 500;
   }
 
   .mega-menu-parent-link {
-    @apply font-rubik text-mainstay-green hover:text-mainstay-green-border transition-colors duration-200 inline-flex items-center no-underline;
+    @apply font-rubik text-black hover:text-mainstay-green transition-colors duration-200 inline-flex items-center no-underline;
+    font-family: Rubik;
+    font-weight: 400;
     font-size: 19px;
     line-height: 100%;
     letter-spacing: 0%;
-    font-weight: 400;
   }
 
   .mega-menu-parent-link::after {
     content: "→";
-    @apply ml-2 text-lg;
+    @apply ml-2;
   }
 
-  .mega-menu-grid {
+  .mega-menu-children {
     @apply grid grid-cols-3 gap-6;
   }
 
-  .mega-menu-item {
-    @apply p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200;
+  .mega-menu-child-item {
+    @apply p-4;
   }
 
-  .mega-menu-item a {
-    @apply no-underline text-gray-900 hover:text-mainstay-green transition-colors duration-200 block;
-  }
-
-  .mega-menu-item-title {
-    @apply font-rubik text-gray-900 font-normal;
+  .mega-menu-child-link {
+    @apply font-rubik text-black hover:text-mainstay-green transition-colors duration-200 no-underline;
+    font-family: Rubik;
+    font-weight: 400;
     font-size: 19px;
     line-height: 100%;
     letter-spacing: 0%;
-    font-weight: 400;
   }
 
   .btn-mainstay {

@@ -241,9 +241,29 @@ function mainstay_body_classes($classes) {
         $classes[] = 'no-custom-logo';
     }
     
+    if (is_admin_bar_showing()) {
+        $classes[] = 'admin-bar';
+    }
+    
     return $classes;
 }
 add_filter('body_class', 'mainstay_body_classes');
+
+function mainstay_admin_bar_margin() {
+    if (is_admin_bar_showing()) {
+        echo '<style>
+            html { margin-top: 0 !important; }
+            .site-header { top: 32px; }
+            .main-content { padding-top: calc(5rem + 32px); }
+            @media screen and (max-width: 782px) {
+                .site-header { top: 46px; }
+                .main-content { padding-top: calc(5rem + 46px); }
+                .mobile-menu { top: 46px; height: calc(100vh - 46px); }
+            }
+        </style>';
+    }
+}
+add_action('wp_head', 'mainstay_admin_bar_margin');
 
 function mainstay_excerpt_length($length) {
     return 30;
@@ -294,7 +314,6 @@ function mainstay_enable_svg_upload($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'mainstay_enable_svg_upload');
-
 
 function mainstay_fix_svg_display($response, $attachment, $meta) {
     if ($response['type'] === 'image' && $response['subtype'] === 'svg+xml') {

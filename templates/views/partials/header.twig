@@ -26,24 +26,24 @@
                                 
                                 <div class="mega-menu">
                                     <div class="mega-menu-container">
-                                        <div class="mega-menu-header">
+                                        <div class="mega-menu-left">
                                             <h2 class="mega-menu-title">{{ item.title }}</h2>
                                             <a href="{{ item.url }}" class="mega-menu-parent-link">
                                                 Go to {{ item.title|lower }}
                                             </a>
                                         </div>
-
-                                        {% if item.children|length > 0 %}
-                                            <div class="mega-menu-grid">
+                                        
+                                        <div class="mega-menu-right">
+                                            <div class="mega-menu-children">
                                                 {% for child in item.children %}
-                                                    <div class="mega-menu-item">
-                                                        <a href="{{ child.url }}">
-                                                            <div class="mega-menu-item-title">{{ child.title }}</div>
+                                                    <div class="mega-menu-child-item">
+                                                        <a href="{{ child.url }}" class="mega-menu-child-link">
+                                                            {{ child.title }}
                                                         </a>
                                                     </div>
                                                 {% endfor %}
                                             </div>
-                                        {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
