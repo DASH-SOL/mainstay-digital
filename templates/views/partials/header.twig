@@ -20,9 +20,38 @@
             {% if primary_menu and primary_menu.items %}
                 <nav class="main-navigation" role="navigation">
                     {% for item in primary_menu.items %}
-                        <a href="{{ item.url }}" class="nav-menu-item">
-                            {{ item.title }}
-                        </a>
+                        {% if item.children %}
+                            <div class="nav-menu-item has-children">
+                                <span>{{ item.title }}</span>
+                                
+                                <div class="mega-menu">
+                                    <div class="mega-menu-container">
+                                        <div class="mega-menu-header">
+                                            <h2 class="mega-menu-title">{{ item.title }}</h2>
+                                            <a href="{{ item.url }}" class="mega-menu-parent-link">
+                                                Go to {{ item.title|lower }}
+                                            </a>
+                                        </div>
+
+                                        {% if item.children|length > 0 %}
+                                            <div class="mega-menu-grid">
+                                                {% for child in item.children %}
+                                                    <div class="mega-menu-item">
+                                                        <a href="{{ child.url }}">
+                                                            <div class="mega-menu-item-title">{{ child.title }}</div>
+                                                        </a>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ item.url }}" class="nav-menu-item">
+                                {{ item.title }}
+                            </a>
+                        {% endif %}
                     {% endfor %}
                 </nav>
             {% endif %}
@@ -69,6 +98,13 @@
                     <a href="{{ item.url }}" class="mobile-nav-item">
                         {{ item.title }}
                     </a>
+                    {% if item.children %}
+                        {% for child in item.children %}
+                            <a href="{{ child.url }}" class="mobile-nav-item" style="padding-left: 2rem; font-size: 16px;">
+                                {{ child.title }}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
             </nav>
         {% endif %}
