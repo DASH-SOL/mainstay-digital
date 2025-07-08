@@ -448,10 +448,12 @@
     line-height: 100%;
     letter-spacing: 0%;
   }
-  .hero-section .btn-mainstay {
-    padding: 16px 80px !important;
-  }
 }
 .hero-section .btn-mainstay {
-  padding: 16px 30px !important;
+  padding: 16px 80px !important;
+}
+@media (max-width: 766px) {
+  .hero-section .btn-mainstay {
+    padding: 16px 30px !important;
+  }
 }
