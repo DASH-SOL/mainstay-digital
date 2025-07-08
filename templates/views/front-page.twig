@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    {% if post.meta('hero_section') %}
+        {% include 'partials/sections/hero.twig' with {
+            'hero': post.meta('hero_section')
+        } %}
+    {% endif %}
+
+    {% if not post.meta('hero_section') %}
+        <div class="site-container py-16">
+            <div class="text-center">
+                <h1 class="text-4xl lg:text-6xl font-bold text-mainstay-primary mb-6">
+                    Welcome to {{ site.name }}
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Configure your hero section using ACF fields to get started.
+                </p>
+                <a href="/wp-admin/post.php?post={{ post.id }}&action=edit" class="btn-mainstay">
+                    Edit Homepage
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
