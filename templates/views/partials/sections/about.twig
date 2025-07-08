@@ -1,0 +1,22 @@
+<section class="about-section bg-white py-16 lg:py-24">
+    <div class="site-container">
+        {% if post.meta('about-heading') %}
+            <div class="flex items-center mb-6 lg:mb-8">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {{ post.meta('about-heading') }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        {% if post.meta('about_text') %}
+            <div class="section-text text-black max-w-4xl">
+                {{ post.meta('about_text')|raw }}
+            </div>
+        {% endif %}
+    </div>
+</section>

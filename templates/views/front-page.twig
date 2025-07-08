@@ -7,7 +7,11 @@
         } %}
     {% endif %}
 
-    {% if not post.meta('hero_section') %}
+    {% if post.meta('about-heading') or post.meta('about_text') %}
+        {% include 'partials/sections/about.twig' %}
+    {% endif %}
+
+    {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') %}
         <div class="site-container py-16">
             <div class="text-center">
                 <h1 class="text-4xl lg:text-6xl font-bold text-mainstay-primary mb-6">
