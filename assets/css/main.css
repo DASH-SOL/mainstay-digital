@@ -968,8 +968,14 @@ video {
   box-shadow: 3px 3px 0px -1px #0edd7a;
 }
 
+@media (min-width: 1024px) {
+  .hero-section .btn-mainstay-small {
+    padding: 16px 80px;
+  }
+}
+
 .hero-section .btn-mainstay-small {
-  padding: 16px 50px;
+  padding: 16px 30px;
 }
 
 .btn-mainstay-small {
@@ -1024,8 +1030,14 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+@media (min-width: 1024px) {
+  .hero-section .btn-mainstay-secondary {
+    padding: 16px 80px;
+  }
+}
+
 .hero-section .btn-mainstay-secondary {
-  padding: 16px 50px;
+  padding: 16px 30px;
 }
 
 .btn-mainstay-secondary:hover {
@@ -1083,8 +1095,14 @@ video {
   color: rgb(14 221 122 / var(--tw-text-opacity, 1));
 }
 
+@media (min-width: 1024px) {
+  .hero-section .btn-mainstay-outline {
+    padding: 16px 80px;
+  }
+}
+
 .hero-section .btn-mainstay-outline {
-  padding: 16px 50px;
+  padding: 16px 30px;
 }
 
 .btn-mainstay-outline {
@@ -1412,8 +1430,14 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+@media (min-width: 1024px) {
+  .hero-section .mobile-cta-button {
+    padding: 16px 80px;
+  }
+}
+
 .hero-section .mobile-cta-button {
-  padding: 16px 50px;
+  padding: 16px 30px;
 }
 
 .mobile-cta-button:hover {
@@ -1931,10 +1955,14 @@ video {
     line-height: 100%;
     letter-spacing: 0%;
   }
+
+  .hero-section .btn-mainstay {
+    padding: 16px 80px !important;
+  }
 }
 
 .hero-section .btn-mainstay {
-  padding: 16px 50px !important;
+  padding: 16px 30px !important;
 }
 
 .hover\:text-white:hover {
