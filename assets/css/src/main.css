@@ -547,3 +547,16 @@
     line-height: 100%;
   }
 }
+.experience-logos-grid {
+  align-items: center;
+}
+
+.experience-logo-item img {
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.experience-logo-item:hover img {
+  opacity: 1;
+  transform: scale(1.05);
+}
