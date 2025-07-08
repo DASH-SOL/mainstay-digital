@@ -1,0 +1,67 @@
+<section class="capability-section py-16 lg:py-24">
+    <div class="capability-bg mx-4 lg:mx-8 px-6 lg:px-12 py-12 lg:py-16" style="background-color: rgba(24, 93, 116, 1); max-width: 1380px; margin-left: auto; margin-right: auto;">
+        
+        {% if post.meta('capability_heading') %}
+            <div class="flex items-center mb-12 lg:mb-16">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="capability-heading text-white">
+                    {{ post.meta('capability_heading') }}
+                </h2>
+            </div>
+        {% endif %}
+
+        <div class="lg:grid lg:gap-16 lg:items-start" style="grid-template-columns: 1fr 1fr;">
+            <!-- Left Column: Subheading and Text -->
+            <div class="mb-12 lg:mb-0">
+                {% if post.meta('capability_sub_heading') %}
+                    <h3 class="capability-subheading text-white mb-8 lg:mb-12">
+                        {{ post.meta('capability_sub_heading') }}
+                    </h3>
+                {% endif %}
+                
+                {% if post.meta('capability_text') %}
+                    <div class="capability-text text-white">
+                        {{ post.meta('capability_text')|raw }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            {% if post.meta('services') %}
+                <div class="space-y-0">
+                    {% for service in post.meta('services') %}
+                        {% if service.service_name %}
+                            {% if service.service_url %}
+                                <a href="{{ service.service_url }}" class="capability-service-link flex items-center justify-between text-white transition-colors duration-300 border-b border-mainstay-green {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}">
+                                    <span>{{ service.service_name }}</span>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 ml-4"> 
+                                        <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="#0EDD7A"/> 
+                                    </svg>
+                                </a>
+                            {% else %}
+                                <div class="capability-service-link flex items-center justify-between text-white border-b border-mainstay-green {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}">
+                                    <span>{{ service.service_name }}</span>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 ml-4"> 
+                                        <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="#0EDD7A"/> 
+                                    </svg>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="pt-12 lg:pt-16 text-right">
+                        <a href="/services" class="see-all-services-link inline-flex items-center text-white hover:text-mainstay-green transition-colors">
+                            <span class="mr-2">See all services</span>
+                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="#0EDD7A"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

@@ -11,14 +11,18 @@
         {% include 'partials/sections/about.twig' %}
     {% endif %}
 
-    {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') %}
+    {% if post.meta('capability_heading') or post.meta('capability_sub_heading') or post.meta('capability_text') or post.meta('services') %}
+        {% include 'partials/sections/capability.twig' %}
+    {% endif %}
+
+    {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') and not post.meta('capability_heading') %}
         <div class="site-container py-16">
             <div class="text-center">
                 <h1 class="text-4xl lg:text-6xl font-bold text-mainstay-primary mb-6">
                     Welcome to {{ site.name }}
                 </h1>
                 <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                    Configure your hero section using ACF fields to get started.
+                    Configure your sections using ACF fields to get started.
                 </p>
                 <a href="/wp-admin/post.php?post={{ post.id }}&action=edit" class="btn-mainstay">
                     Edit Homepage

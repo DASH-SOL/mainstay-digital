@@ -484,3 +484,66 @@
     line-height: 27px;
   }
 }
+.capability-heading {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.capability-subheading {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0%;
+}
+
+.capability-text {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.capability-service-link {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: none;
+}
+
+.see-all-services-link {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  .capability-heading {
+    font-size: 38px;
+    line-height: 100%;
+  }
+
+  .capability-subheading {
+    font-size: 34px;
+    line-height: 42px;
+  }
+
+  .capability-text {
+    font-size: 21px;
+    line-height: 30px;
+  }
+
+  .capability-service-link {
+    font-size: 28px;
+    line-height: 100%;
+  }
+}
