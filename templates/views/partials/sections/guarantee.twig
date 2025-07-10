@@ -1,0 +1,107 @@
+<section class="guarantee-section py-8 lg:py-24">
+    <div class="site-container">
+        {% if post.meta('guarantee_heading') %}
+            <div class="flex items-center mb-6 lg:mb-8">
+                <div class="mr-3 lg:mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green w-6 lg:w-8"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {{ post.meta('guarantee_heading') }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        {% if post.meta('guarantee_text') %}
+            <div class="section-text text-black max-w-4xl mb-8 lg:mb-12">
+                {{ post.meta('guarantee_text')|raw }}
+            </div>
+        {% endif %}
+
+        <div class="guarantee-content">
+            <div class="flex flex-col lg:grid lg:gap-16 lg:items-center" style="grid-template-columns: 1fr 1fr;">
+                <!-- Image Section with Graphic Overlay -->
+                <div class="guarantee-image-section mb-8 lg:mb-0 relative">
+                    {% if post.meta('guarantee_image') %}
+                        <div class="relative">
+                            <img src="{{ TimberImage(post.meta('guarantee_image')).src('large') }}" 
+                                 alt="{{ TimberImage(post.meta('guarantee_image')).alt }}"
+                                 class="w-full guarantee-img object-cover">
+                            
+                            <!-- Green Diagonal Lines Graphic -->
+                            <div class="absolute -left-4 lg:-left-6 top-1/2 transform -translate-y-1/2">
+                                <svg width="129" height="247" viewBox="0 0 129 247" fill="none" xmlns="http://www.w3.org/2000/svg" class="guarantee-graphic">
+                                    <path d="M0 34.4419L17.169 0.492676H19.811L2.638 34.4419H0Z" fill="#0EDD7A"/>
+                                    <path d="M0 69.8438L17.169 35.895H19.811L2.638 69.8438H0Z" fill="#0EDD7A"/>
+                                    <path d="M0 105.246L17.169 71.2969H19.811L2.638 105.246H0Z" fill="#0EDD7A"/>
+                                    <path d="M0 140.574L17.169 106.625H19.811L2.638 140.574H0Z" fill="#0EDD7A"/>
+                                    <path d="M0 176.012L17.169 142.063H19.811L2.638 176.012H0Z" fill="#0EDD7A"/>
+                                    <path d="M0 211.489L17.169 177.539H19.811L2.638 211.489H0Z" fill="#0EDD7A"/>
+                                    <path d="M0 246.742L17.169 212.793H19.811L2.638 246.742H0Z" fill="#0EDD7A"/>
+                                    <path d="M36.166 34.4419L53.338 0.492676H55.98L38.808 34.4419H36.166Z" fill="#0EDD7A"/>
+                                    <path d="M36.167 69.8438L53.338 35.895H55.98L38.808 69.8438H36.167Z" fill="#0EDD7A"/>
+                                    <path d="M36.166 105.246L53.338 71.2969H55.98L38.808 105.246H36.166Z" fill="#0EDD7A"/>
+                                    <path d="M36.166 140.574L53.338 106.625H55.98L38.808 140.574H36.166Z" fill="#0EDD7A"/>
+                                    <path d="M36.167 176.012L53.338 142.063H55.980L38.808 176.012H36.167Z" fill="#0EDD7A"/>
+                                    <path d="M36.166 211.489L53.335 177.539H55.977L38.808 211.489H36.166Z" fill="#0EDD7A"/>
+                                    <path d="M36.166 246.742L53.338 212.793H55.98L38.808 246.742H36.166Z" fill="#0EDD7A"/>
+                                    <path d="M72.332 34.4419L89.501 0.492676H92.143L74.974 34.4419H72.332Z" fill="#0EDD7A"/>
+                                    <path d="M72.333 69.8438L89.502 35.895H92.144L74.974 69.8438H72.333Z" fill="#0EDD7A"/>
+                                    <path d="M72.332 105.246L89.501 71.2969H92.143L74.974 105.246H72.332Z" fill="#0EDD7A"/>
+                                    <path d="M72.332 140.574L89.501 106.625H92.143L74.974 140.574H72.332Z" fill="#0EDD7A"/>
+                                    <path d="M72.333 176.012L89.502 142.063H92.144L74.975 176.012H72.333Z" fill="#0EDD7A"/>
+                                    <path d="M72.332 211.489L89.501 177.539H92.143L74.974 211.489H72.332Z" fill="#0EDD7A"/>
+                                    <path d="M72.332 246.742L89.501 212.793H92.143L74.974 246.742H72.332Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 34.4419L125.668 0.492676H128.31L111.138 34.4419H108.499Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 69.8438L125.668 35.895H128.31L111.138 69.8438H108.499Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 105.246L125.668 71.2969H128.31L111.138 105.246H108.499Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 140.574L125.668 106.625H128.31L111.138 140.574H108.499Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 176.012L125.668 142.063H128.31L111.138 176.012H108.499Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 211.489L125.668 177.539H128.31L111.141 211.489H108.499Z" fill="#0EDD7A"/>
+                                    <path d="M108.499 246.742L125.668 212.793H128.31L111.138 246.742H108.499Z" fill="#0EDD7A"/>
+                                </svg>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Content Section -->
+                <div class="guarantee-content-section">
+                    {% if post.meta('content_guarantee_heading') %}
+                        <div class="flex items-center mb-6 lg:mb-8">
+                            <div class="mr-3 lg:mr-4 flex-shrink-0">
+                                <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green w-6 lg:w-8"> 
+                                    <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                                </svg>
+                            </div>
+                            <h3 class="guarantee-content-heading">
+                                {{ post.meta('content_guarantee_heading') }}
+                            </h3>
+                        </div>
+                    {% endif %}
+                    
+                    {% if post.meta('list_content') %}
+                        <div class="guarantee-list space-y-6 lg:space-y-8">
+                            {% for item in post.meta('list_content') %}
+                                <div class="guarantee-list-item">
+                                    {% if item.list_heading %}
+                                        <h4 class="guarantee-list-heading">
+                                            {{ item.list_heading }}
+                                        </h4>
+                                    {% endif %}
+                                    
+                                    {% if item.list_Text %}
+                                        <div class="guarantee-list-text">
+                                            {{ item.list_Text|raw }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

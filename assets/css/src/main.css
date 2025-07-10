@@ -790,3 +790,95 @@
 .hero-section {
   @apply py-12 lg:py-32;
 }
+/* Guarantee Section */
+.guarantee-section {
+  @apply py-8 lg:py-24;
+}
+
+.guarantee-content {
+  @apply w-full;
+}
+
+.guarantee-image-section {
+  @apply relative overflow-visible;
+}
+
+.guarantee-img {
+  border-radius: 0;
+  height: 449px;
+  width: 100%;
+  object-position: center;
+}
+
+.guarantee-graphic {
+  width: 80px;
+  height: auto;
+  z-index: 10;
+}
+
+.guarantee-content-section {
+  @apply flex flex-col;
+}
+
+/* Content Heading */
+.guarantee-content-heading {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+}
+
+/* List Item */
+.guarantee-list-item {
+  @apply space-y-3 lg:space-y-4;
+}
+
+/* List Heading */
+.guarantee-list-heading {
+  @apply pb-2 mb-3 lg:mb-4 inline-block;
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+  border-bottom: 2px solid rgba(14, 221, 122, 1);
+}
+
+/* List Text */
+.guarantee-list-text {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .guarantee-img {
+    height: 660px;
+  }
+
+  .guarantee-graphic {
+    width: 129px;
+  }
+
+  .guarantee-content-heading {
+    font-size: 38px;
+    line-height: 100%;
+  }
+
+  .guarantee-list-heading {
+    font-size: 27px;
+    line-height: 100%;
+  }
+
+  .guarantee-list-text {
+    font-size: 21px;
+    line-height: 30px;
+  }
+}
