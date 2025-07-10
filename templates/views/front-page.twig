@@ -26,7 +26,11 @@
         {% include 'partials/sections/guarantee.twig' %}
     {% endif %}
     
-    {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') and not post.meta('capability_heading') and not post.meta('experience_heading') and not post.meta('guarantee_heading') %}
+    {% if post.meta('contact_form_heading') or post.meta('contact_form_text') or post.meta('contact_form_shortcode') or post.meta('contact_form_id') %}
+        {% include 'partials/sections/contact-form.twig' %}
+    {% endif %}
+    
+    {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') and not post.meta('capability_heading') and not post.meta('experience_heading') and not post.meta('guarantee_heading') and not post.meta('contact_form_heading') %}
         <div class="site-container py-16">
             <div class="text-center">
                 <h1 class="text-4xl lg:text-6xl font-bold text-mainstay-primary mb-6">

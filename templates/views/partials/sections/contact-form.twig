@@ -1,0 +1,48 @@
+<section class="contact-form-section py-8 lg:py-24">
+    <div class="site-container">
+        <div class="contact-form-content">
+            <div class="flex flex-col lg:grid lg:gap-16 lg:items-start" style="grid-template-columns: 1fr 1fr;">
+                <!-- Content Section -->
+                <div class="contact-form-text-section mb-8 lg:mb-0">
+                    {% if post.meta('contact_form_heading') %}
+                        <div class="flex items-center mb-6 lg:mb-8">
+                            <div class="mr-3 lg:mr-4 flex-shrink-0">
+                                <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green w-6 lg:w-8"> 
+                                    <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                                </svg>
+                            </div>
+                            <h2 class="section-heading text-black">
+                                {{ post.meta('contact_form_heading') }}
+                            </h2>
+                        </div>
+                    {% endif %}
+                    
+                    {% if post.meta('contact_form_text') %}
+                        <div class="section-text text-black max-w-lg">
+                            {{ post.meta('contact_form_text')|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Form Section -->
+                <div class="contact-form-wrapper">
+                    {% if post.meta('contact_form_shortcode') %}
+                        <div class="contact-form-container">
+                            {{ fn('do_shortcode', post.meta('contact_form_shortcode')) }}
+                        </div>
+                    {% elseif post.meta('contact_form_id') %}
+                        <div class="contact-form-container">
+                            {{ fn('do_shortcode', '[contact-form-7 id="' ~ post.meta('contact_form_id') ~ '"]') }}
+                        </div>
+                    {% else %}
+                        <div class="contact-form-placeholder">
+                            <p class="text-gray-600 p-8 border-2 border-dashed border-gray-300 rounded-lg text-center">
+                                Please select a Contact Form 7 form in the page settings.
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
