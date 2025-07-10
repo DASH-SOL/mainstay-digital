@@ -560,3 +560,39 @@
   opacity: 1;
   transform: scale(1.05);
 }
+.insights-link {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: none;
+}
+
+.blog-category-tag {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(14, 221, 122, 1);
+}
+
+.blog-post-title {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+}
+
+.blog-post-title a {
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  .blog-post-title {
+    font-size: 21px;
+    line-height: 30px;
+  }
+}

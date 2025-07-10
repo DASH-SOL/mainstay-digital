@@ -19,6 +19,8 @@
         {% include 'partials/sections/experience.twig' %}
     {% endif %}
 
+    {% include 'partials/sections/blog.twig' %}
+
     {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') and not post.meta('capability_heading') and not post.meta('experience_heading') %}
         <div class="site-container py-16">
             <div class="text-center">

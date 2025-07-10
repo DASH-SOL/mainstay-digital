@@ -1,0 +1,83 @@
+<section class="blog-section py-16 lg:py-24">
+    <div class="site-container">
+        <div class="flex items-center justify-between mb-12 lg:mb-16">
+            <div class="flex items-center">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {% if post.meta('learn_more_heading') %}
+                        {{ post.meta('learn_more_heading') }}
+                    {% else %}
+                        Learn more
+                    {% endif %}
+                </h2>
+            </div>
+            
+            <div>
+                <a href="{{ post.meta('insights_link') ? post.meta('insights_link') : '/insights' }}" class="insights-link inline-flex items-center text-black hover:text-mainstay-green transition-colors">
+                    <span class="mr-2">Insights</span>
+                    <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="currentColor"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        {% set recent_posts = fn('get_posts', {
+            'post_type': 'post',
+            'numberposts': post.meta('posts_count') ? post.meta('posts_count') : 3,
+            'post_status': 'publish',
+            'orderby': 'date',
+            'order': 'DESC'
+        }) %}
+
+        {% if recent_posts %}
+            <div class="blog-posts-list space-y-0">
+                {% for blog_post in recent_posts %}
+                    {% set post_obj = TimberPost(blog_post) %}
+                    <article class="blog-post-item border-t border-b border-mainstay-green py-8 lg:py-10 {% if not loop.first %}border-t-0{% endif %}">
+                        <div class="lg:grid lg:gap-8 lg:items-start" style="grid-template-columns: 1fr 2fr;">
+                            <div class="mb-6 lg:mb-0">
+                                {% if post_obj.thumbnail %}
+                                    <div class="blog-post-image">
+                                        <img src="{{ post_obj.thumbnail.src('medium') }}" 
+                                             alt="{{ post_obj.thumbnail.alt }}"
+                                             class="w-full h-48 lg:h-56 object-cover rounded-lg">
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="blog-post-content">
+                                {% if post_obj.terms('category') %}
+                                    {% set category = post_obj.terms('category')[0] %}
+                                    <div class="blog-post-category mb-4">
+                                        <span class="blog-category-tag uppercase">{{ category.name }}</span>
+                                    </div>
+                                {% endif %}
+                                
+                                <h3 class="blog-post-title mb-4 lg:mb-6">
+                                    <a href="{{ post_obj.link }}" class="text-black hover:text-mainstay-green transition-colors">
+                                        {{ post_obj.title }}
+                                    </a>
+                                </h3>
+                                
+                                {% if post_obj.preview %}
+                                    <div class="blog-post-excerpt text-gray-600 mb-4">
+                                        {{ post_obj.preview(20) }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12">
+                <p class="text-gray-600">No blog posts found. <a href="/wp-admin/post-new.php" class="text-mainstay-green hover:underline">Create your first post</a>.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
