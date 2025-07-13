@@ -1335,3 +1335,49 @@
   @apply bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 mb-4;
   font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
 }
+
+.services-accordion {
+  @apply space-y-0;
+}
+
+.service-accordion-item {
+  @apply w-full;
+}
+
+.service-accordion-trigger {
+  @apply cursor-pointer;
+}
+
+.service-accordion-trigger:hover {
+  @apply text-mainstay-green;
+}
+
+.service-accordion-content {
+  @apply overflow-hidden transition-all duration-300 ease-in-out;
+  max-height: 0;
+}
+
+.service-accordion-content.active {
+  max-height: 1000px;
+}
+
+.service-description {
+  @apply text-white opacity-90;
+}
+
+.accordion-icon-container {
+  @apply relative flex items-center justify-center w-4 h-4;
+}
+
+.accordion-plus,
+.accordion-minus {
+  @apply transition-opacity duration-300;
+}
+
+.accordion-minus {
+  @apply absolute top-0 left-0;
+}
+
+.service-link-icon {
+  @apply inline-flex items-center justify-center;
+}

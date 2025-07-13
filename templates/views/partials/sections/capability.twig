@@ -15,7 +15,6 @@
         {% endif %}
 
         <div class="lg:grid lg:gap-16 lg:items-start" style="grid-template-columns: 1fr 1fr;">
-            <!-- Left Column: Subheading and Text -->
             <div class="mb-12 lg:mb-0">
                 {% if post.meta('capability_sub_heading') %}
                     <h3 class="capability-subheading text-white mb-8 lg:mb-12">
@@ -31,35 +30,56 @@
             </div>
             
             {% if post.meta('services') %}
-                <div class="space-y-0">
+                <div class="services-accordion">
                     {% for service in post.meta('services') %}
                         {% if service.service_name %}
-                            {% if service.service_url %}
-                                <a href="{{ service.service_url }}" class="capability-service-link flex items-center justify-between text-white transition-colors duration-300 border-b border-mainstay-green {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}">
-                                    <span>{{ service.service_name }}</span>
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 ml-4"> 
-                                        <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="#0EDD7A"/> 
-                                    </svg>
-                                </a>
-                            {% else %}
-                                <div class="capability-service-link flex items-center justify-between text-white border-b border-mainstay-green {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}">
-                                    <span>{{ service.service_name }}</span>
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 ml-4"> 
-                                        <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="#0EDD7A"/> 
-                                    </svg>
-                                </div>
-                            {% endif %}
+                            <div class="service-accordion-item">
+                                {% if service.service_description %}
+                                    <div class="service-accordion-trigger capability-service-link flex items-center justify-between text-white transition-colors duration-300 border-b border-mainstay-green cursor-pointer {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}" data-service-accordion="{{ loop.index }}">
+                                        <span>{{ service.service_name }}</span>
+                                        <div class="accordion-icon-container">
+                                            <svg class="accordion-plus w-4 h-4 transition-opacity duration-300" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="currentColor"/>
+                                            </svg>
+                                            <svg class="accordion-minus w-4 h-4 transition-opacity duration-300 opacity-0 absolute" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="currentColor"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="service-accordion-content overflow-hidden transition-all duration-300 ease-in-out border-b border-mainstay-green" data-service-content="{{ loop.index }}" style="max-height: 0;">
+                                        <div class="service-description capability-text text-white pt-4 pb-6 lg:pb-8 pl-0">
+                                            {{ service.service_description|raw }}
+                                            
+                                            {% if service.service_url %}
+                                                <div class="mt-6">
+                                                    <a href="{{ service.service_url }}" class="btn-mainstay-secondary inline-block">
+                                                        Learn More
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    {% if service.service_url %}
+                                        <a href="{{ service.service_url }}" class="capability-service-link flex items-center justify-between text-white transition-colors duration-300 border-b border-mainstay-green {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}">
+                                            <span>{{ service.service_name }}</span>
+                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 ml-4"> 
+                                                <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="#0EDD7A"/> 
+                                            </svg>
+                                        </a>
+                                    {% else %}
+                                        <div class="capability-service-link flex items-center justify-between text-white border-b border-mainstay-green {% if loop.first %}pb-4 lg:pb-6{% else %}py-4 lg:py-6{% endif %}">
+                                            <span>{{ service.service_name }}</span>
+                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 ml-4"> 
+                                                <path d="M5.73742 13.608V0.482954H7.96469V13.608H5.73742ZM0.288552 8.15909V5.93182H13.4136V8.15909H0.288552Z" fill="#0EDD7A"/> 
+                                            </svg>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
                         {% endif %}
                     {% endfor %}
-                    
-                    <div class="pt-12 lg:pt-16 text-right">
-                        <a href="/services" class="see-all-services-link inline-flex items-center text-white hover:text-mainstay-green transition-colors">
-                            <span class="mr-2">See all services</span>
-                            <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="#0EDD7A"/>
-                            </svg>
-                        </a>
-                    </div>
                 </div>
             {% endif %}
         </div>

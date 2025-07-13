@@ -43,9 +43,11 @@
                             <div class="mb-6 lg:mb-0">
                                 {% if post_obj.thumbnail %}
                                     <div class="blog-post-image">
-                                        <img src="{{ post_obj.thumbnail.src('medium') }}" 
-                                             alt="{{ post_obj.thumbnail.alt }}"
-                                             class="w-full h-48 lg:h-56 object-cover">
+                                        <a href="{{ post_obj.link }}" class="block transition-transform duration-300 hover:scale-105">
+                                            <img src="{{ post_obj.thumbnail.src('medium') }}" 
+                                                 alt="{{ post_obj.thumbnail.alt }}"
+                                                 class="w-full h-48 lg:h-56 object-cover">
+                                        </a>
                                     </div>
                                 {% endif %}
                             </div>

@@ -1,5 +1,4 @@
 <section class="case-studies-section py-16 lg:py-16">
-
     {% set case_studies = fn('get_posts', {
         'post_type': 'case-study',
         'numberposts': post.meta('case_studies_count') ? post.meta('case_studies_count') : 3,
@@ -7,7 +6,6 @@
         'orderby': 'date',
         'order': 'DESC'
     }) %}
-
     {% if case_studies %}
         <div class="case-studies-list">
             {% for case_study in case_studies %}
@@ -17,23 +15,25 @@
                 <article class="case-study-item">
                     <div class="case-study-container {{ bg_class }}">
                         <div class="flex flex-col lg:grid lg:gap-12 lg:items-center" style="grid-template-columns: 1fr 1fr;">
-                            <!-- Image first on mobile, second on desktop -->
                             <div class="case-study-image order-1 lg:order-2 mb-6 lg:mb-0">
                                 {% if study_obj.thumbnail %}
-                                    <img src="{{ study_obj.thumbnail.src('large') }}" 
-                                         alt="{{ study_obj.thumbnail.alt }}"
-                                         class="w-full object-cover case-study-img">
+                                    <a href="{{ study_obj.link }}" class="block">
+                                        <img src="{{ study_obj.thumbnail.src('large') }}" 
+                                             alt="{{ study_obj.thumbnail.alt }}"
+                                             class="w-full object-cover case-study-img">
+                                    </a>
                                 {% endif %}
                             </div>
                             
-                            <!-- Content second on mobile, first on desktop -->
                             <div class="case-study-content order-2 lg:order-1">
                                 <div class="case-study-ribbon">
                                     <span class="case-study-tag">CASE STUDY</span>
                                 </div>
                                 
                                 <h3 class="case-study-heading mb-4 lg:mb-6">
-                                    {{ study_obj.title }}
+                                    <a href="{{ study_obj.link }}" class="text-white hover:text-mainstay-green transition-colors">
+                                        {{ study_obj.title }}
+                                    </a>
                                 </h3>
                                 
                                 <div class="case-study-text mb-6 lg:mb-8">
@@ -58,7 +58,6 @@
                 </article>
             {% endfor %}
         </div>
-
         {% if post.meta('all_case_studies_link') %}
             <div class="site-container">
                 <div class="text-center mt-8 lg:mt-16">

@@ -6,6 +6,7 @@
     initSmoothScrolling();
     initHeaderScroll();
     initMegaMenu();
+    initServiceAccordion();
   });
 
   function initMobileMenu() {
@@ -169,6 +170,59 @@
       } else {
         header.classList.remove("scrolled");
       }
+    });
+  }
+
+  function initServiceAccordion() {
+    const accordionTriggers = document.querySelectorAll(
+      ".service-accordion-trigger"
+    );
+
+    accordionTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", function () {
+        const accordionId = this.getAttribute("data-service-accordion");
+        const content = document.querySelector(
+          `[data-service-content="${accordionId}"]`
+        );
+        const plusIcon = this.querySelector(".accordion-plus");
+        const minusIcon = this.querySelector(".accordion-minus");
+
+        if (!content) return;
+
+        const isActive =
+          content.style.maxHeight && content.style.maxHeight !== "0px";
+
+        accordionTriggers.forEach((otherTrigger) => {
+          const otherId = otherTrigger.getAttribute("data-service-accordion");
+          const otherContent = document.querySelector(
+            `[data-service-content="${otherId}"]`
+          );
+          const otherPlusIcon = otherTrigger.querySelector(".accordion-plus");
+          const otherMinusIcon = otherTrigger.querySelector(".accordion-minus");
+
+          if (otherContent && otherId !== accordionId) {
+            otherContent.style.maxHeight = "0px";
+            if (otherPlusIcon && otherMinusIcon) {
+              otherPlusIcon.style.opacity = "1";
+              otherMinusIcon.style.opacity = "0";
+            }
+          }
+        });
+
+        if (isActive) {
+          content.style.maxHeight = "0px";
+          if (plusIcon && minusIcon) {
+            plusIcon.style.opacity = "1";
+            minusIcon.style.opacity = "0";
+          }
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          if (plusIcon && minusIcon) {
+            plusIcon.style.opacity = "0";
+            minusIcon.style.opacity = "1";
+          }
+        }
+      });
     });
   }
 
