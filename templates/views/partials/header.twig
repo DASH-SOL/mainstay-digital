@@ -21,11 +21,21 @@
                 <nav class="main-navigation" role="navigation">
                     {% for item in primary_menu.items %}
                         {% if item.children %}
-                            <div class="nav-menu-item has-children">
+                            <div class="nav-menu-item has-children" data-menu="{{ loop.index }}">
                                 <span>{{ item.title }}</span>
-                                
-                                <div class="mega-menu">
-                                    <div class="mega-menu-container">
+                            </div>
+                        {% else %}
+                            <a href="{{ item.url }}" class="nav-menu-item">
+                                {{ item.title }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="mega-menu">
+                        <div class="mega-menu-container">
+                            {% for item in primary_menu.items %}
+                                {% if item.children %}
+                                    <div class="mega-menu-content" data-content="{{ loop.index }}" style="display: none; grid-template-columns: minmax(300px, 1fr) 2fr; gap: 2rem;">
                                         <div class="mega-menu-left">
                                             <h2 class="mega-menu-title">{{ item.title }}</h2>
                                             <a href="{{ item.url }}" class="mega-menu-parent-link">
@@ -45,14 +55,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        {% else %}
-                            <a href="{{ item.url }}" class="nav-menu-item">
-                                {{ item.title }}
-                            </a>
-                        {% endif %}
-                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </nav>
             {% endif %}
         </div>
@@ -106,7 +112,6 @@
                 {% for item in primary_menu.items %}
                     <div class="mobile-menu-item-wrapper">
                         {% if item.children %}
-                            <!-- Parent Item with Children -->
                             <div class="mobile-nav-item mobile-nav-main-item mobile-accordion-trigger" data-accordion="{{ loop.index }}">
                                 <span class="font-rubik font-medium text-[32px] leading-none text-gray-900">{{ item.title }}</span>
                                 <svg class="w-[23px] h-[14px] flex-shrink-0 accordion-arrow transition-transform duration-300" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,9 +119,7 @@
                                 </svg>
                             </div>
 
-                            <!-- Accordion Content -->
                             <div class="mobile-accordion-content" data-content="{{ loop.index }}">
-                                <!-- Parent Link -->
                                 <a href="{{ item.url }}" class="mobile-nav-parent-link">
                                     <div class="flex items-center">
                                         <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">Go to {{ item.title|lower }}</span>
@@ -126,10 +129,8 @@
                                     </svg>
                                 </a>
 
-                                <!-- Child Items -->
                                 {% for child in item.children %}
                                     {% if child.children %}
-                                        <!-- Child with Sub-children -->
                                         <div class="mobile-nav-child-accordion">
                                             <div class="mobile-nav-item mobile-accordion-trigger" data-accordion="{{ loop.parent.loop.index }}-{{ loop.index }}">
                                                 <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">{{ child.title }}</span>
@@ -159,7 +160,6 @@
                                             </div>
                                         </div>
                                     {% else %}
-                                        <!-- Simple Child Item -->
                                         <a href="{{ child.url }}" class="mobile-nav-item">
                                             <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">{{ child.title }}</span>
                                             <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +170,6 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            <!-- Simple Menu Item -->
                             <a href="{{ item.url }}" class="mobile-nav-item mobile-nav-main-item">
                                 <span class="font-rubik font-medium text-[32px] leading-none text-gray-900">{{ item.title }}</span>
                             </a>

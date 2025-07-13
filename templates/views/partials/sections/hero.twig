@@ -1,34 +1,27 @@
 <section class="hero-section bg-white py-12 lg:py-32 overflow-hidden relative">
-    <div class="site-container">
-        <!-- Mobile background graphic -->
-        <div class="absolute bottom-0 right-0 lg:hidden z-0">
+    <div class="site-container relative">
+        <div class="absolute bottom-4 right-0 block md:hidden z-0 hero-graphic-mobile">
             {% if hero.decorative_graphic_mobile %}
                 <div class="w-80 h-80">
                     <img src="{{ TimberImage(hero.decorative_graphic_mobile).src('large') }}" 
                          alt="{{ TimberImage(hero.decorative_graphic_mobile).alt }}"
-                         class="w-full h-auto">
-                </div>
-            {% else %}
-                <div class="w-80 h-80">
-                    <svg viewBox="0 0 400 400" class="w-full h-auto">
-                        <defs>
-                            <pattern id="diagonalLinesMobile" patternUnits="userSpaceOnUse" width="6" height="6">
-                                <path d="M0,6 L6,0" stroke="#bbb" stroke-width="1"/>
-                            </pattern>
-                            <pattern id="greenLinesMobile" patternUnits="userSpaceOnUse" width="6" height="6">
-                                <path d="M0,6 L6,0" stroke="#0edd7a" stroke-width="1.5"/>
-                            </pattern>
-                        </defs>
-                        <circle cx="200" cy="200" r="180" fill="url(#diagonalLinesMobile)"/>
-                        <circle cx="200" cy="200" r="100" fill="url(#greenLinesMobile)"/>
-                    </svg>
+                         class="w-full h-full object-contain hero-graphic-img">
                 </div>
             {% endif %}
         </div>
 
-        <div class="lg:grid lg:items-center lg:gap-12" style="grid-template-columns: 55% 45%;">
-            <!-- Content Column -->
-            <div class="relative z-10">
+        <div class="absolute top-1/2 right-0 transform -translate-y-1/2 hidden md:block z-0 hero-graphic-desktop">
+            {% if hero.decorative_graphic_desktop %}
+                <div class="w-[500px] h-[500px]">
+                    <img src="{{ TimberImage(hero.decorative_graphic_desktop).src('large') }}" 
+                         alt="{{ TimberImage(hero.decorative_graphic_desktop).alt }}"
+                         class="w-full h-full object-contain hero-graphic-img">
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="relative z-10">
+            <div class="max-w-3xl">
                 {% if hero.headline %}
                     <h1 class="text-black mb-10 lg:mb-16">
                         {{ hero.headline }}
@@ -52,31 +45,6 @@
                     <a href="{{ hero.button_url }}" class="btn-mainstay inline-block">
                         {{ hero.button_text }}
                     </a>
-                {% endif %}
-            </div>
-            
-            <div class="hidden lg:flex justify-center">
-                {% if hero.decorative_graphic_desktop %}
-                    <div class="w-full max-w-lg">
-                        <img src="{{ TimberImage(hero.decorative_graphic_desktop).src('large') }}" 
-                             alt="{{ TimberImage(hero.decorative_graphic_desktop).alt }}"
-                             class="w-full h-auto">
-                    </div>
-                {% else %}
-                    <div class="w-full max-w-lg">
-                        <svg viewBox="0 0 400 400" class="w-full h-auto">
-                            <defs>
-                                <pattern id="diagonalLines" patternUnits="userSpaceOnUse" width="8" height="8">
-                                    <path d="M0,8 L8,0" stroke="#e5e7eb" stroke-width="1"/>
-                                </pattern>
-                                <pattern id="greenLines" patternUnits="userSpaceOnUse" width="8" height="8">
-                                    <path d="M0,8 L8,0" stroke="#0edd7a" stroke-width="1"/>
-                                </pattern>
-                            </defs>
-                            <circle cx="200" cy="200" r="180" fill="url(#diagonalLines)"/>
-                            <circle cx="200" cy="200" r="120" fill="url(#greenLines)"/>
-                        </svg>
-                    </div>
                 {% endif %}
             </div>
         </div>
