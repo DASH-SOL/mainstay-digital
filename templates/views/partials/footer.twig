@@ -1,43 +1,269 @@
 <footer class="site-footer">
-    <div class="site-container">
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>{{ site.name }}</h3>
-                {% if site.description %}
-                    <p class="text-gray-300">{{ site.description }}</p>
+    <div class="footer-container">
+        <div class="footer-desktop">
+            <div class="footer-top-row">
+                <div class="footer-top-left">
+                    <div class="footer-logo-container">
+                        {% if footer_settings.logo %}
+                            <img src="{{ footer_settings.logo.url }}" 
+                                 alt="{{ footer_settings.logo.alt }}" 
+                                 class="footer-logo"
+                                 style="width: {{ footer_settings.logo_width }}px; height: auto; object-fit: contain;">
+                        {% else %}
+                            <div class="footer-logo-text">
+                                <span class="footer-logo-slashes">///</span>
+                                <span class="footer-logo-text-content">MAINSTAY</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="footer-top-right">
+                    <div class="footer-social-icons">
+                        {% if footer_settings.social %}
+                            {% for platform, social in footer_settings.social %}
+                                <a href="{{ social.url }}" 
+                                   class="footer-social-link" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   aria-label="{{ social.label }}">
+                                    {% if platform == 'facebook' %}
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="currentColor"/>
+                                        </svg>
+                                    {% elseif platform == 'instagram' %}
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.254-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
+                                        </svg>
+                                    {% elseif platform == 'linkedin' %}
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                                        </svg>
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <a href="#" class="footer-social-link" aria-label="Facebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="footer-social-link" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.254-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.40z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="footer-social-link" aria-label="LinkedIn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    {% if footer_settings.button.text and footer_settings.button.url %}
+                        <a href="{{ footer_settings.button.url }}" class="footer-cta-button">
+                            {{ footer_settings.button.text }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="footer-main-content">
+                {% if footer_menu_1 and footer_menu_1.items %}
+                    <div class="footer-menu-column">
+                        <h3 class="footer-menu-heading">{{ footer_settings.headings.heading_1 }}</h3>
+                        <ul class="footer-menu-list">
+                            {% for item in footer_menu_1.items %}
+                                <li class="footer-menu-item">
+                                    <a href="{{ item.url }}" class="footer-menu-link">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if footer_menu_2 and footer_menu_2.items %}
+                    <div class="footer-menu-column">
+                        <h3 class="footer-menu-heading">{{ footer_settings.headings.heading_2 }}</h3>
+                        <ul class="footer-menu-list">
+                            {% for item in footer_menu_2.items %}
+                                <li class="footer-menu-item">
+                                    <a href="{{ item.url }}" class="footer-menu-link">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if footer_menu_3 and footer_menu_3.items %}
+                    <div class="footer-menu-column">
+                        <h3 class="footer-menu-heading">{{ footer_settings.headings.heading_3 }}</h3>
+                        <ul class="footer-menu-list">
+                            {% for item in footer_menu_3.items %}
+                                <li class="footer-menu-item">
+                                    <a href="{{ item.url }}" class="footer-menu-link">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <div class="footer-contact-section">
+                    <h3 class="footer-contact-heading">Contact</h3>
+                    <div class="footer-contact-info">
+                        {% if footer_settings.contact.phone %}
+                            <p class="footer-contact-item">
+                                <span class="footer-contact-label">P:</span>
+                                <span class="footer-contact-value">{{ footer_settings.contact.phone }}</span>
+                            </p>
+                        {% endif %}
+
+                        {% if footer_settings.contact.email %}
+                            <p class="footer-contact-item">
+                                <span class="footer-contact-label">E:</span>
+                                <span class="footer-contact-value">{{ footer_settings.contact.email }}</span>
+                            </p>
+                        {% endif %}
+
+                        {% if footer_settings.contact.address %}
+                            <p class="footer-contact-item">
+                                <span class="footer-contact-label">A:</span>
+                                <span class="footer-contact-value">{{ footer_settings.contact.address }}</span>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-mobile lg:hidden">
+            <div class="footer-mobile-logo">
+                {% if footer_settings.logo %}
+                    <img src="{{ footer_settings.logo.url }}" 
+                         alt="{{ footer_settings.logo.alt }}" 
+                         class="footer-logo"
+                         style="width: {{ footer_settings.logo_width * 0.8 }}px; height: auto; object-fit: contain;">
+                {% else %}
+                    <div class="footer-logo-text">
+                        <span class="footer-logo-slashes">///</span>
+                        <span class="footer-logo-text-content">MAINSTAY</span>
+                    </div>
                 {% endif %}
             </div>
 
-            <div class="footer-contact">
-                <h4 class="text-lg font-semibold mb-4 text-mainstay-secondary">Contact Info</h4>
-                <p class="text-gray-300 mb-2">Email: info@mainstaydigital.com</p>
-                <p class="text-gray-300">Phone: (555) 123-4567</p>
-            </div>
-            
-            <div class="footer-links">
-                <h4 class="text-lg font-semibold mb-4 text-mainstay-secondary">Quick Links</h4>
-                {% if footer_menu and footer_menu.items %}
-                    <ul class="space-y-2">
-                        {% for item in footer_menu.items %}
-                            <li>
-                                <a href="{{ item.url }}" class="text-gray-300 hover:text-white transition-colors">
-                                    {{ item.title }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+            {% if footer_settings.social %}
+                <div class="footer-mobile-social">
+                    {% for platform, social in footer_settings.social %}
+                        <a href="{{ social.url }}" 
+                           class="footer-social-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="{{ social.label }}">
+                            {% if platform == 'facebook' %}
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="currentColor"/>
+                                </svg>
+                            {% elseif platform == 'instagram' %}
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.254-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
+                                </svg>
+                            {% elseif platform == 'linkedin' %}
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+                                </svg>
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="footer-mobile-menus">
+                {% if footer_menu_1 and footer_menu_1.items %}
+                    <div class="footer-mobile-menu-section">
+                        <h3 class="footer-mobile-menu-heading">{{ footer_settings.headings.heading_1 }}</h3>
+                        <ul class="footer-mobile-menu-list">
+                            {% for item in footer_menu_1.items %}
+                                <li class="footer-mobile-menu-item">
+                                    <a href="{{ item.url }}" class="footer-mobile-menu-link">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 {% endif %}
-                
-                <div class="mt-6">
-                    <a href="/contact" class="btn-mainstay-secondary">
-                        Get Started Today
+
+                {% if footer_menu_2 and footer_menu_2.items %}
+                    <div class="footer-mobile-menu-section">
+                        <h3 class="footer-mobile-menu-heading">{{ footer_settings.headings.heading_2 }}</h3>
+                        <ul class="footer-mobile-menu-list">
+                            {% for item in footer_menu_2.items %}
+                                <li class="footer-mobile-menu-item">
+                                    <a href="{{ item.url }}" class="footer-mobile-menu-link">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if footer_menu_3 and footer_menu_3.items %}
+                    <div class="footer-mobile-menu-section">
+                        <h3 class="footer-mobile-menu-heading">{{ footer_settings.headings.heading_3 }}</h3>
+                        <ul class="footer-mobile-menu-list">
+                            {% for item in footer_menu_3.items %}
+                                <li class="footer-mobile-menu-item">
+                                    <a href="{{ item.url }}" class="footer-mobile-menu-link">{{ item.title }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if footer_settings.button.text and footer_settings.button.url %}
+                <div class="footer-mobile-cta">
+                    <a href="{{ footer_settings.button.url }}" class="footer-mobile-cta-button">
+                        {{ footer_settings.button.text }}
                     </a>
+                </div>
+            {% endif %}
+
+            <div class="footer-mobile-contact">
+                <h3 class="footer-mobile-contact-heading">Contact</h3>
+                <div class="footer-mobile-contact-info">
+                    {% if footer_settings.contact.phone %}
+                        <p class="footer-mobile-contact-item">
+                            <span class="footer-mobile-contact-label">P:</span>
+                            <span class="footer-mobile-contact-value">{{ footer_settings.contact.phone }}</span>
+                        </p>
+                    {% endif %}
+
+                    {% if footer_settings.contact.email %}
+                        <p class="footer-mobile-contact-item">
+                            <span class="footer-mobile-contact-label">E:</span>
+                            <span class="footer-mobile-contact-value">{{ footer_settings.contact.email }}</span>
+                        </p>
+                    {% endif %}
+
+                    {% if footer_settings.contact.address %}
+                        <p class="footer-mobile-contact-item">
+                            <span class="footer-mobile-contact-label">A:</span>
+                            <span class="footer-mobile-contact-value">{{ footer_settings.contact.address }}</span>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; {{ "now"|date("Y") }} {{ site.name }}. All rights reserved.</p>
+            <div class="footer-bottom-content">
+                {% if footer_settings.copyright %}
+                    <p class="footer-copyright">{{ footer_settings.copyright }}</p>
+                {% endif %}
+
+                {% if footer_settings.acknowledgment %}
+                    <p class="footer-acknowledgment">{{ footer_settings.acknowledgment }}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </footer>

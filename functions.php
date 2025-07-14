@@ -86,10 +86,14 @@ class Mainstay_Theme_Setup {
         register_nav_menus(array(
             'primary' => __('Primary Menu', 'mainstay-digital'),
             'footer' => __('Footer Menu', 'mainstay-digital'),
+            'footer_menu_1' => __('Footer Menu 1', 'mainstay-digital'),
+            'footer_menu_2' => __('Footer Menu 2', 'mainstay-digital'),
+            'footer_menu_3' => __('Footer Menu 3', 'mainstay-digital'),
         ));
     }
 
     public function customize_register($wp_customize) {
+        // Logo Settings Section (existing)
         $wp_customize->add_section('mainstay_logo_section', array(
             'title'    => __('Logo Settings', 'mainstay-digital'),
             'priority' => 30,
@@ -126,6 +130,176 @@ class Mainstay_Theme_Setup {
                 'step' => 5,
             ),
         ));
+
+        // Footer Settings Section
+        $wp_customize->add_section('mainstay_footer_section', array(
+            'title'    => __('Footer Settings', 'mainstay-digital'),
+            'priority' => 40,
+        ));
+
+        // Footer Logo Settings
+        $wp_customize->add_setting('mainstay_footer_logo', array(
+            'default'           => '',
+            'sanitize_callback' => 'absint',
+        ));
+
+        $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'mainstay_footer_logo', array(
+            'label'    => __('Footer Logo', 'mainstay-digital'),
+            'section'  => 'mainstay_footer_section',
+            'mime_type' => 'image',
+        )));
+
+        $wp_customize->add_setting('mainstay_footer_logo_width', array(
+            'default'           => '150',
+            'sanitize_callback' => 'absint',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_logo_width', array(
+            'label'    => __('Footer Logo Width (px)', 'mainstay-digital'),
+            'section'  => 'mainstay_footer_section',
+            'type'     => 'number',
+            'input_attrs' => array(
+                'min' => 50,
+                'max' => 300,
+                'step' => 10,
+            ),
+        ));
+
+        // Footer Menu Headings
+        $wp_customize->add_setting('mainstay_footer_heading_1', array(
+            'default'           => 'Services',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_heading_1', array(
+            'label'   => __('Footer Menu 1 Heading', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'text',
+        ));
+
+        $wp_customize->add_setting('mainstay_footer_heading_2', array(
+            'default'           => 'Company',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_heading_2', array(
+            'label'   => __('Footer Menu 2 Heading', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'text',
+        ));
+
+        $wp_customize->add_setting('mainstay_footer_heading_3', array(
+            'default'           => 'Resources',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_heading_3', array(
+            'label'   => __('Footer Menu 3 Heading', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'text',
+        ));
+
+        // Footer Button Settings
+        $wp_customize->add_setting('mainstay_footer_button_text', array(
+            'default'           => 'Get in touch',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_button_text', array(
+            'label'   => __('Footer Button Text', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'text',
+        ));
+
+        $wp_customize->add_setting('mainstay_footer_button_url', array(
+            'default'           => '/contact',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_button_url', array(
+            'label'   => __('Footer Button URL', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'url',
+        ));
+
+        // Contact Information
+        $wp_customize->add_setting('mainstay_footer_phone', array(
+            'default'           => '1800 953 733',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_phone', array(
+            'label'   => __('Phone Number', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'text',
+        ));
+
+        $wp_customize->add_setting('mainstay_footer_email', array(
+            'default'           => 'contact@mainstay.digital',
+            'sanitize_callback' => 'sanitize_email',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_email', array(
+            'label'   => __('Email Address', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'email',
+        ));
+
+        $wp_customize->add_setting('mainstay_footer_address', array(
+            'default'           => 'Level 4, 60 Moorabool Street Geelong, VIC, 3220',
+            'sanitize_callback' => 'sanitize_textarea_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_address', array(
+            'label'   => __('Address', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'textarea',
+        ));
+
+        // Social Media Settings
+        $social_platforms = array(
+            'facebook' => 'Facebook',
+            'instagram' => 'Instagram',
+            'linkedin' => 'LinkedIn',
+            'twitter' => 'Twitter',
+            'youtube' => 'YouTube',
+        );
+
+        foreach ($social_platforms as $platform => $label) {
+            $wp_customize->add_setting("mainstay_social_{$platform}", array(
+                'default'           => '',
+                'sanitize_callback' => 'esc_url_raw',
+            ));
+
+            $wp_customize->add_control("mainstay_social_{$platform}", array(
+                'label'   => __($label . ' URL', 'mainstay-digital'),
+                'section' => 'mainstay_footer_section',
+                'type'    => 'url',
+            ));
+        }
+
+        // Copyright Settings
+        $wp_customize->add_setting('mainstay_footer_copyright', array(
+            'default'           => '(C) 2025 MAINSTAY DIGITAL PTY LTD',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_copyright', array(
+            'label'   => __('Copyright Text', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'text',
+        ));
+
+        $wp_customize->add_setting('mainstay_footer_acknowledgment', array(
+            'default'           => 'Mainstay Digital acknowledges Aboriginal and Torres Strait Islander people as the Traditional Custodians of the land and acknowledges and pays respect to their Elders, past and present.',
+            'sanitize_callback' => 'sanitize_textarea_field',
+        ));
+
+        $wp_customize->add_control('mainstay_footer_acknowledgment', array(
+            'label'   => __('Acknowledgment Text', 'mainstay-digital'),
+            'section' => 'mainstay_footer_section',
+            'type'    => 'textarea',
+        ));
     }
 
     public function init_timber() {
@@ -137,6 +311,9 @@ class Mainstay_Theme_Setup {
     public function add_to_context($context) {
         $context['primary_menu'] = new TimberMenu('primary');
         $context['footer_menu'] = new TimberMenu('footer');
+        $context['footer_menu_1'] = new TimberMenu('footer_menu_1');
+        $context['footer_menu_2'] = new TimberMenu('footer_menu_2');
+        $context['footer_menu_3'] = new TimberMenu('footer_menu_3');
         $context['site'] = new TimberSite();
         $context['theme_url'] = MAINSTAY_THEME_URL;
         
@@ -145,8 +322,77 @@ class Mainstay_Theme_Setup {
             'width' => get_theme_mod('mainstay_logo_width', 200),
             'height' => get_theme_mod('mainstay_logo_height', 60),
         );
+
+        // Footer settings
+        $context['footer_settings'] = array(
+            'logo' => $this->get_footer_logo_data(),
+            'logo_width' => get_theme_mod('mainstay_footer_logo_width', 150),
+            'headings' => array(
+                'heading_1' => get_theme_mod('mainstay_footer_heading_1', 'Services'),
+                'heading_2' => get_theme_mod('mainstay_footer_heading_2', 'Company'),
+                'heading_3' => get_theme_mod('mainstay_footer_heading_3', 'Resources'),
+            ),
+            'button' => array(
+                'text' => get_theme_mod('mainstay_footer_button_text', 'Get in touch'),
+                'url' => get_theme_mod('mainstay_footer_button_url', '/contact'),
+            ),
+            'contact' => array(
+                'phone' => get_theme_mod('mainstay_footer_phone', '1800 953 733'),
+                'email' => get_theme_mod('mainstay_footer_email', 'contact@mainstay.digital'),
+                'address' => get_theme_mod('mainstay_footer_address', 'Level 4, 60 Moorabool Street Geelong, VIC, 3220'),
+            ),
+            'social' => $this->get_social_links(),
+            'copyright' => get_theme_mod('mainstay_footer_copyright', '(C) 2025 MAINSTAY DIGITAL PTY LTD'),
+            'acknowledgment' => get_theme_mod('mainstay_footer_acknowledgment', 'Mainstay Digital acknowledges Aboriginal and Torres Strait Islander people as the Traditional Custodians of the land and acknowledges and pays respect to their Elders, past and present.'),
+        );
         
         return $context;
+    }
+
+    private function get_footer_logo_data() {
+        $footer_logo_id = get_theme_mod('mainstay_footer_logo');
+        
+        if (!$footer_logo_id) {
+            return false;
+        }
+
+        $logo_data = wp_get_attachment_image_src($footer_logo_id, 'full');
+        $logo_alt = get_post_meta($footer_logo_id, '_wp_attachment_image_alt', true);
+        
+        if (!$logo_data) {
+            return false;
+        }
+
+        return array(
+            'url' => $logo_data[0],
+            'width' => $logo_data[1],
+            'height' => $logo_data[2],
+            'alt' => $logo_alt ? $logo_alt : get_bloginfo('name'),
+            'id' => $footer_logo_id,
+        );
+    }
+
+    private function get_social_links() {
+        $social_platforms = array(
+            'facebook' => 'Facebook',
+            'instagram' => 'Instagram', 
+            'linkedin' => 'LinkedIn',
+            'twitter' => 'Twitter',
+            'youtube' => 'YouTube',
+        );
+
+        $social_links = array();
+        foreach ($social_platforms as $platform => $label) {
+            $url = get_theme_mod("mainstay_social_{$platform}", '');
+            if (!empty($url)) {
+                $social_links[$platform] = array(
+                    'url' => $url,
+                    'label' => $label,
+                );
+            }
+        }
+
+        return $social_links;
     }
 
     public function add_to_twig($twig) {
@@ -187,6 +433,7 @@ class Mainstay_Theme_Setup {
 
 new Mainstay_Theme_Setup();
 
+// Rest of the existing functions remain the same...
 function mainstay_get_custom_logo() {
     $custom_logo_id = get_theme_mod('custom_logo');
     
