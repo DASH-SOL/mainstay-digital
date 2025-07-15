@@ -1,7 +1,7 @@
 <section class="capability-section py-16 lg:py-16">
     <div class="capability-bg mx-4 lg:mx-8 px-6 lg:px-12 py-12 lg:py-16" style="background-color: rgba(24, 93, 116, 1); max-width: 1380px; margin-left: auto; margin-right: auto;">
         
-        {% if post.meta('capability_heading') %}
+        {% if capability.heading %}
             <div class="flex items-center mb-12 lg:mb-16">
                 <div class="mr-4 flex-shrink-0">
                     <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
@@ -9,29 +9,28 @@
                     </svg>
                 </div>
                 <h2 class="capability-heading text-white">
-                    {{ post.meta('capability_heading') }}
+                    {{ capability.heading }}
                 </h2>
             </div>
         {% endif %}
-
         <div class="lg:grid lg:gap-16 lg:items-start" style="grid-template-columns: 1fr 1fr;">
             <div class="mb-12 lg:mb-0">
-                {% if post.meta('capability_sub_heading') %}
+                {% if capability.sub_heading %}
                     <h3 class="capability-subheading text-white mb-8 lg:mb-12">
-                        {{ post.meta('capability_sub_heading') }}
+                        {{ capability.sub_heading }}
                     </h3>
                 {% endif %}
                 
-                {% if post.meta('capability_text') %}
+                {% if capability.content %}
                     <div class="capability-text text-white">
-                        {{ post.meta('capability_text')|raw }}
+                        {{ capability.content|raw }}
                     </div>
                 {% endif %}
             </div>
             
-            {% if post.meta('services') %}
+            {% if capability.services %}
                 <div class="services-accordion">
-                    {% for service in post.meta('services') %}
+                    {% for service in capability.services %}
                         {% if service.service_name %}
                             <div class="service-accordion-item">
                                 {% if service.service_description %}

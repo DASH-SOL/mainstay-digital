@@ -4,20 +4,16 @@ if (!class_exists('Timber')) {
     return;
 }
 
-$mock_post = new stdClass();
-$mock_post->meta = function($key) {
-    switch($key) {
-        case 'about-heading':
-            return get_field('heading');
-        case 'about_text':
-            return get_field('content');
-        default:
-            return null;
-    }
-};
+$about_heading = get_field('about_heading');
+$about_text = get_field('about_text');
+
+$about_data = array(
+    'heading' => $about_heading,
+    'content' => $about_text
+);
 
 $context = Timber::get_context();
-$context['post'] = $mock_post;
+$context['about'] = $about_data;
 $context['block'] = $block;
 
 Timber::render('partials/sections/about.twig', $context);
