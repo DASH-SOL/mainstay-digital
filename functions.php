@@ -590,3 +590,5 @@ function mainstay_fix_svg_display($response, $attachment, $meta) {
     return $response;
 }
 add_filter('wp_prepare_attachment_for_js', 'mainstay_fix_svg_display', 10, 3);
+
+require_once MAINSTAY_THEME_DIR . '/includes/acf-blocks.php';

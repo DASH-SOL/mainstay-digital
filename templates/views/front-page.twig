@@ -1,48 +1,5 @@
 {% extends "base.twig" %}
+
 {% block content %}
-    {% if post.meta('hero_section') %}
-        {% include 'partials/sections/hero.twig' with {
-            'hero': post.meta('hero_section')
-        } %}
-    {% endif %}
-    
-    {% if post.meta('about-heading') or post.meta('about_text') %}
-        {% include 'partials/sections/about.twig' %}
-    {% endif %}
-    
-    {% if post.meta('capability_heading') or post.meta('capability_sub_heading') or post.meta('capability_text') or post.meta('services') %}
-        {% include 'partials/sections/capability.twig' %}
-    {% endif %}
-    
-    {% if post.meta('experience_heading') or post.meta('experience_logos') %}
-        {% include 'partials/sections/experience.twig' %}
-    {% endif %}
-    
-    {% include 'partials/sections/blog.twig' %}
-    
-    {% include 'partials/sections/case-studies.twig' %}
-    
-    {% if post.meta('guarantee_heading') or post.meta('guarantee_text') or post.meta('guarantee_image') or post.meta('content_guarantee_heading') or post.meta('list_content') %}
-        {% include 'partials/sections/guarantee.twig' %}
-    {% endif %}
-    
-    {% if post.meta('contact_form_heading') or post.meta('contact_form_text') or post.meta('contact_form_shortcode') or post.meta('contact_form_id') %}
-        {% include 'partials/sections/contact-form.twig' %}
-    {% endif %}
-    
-    {% if not post.meta('hero_section') and not post.meta('about-heading') and not post.meta('about_text') and not post.meta('capability_heading') and not post.meta('experience_heading') and not post.meta('guarantee_heading') and not post.meta('contact_form_heading') %}
-        <div class="site-container py-16">
-            <div class="text-center">
-                <h1 class="text-4xl lg:text-6xl font-bold text-mainstay-primary mb-6">
-                    Welcome to {{ site.name }}
-                </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                    Configure your sections using ACF fields to get started.
-                </p>
-                <a href="/wp-admin/post.php?post={{ post.id }}&action=edit" class="btn-mainstay">
-                    Edit Homepage
-                </a>
-            </div>
-        </div>
-    {% endif %}
+    {{ post.content }}
 {% endblock %}
