@@ -34,13 +34,13 @@ function register_mainstay_acf_blocks() {
         ));
 
         acf_register_block_type(array(
-            'name'              => 'about-section',
-            'title'             => __('About Section'),
-            'description'       => __('About section with heading and content'),
-            'render_template'   => get_template_directory() . '/templates/blocks/about-section.php',
+            'name'              => 'single-col-text-trunc',
+            'title'             => __('Single Col Text - Trunc'),
+            'description'       => __('Single column text section with heading and content'),
+            'render_template'   => get_template_directory() . '/templates/blocks/single-col-text-trunc.php',
             'category'          => 'formatting',
             'icon'              => 'admin-page',
-            'keywords'          => array('about', 'content'),
+            'keywords'          => array('single', 'column', 'text', 'content'),
             'supports'          => array(
                 'align' => false,
                 'anchor' => true,
