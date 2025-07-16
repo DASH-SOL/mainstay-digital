@@ -1,8 +1,7 @@
-<section class="experience-section py-16 lg:py-16">
+<section class="experience-section py-16 lg:py-24">
     <div class="experience-bg mx-4 lg:mx-8 px-6 lg:px-12 py-12 lg:py-16 bg-white" style="border: 1px solid rgba(14, 221, 122, 1); max-width: 1380px; margin-left: auto; margin-right: auto;">
         
-        <!-- Main Heading Container -->
-        {% if post.meta('experience_heading') %}
+        {% if experience.heading %}
             <div class="flex items-center mb-12 lg:mb-16">
                 <div class="mr-4 flex-shrink-0">
                     <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
@@ -10,15 +9,14 @@
                     </svg>
                 </div>
                 <h2 class="section-heading text-black">
-                    {{ post.meta('experience_heading') }}
+                    {{ experience.heading }}
                 </h2>
             </div>
         {% endif %}
 
-        <!-- Logo Grid -->
-        {% if post.meta('experience_logos') %}
+        {% if experience.logos %}
             <div class="experience-logos-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12 items-center justify-items-center">
-                {% for logo in post.meta('experience_logos') %}
+                {% for logo in experience.logos %}
                     {% if logo %}
                         <div class="experience-logo-item flex items-center justify-center p-4">
                             <img src="{{ TimberImage(logo).src('medium') }}" 
@@ -30,7 +28,6 @@
             </div>
         {% endif %}
 
-        <!-- CTA Button -->
         <div class="text-center mt-12 lg:mt-16">
             <a href="/contact" class="btn-mainstay">
                 Get in touch

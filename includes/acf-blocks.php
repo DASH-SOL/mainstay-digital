@@ -64,10 +64,10 @@ function register_mainstay_acf_blocks() {
         ));
 
         acf_register_block_type(array(
-            'name'              => 'experience-section',
-            'title'             => __('Experience Section'),
+            'name'              => 'experience',
+            'title'             => __('Experience'),
             'description'       => __('Experience section with client logos'),
-            'render_template'   => get_template_directory() . '/templates/blocks/experience-section.php',
+            'render_template'   => get_template_directory() . '/templates/blocks/experience.php',
             'category'          => 'formatting',
             'icon'              => 'images-alt2',
             'keywords'          => array('experience', 'logos', 'clients'),
@@ -77,6 +77,21 @@ function register_mainstay_acf_blocks() {
                 'customClassName' => true,
             ),
         ));
+
+        acf_register_block_type(array(
+    'name'              => 'learn-more-article-link',
+    'title'             => __('Learn More - Article Link'),
+    'description'       => __('Display recent articles with category filtering'),
+    'render_template'   => get_template_directory() . '/templates/blocks/learn-more-article-link.php',
+    'category'          => 'formatting',
+    'icon'              => 'admin-post',
+    'keywords'          => array('learn', 'articles', 'blog', 'posts'),
+    'supports'          => array(
+        'align' => false,
+        'anchor' => true,
+        'customClassName' => true,
+    ),
+));
     }
 }
 
