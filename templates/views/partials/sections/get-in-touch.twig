@@ -1,0 +1,41 @@
+<section class="get-in-touch-section py-16 lg:py-24">
+    <div class="get-in-touch-bg mx-4 lg:mx-8 px-6 lg:px-12 py-12 lg:py-16 bg-white" style="max-width: 1380px; margin-left: auto; margin-right: auto;">
+        
+        {% if get_in_touch.heading %}
+            <div class="flex items-center mb-12 lg:mb-16">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {{ get_in_touch.heading }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        <div class="lg:grid lg:gap-16 lg:items-start" style="grid-template-columns: 1fr 1fr;">
+            <div class="mb-12 lg:mb-0">
+                {% if get_in_touch.text %}
+                    <div class="section-text text-black">
+                        {{ get_in_touch.text|raw }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="contact-form-container">
+                {% if get_in_touch.shortcode %}
+                    <div class="contact-form-wrapper">
+                        {{ fn('do_shortcode', get_in_touch.shortcode) }}
+                    </div>
+                {% else %}
+                    <div class="p-8 bg-gray-50 rounded-xl text-center">
+                        <p class="text-gray-600">
+                            Please add a form shortcode (Contact Form 7 or Gravity Forms) in the block settings.
+                        </p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>

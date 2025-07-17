@@ -38,9 +38,6 @@
                                     <div class="mega-menu-content" data-content="{{ loop.index }}" style="display: none; grid-template-columns: minmax(300px, 1fr) 2fr; gap: 2rem;">
                                         <div class="mega-menu-left">
                                             <h2 class="mega-menu-title">{{ item.title }}</h2>
-                                            <a href="{{ item.url }}" class="mega-menu-parent-link">
-                                                Go to {{ item.title|lower }}
-                                            </a>
                                         </div>
                                         
                                         <div class="mega-menu-right">
@@ -163,8 +160,8 @@
                                         <a href="{{ child.url }}" class="mobile-nav-item">
                                             <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">{{ child.title }}</span>
                                             <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="#0EDD7A"/>
-</svg>
+                                                <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="#0EDD7A"/>
+                                            </svg>
                                         </a>
                                     {% endif %}
                                 {% endfor %}

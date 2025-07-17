@@ -1,35 +1,14 @@
-<section class="guarantee-section py-8 lg:py-24">
+<section class="guarantee-section pb-8 lg:pb-24">
     <div class="site-container">
-        {% if post.meta('guarantee_heading') %}
-            <div class="flex items-center mb-6 lg:mb-8">
-                <div class="mr-3 lg:mr-4 flex-shrink-0">
-                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green w-6 lg:w-8"> 
-                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
-                    </svg>
-                </div>
-                <h2 class="section-heading text-black">
-                    {{ post.meta('guarantee_heading') }}
-                </h2>
-            </div>
-        {% endif %}
-        
-        {% if post.meta('guarantee_text') %}
-            <div class="section-text text-black max-w-4xl mb-8 lg:mb-12">
-                {{ post.meta('guarantee_text')|raw }}
-            </div>
-        {% endif %}
-
         <div class="guarantee-content">
             <div class="flex flex-col lg:grid lg:gap-16 lg:items-center" style="grid-template-columns: 1fr 1fr;">
-                <!-- Image Section with Graphic Overlay -->
                 <div class="guarantee-image-section mb-8 lg:mb-0 relative">
-                    {% if post.meta('guarantee_image') %}
+                    {% if image_text.image %}
                         <div class="relative">
-                            <img src="{{ TimberImage(post.meta('guarantee_image')).src('large') }}" 
-                                 alt="{{ TimberImage(post.meta('guarantee_image')).alt }}"
+                            <img src="{{ TimberImage(image_text.image).src('large') }}" 
+                                 alt="{{ TimberImage(image_text.image).alt }}"
                                  class="w-full guarantee-img object-cover">
                             
-                            <!-- Green Diagonal Lines Graphic -->
                             <div class="absolute -left-4 lg:-left-6 top-1/2 transform -translate-y-1/2">
                                 <svg width="129" height="247" viewBox="0 0 129 247" fill="none" xmlns="http://www.w3.org/2000/svg" class="guarantee-graphic">
                                     <path d="M0 34.4419L17.169 0.492676H19.811L2.638 34.4419H0Z" fill="#0EDD7A"/>
@@ -43,7 +22,7 @@
                                     <path d="M36.167 69.8438L53.338 35.895H55.98L38.808 69.8438H36.167Z" fill="#0EDD7A"/>
                                     <path d="M36.166 105.246L53.338 71.2969H55.98L38.808 105.246H36.166Z" fill="#0EDD7A"/>
                                     <path d="M36.166 140.574L53.338 106.625H55.98L38.808 140.574H36.166Z" fill="#0EDD7A"/>
-                                    <path d="M36.167 176.012L53.338 142.063H55.980L38.808 176.012H36.167Z" fill="#0EDD7A"/>
+                                    <path d="M36.167 176.012L53.338 142.063H55.98L38.808 176.012H36.167Z" fill="#0EDD7A"/>
                                     <path d="M36.166 211.489L53.335 177.539H55.977L38.808 211.489H36.166Z" fill="#0EDD7A"/>
                                     <path d="M36.166 246.742L53.338 212.793H55.98L38.808 246.742H36.166Z" fill="#0EDD7A"/>
                                     <path d="M72.332 34.4419L89.501 0.492676H92.143L74.974 34.4419H72.332Z" fill="#0EDD7A"/>
@@ -66,9 +45,8 @@
                     {% endif %}
                 </div>
                 
-                <!-- Content Section -->
                 <div class="guarantee-content-section">
-                    {% if post.meta('content_guarantee_heading') %}
+                    {% if image_text.heading %}
                         <div class="flex items-center mb-6 lg:mb-8">
                             <div class="mr-3 lg:mr-4 flex-shrink-0">
                                 <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green w-6 lg:w-8"> 
@@ -76,24 +54,24 @@
                                 </svg>
                             </div>
                             <h3 class="guarantee-content-heading">
-                                {{ post.meta('content_guarantee_heading') }}
+                                {{ image_text.heading }}
                             </h3>
                         </div>
                     {% endif %}
                     
-                    {% if post.meta('list_content') %}
+                    {% if image_text.content_items %}
                         <div class="guarantee-list space-y-6 lg:space-y-8">
-                            {% for item in post.meta('list_content') %}
+                            {% for item in image_text.content_items %}
                                 <div class="guarantee-list-item">
-                                    {% if item.list_heading %}
+                                    {% if item.sub_heading %}
                                         <h4 class="guarantee-list-heading">
-                                            {{ item.list_heading }}
+                                            {{ item.sub_heading }}
                                         </h4>
                                     {% endif %}
                                     
-                                    {% if item.list_Text %}
+                                    {% if item.text %}
                                         <div class="guarantee-list-text">
-                                            {{ item.list_Text|raw }}
+                                            {{ item.text|raw }}
                                         </div>
                                     {% endif %}
                                 </div>

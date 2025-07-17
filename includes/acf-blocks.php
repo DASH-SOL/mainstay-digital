@@ -106,6 +106,34 @@ acf_register_block_type(array(
         'customClassName' => true,
     ),
 ));
+acf_register_block_type(array(
+    'name'              => 'image-text-var-1',
+    'title'             => __('image - text - var 1'),
+    'description'       => __('Image and text section with button'),
+    'render_template'   => get_template_directory() . '/templates/blocks/image-text-var-1.php',
+    'category'          => 'formatting',
+    'icon'              => 'format-image',
+    'keywords'          => array('image', 'text', 'content', 'layout'),
+    'supports'          => array(
+        'align' => false,
+        'anchor' => true,
+        'customClassName' => true,
+    ),
+));
+acf_register_block_type(array(
+            'name'              => 'get-in-touch',
+            'title'             => __('Get in Touch', 'mainstay-digital'),
+            'description'       => __('A contact form section with heading, text, and form shortcode.'),
+            'render_template'   => get_template_directory() . '/templates/blocks/get-in-touch.php',
+            'category'          => 'mainstay-blocks',
+            'icon'              => 'email-alt',
+            'keywords'          => array('contact', 'form', 'get in touch'),
+            'supports'          => array(
+                'align'         => false,
+                'anchor'        => true,
+                'customClassName' => true,
+            ),
+        ));
     }
 }
 

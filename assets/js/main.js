@@ -14,9 +14,7 @@
     const mobileMenu = document.getElementById("mobile-menu");
     const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
     const mobileMenuClose = document.getElementById("mobile-menu-close");
-    const accordionTriggers = document.querySelectorAll(
-      ".mobile-accordion-trigger"
-    );
+    const accordionTriggers = document.querySelectorAll(".mobile-accordion-trigger");
 
     if (mobileMenuToggle) {
       mobileMenuToggle.addEventListener("click", function () {
@@ -25,20 +23,19 @@
     }
 
     function closeMobileMenu() {
-      mobileMenu.classList.remove("active");
-      mobileMenuOverlay.classList.remove("active");
-      mobileMenuToggle.classList.remove("active");
+      if (mobileMenu) mobileMenu.classList.remove("active");
+      if (mobileMenuOverlay) mobileMenuOverlay.classList.remove("active");
+      if (mobileMenuToggle) mobileMenuToggle.classList.remove("active");
       document.body.style.overflow = "";
-
       setTimeout(() => {
         closeAllAccordions();
       }, 300);
     }
 
     function openMobileMenu() {
-      mobileMenu.classList.add("active");
-      mobileMenuOverlay.classList.add("active");
-      mobileMenuToggle.classList.add("active");
+      if (mobileMenu) mobileMenu.classList.add("active");
+      if (mobileMenuOverlay) mobileMenuOverlay.classList.add("active");
+      if (mobileMenuToggle) mobileMenuToggle.classList.add("active");
       document.body.style.overflow = "hidden";
       closeAllAccordions();
     }
@@ -52,14 +49,12 @@
     }
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+      if (e.key === "Escape" && mobileMenu && mobileMenu.classList.contains("active")) {
         closeMobileMenu();
       }
     });
 
-    const mobileNavLinks = document.querySelectorAll(
-      ".mobile-nav-item:not(.mobile-accordion-trigger)"
-    );
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-item:not(.mobile-accordion-trigger)");
     mobileNavLinks.forEach((link) => {
       if (link.tagName === "A") {
         link.addEventListener("click", closeMobileMenu);
@@ -69,10 +64,9 @@
     accordionTriggers.forEach((trigger) => {
       trigger.addEventListener("click", function (e) {
         e.preventDefault();
+        
         const accordionId = this.getAttribute("data-accordion");
-        const content = document.querySelector(
-          `[data-content="${accordionId}"]`
-        );
+        const content = document.querySelector(`[data-content="${accordionId}"]`);
 
         if (!content) return;
 
@@ -100,14 +94,10 @@
 
     function closeAccordionsAtLevel(level) {
       accordionTriggers.forEach((trigger) => {
-        const triggerLevel = trigger
-          .getAttribute("data-accordion")
-          .split("-").length;
+        const triggerLevel = trigger.getAttribute("data-accordion").split("-").length;
         if (triggerLevel === level) {
           const accordionId = trigger.getAttribute("data-accordion");
-          const content = document.querySelector(
-            `[data-content="${accordionId}"]`
-          );
+          const content = document.querySelector(`[data-content="${accordionId}"]`);
           if (content) {
             closeAccordion(trigger, content);
           }
@@ -118,9 +108,7 @@
     function closeAllAccordions() {
       accordionTriggers.forEach((trigger) => {
         const accordionId = trigger.getAttribute("data-accordion");
-        const content = document.querySelector(
-          `[data-content="${accordionId}"]`
-        );
+        const content = document.querySelector(`[data-content="${accordionId}"]`);
         if (content) {
           closeAccordion(trigger, content);
         }
@@ -128,10 +116,7 @@
     }
 
     window.addEventListener("resize", function () {
-      if (
-        window.innerWidth >= 1024 &&
-        mobileMenu.classList.contains("active")
-      ) {
+      if (window.innerWidth >= 1024 && mobileMenu && mobileMenu.classList.contains("active")) {
         closeMobileMenu();
       }
     });
@@ -174,29 +159,22 @@
   }
 
   function initServiceAccordion() {
-    const accordionTriggers = document.querySelectorAll(
-      ".service-accordion-trigger"
-    );
+    const accordionTriggers = document.querySelectorAll(".service-accordion-trigger");
 
     accordionTriggers.forEach((trigger) => {
       trigger.addEventListener("click", function () {
         const accordionId = this.getAttribute("data-service-accordion");
-        const content = document.querySelector(
-          `[data-service-content="${accordionId}"]`
-        );
+        const content = document.querySelector(`[data-service-content="${accordionId}"]`);
         const plusIcon = this.querySelector(".accordion-plus");
         const minusIcon = this.querySelector(".accordion-minus");
 
         if (!content) return;
 
-        const isActive =
-          content.style.maxHeight && content.style.maxHeight !== "0px";
+        const isActive = content.style.maxHeight && content.style.maxHeight !== "0px";
 
         accordionTriggers.forEach((otherTrigger) => {
           const otherId = otherTrigger.getAttribute("data-service-accordion");
-          const otherContent = document.querySelector(
-            `[data-service-content="${otherId}"]`
-          );
+          const otherContent = document.querySelector(`[data-service-content="${otherId}"]`);
           const otherPlusIcon = otherTrigger.querySelector(".accordion-plus");
           const otherMinusIcon = otherTrigger.querySelector(".accordion-minus");
 
@@ -244,9 +222,7 @@
           content.style.display = "none";
         });
 
-        const targetContent = document.querySelector(
-          `[data-content="${menuIndex}"]`
-        );
+        const targetContent = document.querySelector(`[data-content="${menuIndex}"]`);
         if (targetContent) {
           targetContent.style.display = "grid";
         }
@@ -263,22 +239,23 @@
       });
     });
 
-    megaMenu.addEventListener("mouseenter", function () {
-      clearTimeout(currentTimeout);
-    });
+    if (megaMenu) {
+      megaMenu.addEventListener("mouseenter", function () {
+        clearTimeout(currentTimeout);
+      });
 
-    megaMenu.addEventListener("mouseleave", function () {
-      megaMenu.classList.remove("opacity-100", "visible");
-      megaMenu.classList.add("opacity-0", "invisible");
-    });
-
-    document.addEventListener("click", function (e) {
-      if (
-        !e.target.closest(".has-children") &&
-        !e.target.closest(".mega-menu")
-      ) {
+      megaMenu.addEventListener("mouseleave", function () {
         megaMenu.classList.remove("opacity-100", "visible");
         megaMenu.classList.add("opacity-0", "invisible");
+      });
+    }
+
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".has-children") && !e.target.closest(".mega-menu")) {
+        if (megaMenu) {
+          megaMenu.classList.remove("opacity-100", "visible");
+          megaMenu.classList.add("opacity-0", "invisible");
+        }
       }
     });
   }
