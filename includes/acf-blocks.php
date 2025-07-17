@@ -92,6 +92,20 @@ function register_mainstay_acf_blocks() {
         'customClassName' => true,
     ),
 ));
+acf_register_block_type(array(
+    'name'              => 'case-studies',
+    'title'             => __('Case Studies'),
+    'description'       => __('Display recent case studies'),
+    'render_template'   => get_template_directory() . '/templates/blocks/case-studies.php',
+    'category'          => 'formatting',
+    'icon'              => 'portfolio',
+    'keywords'          => array('case', 'studies', 'portfolio', 'work'),
+    'supports'          => array(
+        'align' => false,
+        'anchor' => true,
+        'customClassName' => true,
+    ),
+));
     }
 }
 

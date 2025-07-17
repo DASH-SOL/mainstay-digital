@@ -8,8 +8,8 @@
                     </svg>
                 </div>
                 <h2 class="section-heading text-black">
-                    {% if post.meta('learn_more_heading') %}
-                        {{ post.meta('learn_more_heading') }}
+                    {% if blog.heading %}
+                        {{ blog.heading }}
                     {% else %}
                         Learn more
                     {% endif %}
@@ -17,7 +17,7 @@
             </div>
             
             <div>
-                <a href="{{ post.meta('insights_link') ? post.meta('insights_link') : '/insights' }}" class="insights-link inline-flex items-center text-black hover:text-mainstay-green transition-colors">
+                <a href="{{ blog.insights_link }}" class="insights-link inline-flex items-center text-black hover:text-mainstay-green transition-colors">
                     <span class="mr-2">Insights</span>
                     <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="currentColor"/>
@@ -26,26 +26,17 @@
             </div>
         </div>
 
-        {% set recent_posts = fn('get_posts', {
-            'post_type': 'post',
-            'numberposts': post.meta('posts_count') ? post.meta('posts_count') : 3,
-            'post_status': 'publish',
-            'orderby': 'date',
-            'order': 'DESC'
-        }) %}
-
-        {% if recent_posts %}
+        {% if blog.posts %}
             <div class="blog-posts-list space-y-8 lg:space-y-12">
-                {% for blog_post in recent_posts %}
-                    {% set post_obj = TimberPost(blog_post) %}
+                {% for post in blog.posts %}
                     <article class="blog-post-item">
                         <div class="lg:grid lg:gap-8 lg:items-center" style="grid-template-columns: 1fr 2fr;">
                             <div class="mb-6 lg:mb-0">
-                                {% if post_obj.thumbnail %}
+                                {% if post.thumbnail %}
                                     <div class="blog-post-image">
-                                        <a href="{{ post_obj.link }}" class="block transition-transform duration-300 hover:scale-105">
-                                            <img src="{{ post_obj.thumbnail.src('medium') }}" 
-                                                 alt="{{ post_obj.thumbnail.alt }}"
+                                        <a href="{{ post.link }}" class="block transition-transform duration-300 hover:scale-105">
+                                            <img src="{{ post.thumbnail.src('medium') }}" 
+                                                 alt="{{ post.thumbnail.alt }}"
                                                  class="w-full h-48 lg:h-56 object-cover">
                                         </a>
                                     </div>
@@ -54,22 +45,22 @@
                             
                             <div class="blog-post-content-wrapper">
                                 <div class="blog-post-content border-t border-b border-mainstay-green py-8 lg:py-10 lg:pl-8">
-                                    {% if post_obj.terms('category') %}
-                                        {% set category = post_obj.terms('category')[0] %}
+                                    {% if post.terms('category') %}
+                                        {% set category = post.terms('category')[0] %}
                                         <div class="blog-post-category mb-4">
                                             <span class="blog-category-tag uppercase">{{ category.name }}</span>
                                         </div>
                                     {% endif %}
                                     
                                     <h3 class="blog-post-title mb-4 lg:mb-6">
-                                        <a href="{{ post_obj.link }}" class="text-black hover:text-mainstay-green transition-colors">
-                                            {{ post_obj.title }}
+                                        <a href="{{ post.link }}" class="text-black hover:text-mainstay-green transition-colors">
+                                            {{ post.title }}
                                         </a>
                                     </h3>
                                     
-                                    {% if post_obj.preview %}
+                                    {% if blog.show_excerpt and post.preview %}
                                         <div class="blog-post-excerpt text-gray-600 mb-4">
-                                            {{ post_obj.preview(20) }}
+                                            {{ post.preview(20) }}
                                         </div>
                                     {% endif %}
                                 </div>
@@ -80,7 +71,12 @@
             </div>
         {% else %}
             <div class="text-center py-12">
-                <p class="text-gray-600">No blog posts found. <a href="/wp-admin/post-new.php" class="text-mainstay-green hover:underline">Create your first post</a>.</p>
+                <p class="text-gray-600">
+                    No blog posts found. 
+                    <a href="/wp-admin/post-new.php" class="text-mainstay-green hover:underline">
+                        Create your first post
+                    </a>.
+                </p>
             </div>
         {% endif %}
     </div>

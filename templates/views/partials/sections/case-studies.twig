@@ -1,15 +1,7 @@
 <section class="case-studies-section py-16 lg:py-16">
-    {% set case_studies = fn('get_posts', {
-        'post_type': 'case-study',
-        'numberposts': post.meta('case_studies_count') ? post.meta('case_studies_count') : 3,
-        'post_status': 'publish',
-        'orderby': 'date',
-        'order': 'DESC'
-    }) %}
-    {% if case_studies %}
+    {% if case_studies.posts %}
         <div class="case-studies-list">
-            {% for case_study in case_studies %}
-                {% set study_obj = TimberPost(case_study) %}
+            {% for study_obj in case_studies.posts %}
                 {% set bg_class = loop.index is odd ? 'case-study-black' : 'case-study-blue' %}
                 
                 <article class="case-study-item">
@@ -58,21 +50,19 @@
                 </article>
             {% endfor %}
         </div>
-        {% if post.meta('all_case_studies_link') %}
-            <div class="site-container">
-                <div class="text-center mt-8 lg:mt-16">
-                    <a href="{{ post.meta('all_case_studies_link') }}" class="inline-flex items-center text-black hover:text-mainstay-green transition-colors">
-                        <span class="mr-2 font-rubik font-normal text-base lg:text-lg">All case studies</span>
-                        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="#0EDD7A"/>
-                        </svg>
-                    </a>
-                </div>
+        <div class="site-container">
+            <div class="text-left mt-8 lg:mt-16">
+                <a href="{{ case_studies.view_all_link }}" class="inline-flex items-center text-black hover:text-mainstay-green transition-colors">
+                    <span class="mr-2 font-rubik font-normal text-base lg:text-lg">All case studies</span>
+                    <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.0751 3.83902L10.3664 7.54773V4.47431H0.304871V3.20374H10.3664V0.13032L14.0751 3.83902Z" fill="#0EDD7A"/>
+                    </svg>
+                </a>
             </div>
-        {% endif %}
+        </div>
     {% else %}
         <div class="site-container">
-            <div class="text-center py-12">
+            <div class="text-left py-12">
                 <p class="text-gray-600">No case studies found. <a href="/wp-admin/post-new.php?post_type=case-study" class="text-mainstay-green hover:underline">Create your first case study</a>.</p>
             </div>
         </div>
