@@ -1277,6 +1277,9 @@
     font-size: 16px;
     line-height: 24px;
   }
+  .insights-link {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -1912,5 +1915,11 @@
 @media (min-width: 766px) {
   .experience-logos-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+}
+@media (max-width: 768px) {
+  .flex.items-center .mr-1.md\:mr-4 svg[width="33"][height="54"] {
+    width: 25px !important;
+    height: 32px !important;
   }
 }
