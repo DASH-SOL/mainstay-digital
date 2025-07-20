@@ -109,42 +109,26 @@
                 {% for item in primary_menu.items %}
                     <div class="mobile-menu-item-wrapper">
                         {% if item.children %}
-                            <div class="mobile-nav-item mobile-nav-main-item mobile-accordion-trigger" data-accordion="{{ loop.index }}">
+                            <div class="mobile-nav-item mobile-nav-main-item mobile-accordion-trigger" data-accordion="mobile-{{ loop.index }}">
                                 <span class="font-rubik font-medium text-[32px] leading-none text-gray-900">{{ item.title }}</span>
                                 <svg class="w-[23px] h-[14px] flex-shrink-0 accordion-arrow transition-transform duration-300" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.81201 12.3778L11.441 1.29639L21.07 12.3778" stroke="black" stroke-width="2.558" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
 
-                            <div class="mobile-accordion-content" data-content="{{ loop.index }}">
-                                <a href="{{ item.url }}" class="mobile-nav-parent-link">
-                                    <div class="flex items-center">
-                                        <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">Go to {{ item.title|lower }}</span>
-                                    </div>
-                                    <svg class="w-[9px] h-[14px] flex-shrink-0" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0.779999 0.939697L7.45599 6.74412L0.779999 12.5485" stroke="black" stroke-width="1.542" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
+                            <div class="mobile-accordion-content" data-content="mobile-{{ loop.index }}">
 
                                 {% for child in item.children %}
                                     {% if child.children %}
                                         <div class="mobile-nav-child-accordion">
-                                            <div class="mobile-nav-item mobile-accordion-trigger" data-accordion="{{ loop.parent.loop.index }}-{{ loop.index }}">
+                                            <div class="mobile-nav-item mobile-accordion-trigger" data-accordion="mobile-{{ loop.parent.loop.index }}-{{ loop.index }}">
                                                 <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">{{ child.title }}</span>
                                                 <svg class="w-[23px] h-[14px] flex-shrink-0 accordion-arrow transition-transform duration-300" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M1.81201 12.3778L11.441 1.29639L21.07 12.3778" stroke="black" stroke-width="2.558" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
                                             </div>
                                             
-                                            <div class="mobile-accordion-content pl-6" data-content="{{ loop.parent.loop.index }}-{{ loop.index }}">
-                                                <a href="{{ child.url }}" class="mobile-nav-parent-link">
-                                                    <div class="flex items-center">
-                                                        <span class="font-rubik font-normal text-[17px] leading-none text-gray-900">Go to {{ child.title|lower }}</span>
-                                                    </div>
-                                                    <svg class="w-[9px] h-[14px] flex-shrink-0" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M0.779999 0.939697L7.45599 6.74412L0.779999 12.5485" stroke="black" stroke-width="1.542" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </a>
+                                            <div class="mobile-accordion-content pl-6" data-content="mobile-{{ loop.parent.loop.index }}-{{ loop.index }}">
                                                 
                                                 {% for grandchild in child.children %}
                                                     <a href="{{ grandchild.url }}" class="mobile-nav-item">
@@ -175,11 +159,5 @@
                 {% endfor %}
             </nav>
         {% endif %}
-
-        <div class="mobile-cta">
-            <a href="/contact" class="mobile-cta-button">
-                Get in touch
-            </a>
-        </div>
     </div>
 </header>

@@ -387,10 +387,12 @@
   .mobile-accordion-content {
     @apply overflow-hidden transition-all duration-300 ease-in-out;
     max-height: 0;
+    opacity: 0;
   }
 
   .mobile-accordion-content.active {
-    max-height: 1000px;
+    max-height: 2000px !important;
+    opacity: 1 !important;
   }
 
   .mobile-nav-parent-link {
@@ -1506,7 +1508,7 @@
   width: 100%;
   object-position: center;
 }
-.guarantee-section{
+.guarantee-section {
   padding-top: 0px !important;
 }
 .guarantee-graphic {
