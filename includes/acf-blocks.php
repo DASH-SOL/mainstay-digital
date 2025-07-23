@@ -134,6 +134,30 @@ acf_register_block_type(array(
                 'customClassName' => true,
             ),
         ));
+
+        acf_register_block_type(array(
+    'name'              => 'service-process',
+    'title'             => __('Service Process'),
+    'description'       => __('Service development process items with headings and content'),
+    'render_template'   => get_template_directory() . '/templates/blocks/service-process.php',
+    'category'          => 'mainstay-blocks',
+    'icon'              => 'list-view',
+    'keywords'          => array('service', 'process', 'development', 'steps'),
+    'supports'          => array(
+        'align' => false,
+        'anchor' => true,
+        'customClassName' => true,
+    ),
+));
+acf_register_block_type(array(
+    'name'              => 'service-content',
+    'title'             => __('Service Content'),
+    'description'       => __('Custom service content block'),
+    'render_template'   => 'templates/blocks/service-content.php',
+    'category'          => 'formatting',
+    'icon'              => 'editor-alignleft',
+    'keywords'          => array('service', 'content', 'text'),
+));
     }
 }
 

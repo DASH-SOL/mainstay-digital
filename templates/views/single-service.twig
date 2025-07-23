@@ -1,7 +1,5 @@
 {% extends "base.twig" %}
-
 {# Services Var 1 Template #}
-
 {% block content %}
     <div class="service-single-page">
         <!-- Breadcrumbs -->
@@ -23,7 +21,7 @@
                 </nav>
             </div>
         {% endif %}
-
+        
         <!-- Service Header Section --> 
         <section class="service-header py-16 lg:py-24">
             <div class="site-container">
@@ -32,14 +30,13 @@
                     <div class="service-category-label">
                         <span class="service-label">SERVICES</span>
                     </div>
-
                     <div class="service-title-container">
                         <h1 class="service-title text-black">
                             {{ post.title }}
                         </h1>
                     </div>
                 </div>
-
+                
                 <!-- Service Content Section -->
                 <div class="service-content-section">
                     <!-- Content Block -->
@@ -51,7 +48,7 @@
                         {% endif %}
                     </div>
                     
-                    <!-- Featured Image Block (Below Content) -->
+                    <!-- Featured Image Block -->
                     {% if post.thumbnail %}
                         <div class="service-image-block">
                             <div class="service-featured-image">
@@ -61,11 +58,12 @@
                             </div>
                         </div>
                     {% endif %}
+                    
                 </div>
             </div>
         </section>
 
-        <!-- Additional content blocks can be added here -->
+
         
     </div>
 {% endblock %}

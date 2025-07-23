@@ -2219,3 +2219,50 @@
     min-height: 500px;
   }
 }
+/* Service Process Block - Break out to full width */
+.service-process-breakout {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+  max-width: none;
+}
+
+/* Service Process Styles */
+.process-item-content {
+  grid-template-columns: 1fr 2fr;
+}
+
+.process-item-border {
+  border-bottom: 1px solid rgba(14, 221, 122, 1);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.process-item-heading {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 1rem;
+}
+
+.process-item-text {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+@media (min-width: 1024px) {
+  .process-item-heading {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+
+  .process-item-text {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}

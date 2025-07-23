@@ -1,0 +1,26 @@
+{# Service Content Block Template #}
+{% if content.service_content %}
+    <div class="service-content-block mb-12 lg:mb-16">
+        <div class="service-content-text text-black">
+            {{ content.service_content|raw }}
+        </div>
+    </div>
+{% endif %}
+
+{% if content.content_image %}
+    {# Close the content containers to break out to full width #}
+    </div></div></div>
+    
+    <section class="service-content-image-section py-12 lg:py-16">
+        <div class="site-container">
+            <div class="service-content-image">
+                <img src="{{ TimberImage(content.content_image).src('large') }}" 
+                     alt="{{ TimberImage(content.content_image).alt }}"
+                     class="w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </section>
+    
+    {# Reopen containers for any following blocks #}
+    <div><div><div class="site-container">
+{% endif %}
