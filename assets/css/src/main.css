@@ -1923,3 +1923,299 @@
     height: 32px !important;
   }
 }
+/* Service Single Page Styles - Services Var 1 */
+/* Service Single Page Styles - Services Var 1 */
+.breadcrumbs {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(107, 114, 128, 1);
+}
+
+.breadcrumb-link {
+  color: rgba(107, 114, 128, 1);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+  color: rgba(14, 221, 122, 1);
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  color: rgba(156, 163, 175, 1);
+}
+
+.breadcrumb-current {
+  color: rgba(17, 24, 39, 1);
+  font-weight: 500;
+}
+
+.service-header-content {
+  text-align: left;
+  position: relative;
+}
+
+.service-category-label {
+  display: block;
+  position: relative;
+}
+
+.service-label {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 31px;
+  letter-spacing: 0%;
+  color: rgba(14, 221, 122, 1);
+  text-transform: uppercase;
+  display: inline-block;
+  position: relative;
+}
+
+.service-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 2px;
+  background-color: rgba(14, 221, 122, 1);
+  margin-left: 1rem;
+}
+
+.service-title-container {
+  position: relative;
+  margin: 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.service-title {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin: 0;
+  padding: 1.5rem 0;
+  position: relative;
+  border-bottom: 2px solid rgba(14, 221, 122, 1);
+}
+
+/* Hide vertical slash on mobile */
+.service-header-content::after {
+  display: none;
+}
+
+.service-content-section {
+  padding-top: 1rem;
+}
+
+.service-content-block {
+  width: 100%;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.service-content-heading {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.service-content-text {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.service-content-text p {
+  margin-bottom: 1rem;
+}
+
+.service-content-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Target headings inside post content */
+.service-content-text h1,
+.service-content-text h2,
+.service-content-text h3,
+.service-content-text h4,
+.service-content-text h5,
+.service-content-text h6 {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  color: rgba(0, 0, 0, 1);
+}
+
+.service-content-text h1 {
+  font-size: 32px;
+}
+
+.service-content-text h2 {
+  font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: rgba(0, 0, 0, 1);
+  margin: 0 0 2rem 0;
+}
+
+.service-content-text h3 {
+  font-size: 24px;
+}
+
+.service-content-text h4 {
+  font-size: 20px;
+}
+
+/* Target other common WordPress content elements */
+.service-content-text ul,
+.service-content-text ol {
+  text-align: center;
+  list-style-position: inside;
+  margin-bottom: 1rem;
+}
+
+.service-content-text strong {
+  font-weight: 600;
+}
+
+.service-content-text em {
+  font-style: italic;
+}
+
+.service-image-block {
+  width: 100%;
+}
+
+.service-featured-image {
+  background-color: rgba(14, 221, 122, 1);
+  border-radius: 0;
+  padding: 3rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+}
+
+.service-featured-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Desktop and larger tablets */
+@media (min-width: 767px) {
+  .service-title-container {
+    width: 70%;
+  }
+
+  /* Show vertical slash on desktop */
+  .service-header-content::after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    top: 0;
+    height: calc(100% + 15px);
+    width: 2px;
+    background-color: rgba(14, 221, 122, 1);
+    z-index: 10;
+    display: block;
+  }
+}
+
+/* Tablet and small desktop - constrained width */
+@media (min-width: 767px) {
+  .service-content-block {
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    padding: 0 2rem;
+  }
+
+  .service-featured-image {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .service-title {
+    font-size: 53px;
+    line-height: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .service-title-container {
+    width: 60%;
+  }
+
+  .service-label::after {
+    width: 800px;
+  }
+
+  .service-content-section {
+    padding-top: 1rem;
+  }
+
+  .service-content-block {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    padding: 0 2rem;
+  }
+
+  .service-content-heading {
+    font-size: 38px;
+    line-height: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .service-content-text {
+    font-size: 22px;
+    line-height: 31px;
+  }
+
+  /* Desktop heading sizes for post content */
+  .service-content-text h2 {
+    font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+    margin: 0 0 3rem 0;
+  }
+
+  .service-content-text h3 {
+    font-size: 28px;
+  }
+
+  .service-content-text h4 {
+    font-size: 24px;
+  }
+
+  .service-featured-image {
+    padding: 4rem 2rem;
+    min-height: 500px;
+  }
+}

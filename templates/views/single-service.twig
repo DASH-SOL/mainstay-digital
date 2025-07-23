@@ -1,0 +1,71 @@
+{% extends "base.twig" %}
+
+{# Services Var 1 Template #}
+
+{% block content %}
+    <div class="service-single-page">
+        <!-- Breadcrumbs -->
+        {% if breadcrumbs %}
+            <div class="site-container">
+                <nav class="breadcrumbs py-6">
+                    {% for crumb in breadcrumbs %}
+                        {% if not loop.last %}
+                            {% if crumb.url %}
+                                <a href="{{ crumb.url }}" class="breadcrumb-link">{{ crumb.title }}</a>
+                            {% else %}
+                                <span class="breadcrumb-text">{{ crumb.title }}</span>
+                            {% endif %}
+                            <span class="breadcrumb-separator"> / </span>
+                        {% else %}
+                            <span class="breadcrumb-current">{{ crumb.title }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </nav>
+            </div>
+        {% endif %}
+
+        <!-- Service Header Section --> 
+        <section class="service-header py-16 lg:py-24">
+            <div class="site-container">
+                <!-- Service Category Label and Title -->
+                <div class="service-header-content mb-16 lg:mb-24">
+                    <div class="service-category-label">
+                        <span class="service-label">SERVICES</span>
+                    </div>
+
+                    <div class="service-title-container">
+                        <h1 class="service-title text-black">
+                            {{ post.title }}
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Service Content Section -->
+                <div class="service-content-section">
+                    <!-- Content Block -->
+                    <div class="service-content-block">
+                        {% if post.content %}
+                            <div class="service-content-text text-black">
+                                {{ post.content }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Featured Image Block (Below Content) -->
+                    {% if post.thumbnail %}
+                        <div class="service-image-block">
+                            <div class="service-featured-image">
+                                <img src="{{ post.thumbnail.src('large') }}" 
+                                     alt="{{ post.thumbnail.alt }}"
+                                     class="w-full h-auto">
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional content blocks can be added here -->
+        
+    </div>
+{% endblock %}
