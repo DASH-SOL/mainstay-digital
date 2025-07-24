@@ -158,6 +158,15 @@ acf_register_block_type(array(
     'icon'              => 'editor-alignleft',
     'keywords'          => array('service', 'content', 'text'),
 ));
+acf_register_block_type(array(
+    'name'              => 'key-services',
+    'title'             => __('Key Services'),
+    'description'       => __('Display key services in a grid layout'),
+    'render_template'   => 'templates/blocks/key-services.php',
+    'category'          => 'formatting',
+    'icon'              => 'grid-view',
+    'keywords'          => array('services', 'grid', 'key'),
+));
     }
 }
 

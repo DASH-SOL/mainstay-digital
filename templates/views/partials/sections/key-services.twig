@@ -1,0 +1,42 @@
+
+</div></div></div>
+
+<section class="key-services-section py-16 lg:py-24 bg-white">
+    <div class="site-container">
+        {% if services.services_heading %}
+            <div class="flex items-center mb-12 lg:mb-16">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {{ services.services_heading }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        {% if services.service_items %}
+            <div class="key-services-grid">
+                {% for item in services.service_items %}
+                    <div class="key-service-item {% if loop.last %}key-service-item-highlighted{% endif %}">
+                        {% if item.service_heading %}
+                            <h3 class="key-service-heading">
+                                {{ item.service_heading }}
+                            </h3>
+                        {% endif %}
+                        
+                        {% if item.service_content %}
+                            <div class="key-service-content">
+                                {{ item.service_content|raw }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{# Reopen containers for any following blocks #}
+<div><div><div class="site-container">

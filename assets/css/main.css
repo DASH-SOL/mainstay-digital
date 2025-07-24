@@ -4634,6 +4634,132 @@ video {
   }
 }
 
+.key-services-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 0.5px solid rgba(194, 194, 194, 1);
+}
+
+.key-service-item {
+  padding: 1.5rem;
+  background-color: white;
+  border-right: 0.5px solid rgba(194, 194, 194, 1);
+  border-bottom: 0.5px solid rgba(194, 194, 194, 1);
+  transition: all 0.3s ease;
+}
+
+/* Remove right border from last column items */
+
+.key-service-item:nth-child(3n) {
+  border-right: none;
+}
+
+/* Remove bottom border from last row items */
+
+.key-service-item:nth-last-child(-n + 3) {
+  border-bottom: none;
+}
+
+.key-service-item-highlighted {
+  background-color: rgba(14, 221, 122, 1);
+  border-color: rgba(194, 194, 194, 1);
+}
+
+.key-service-heading {
+  font-family: Rubik;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 1rem;
+}
+
+.key-service-content {
+  font-family: Rubik;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: rgba(0, 0, 0, 1);
+}
+
+.key-service-content p {
+  margin-bottom: 0.75rem;
+}
+
+.key-service-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 1024px) {
+  .key-services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Remove right border from last column items (2 columns) */
+
+  .key-service-item:nth-child(3n) {
+    border-right: 0.5px solid rgba(194, 194, 194, 1);
+  }
+
+  .key-service-item:nth-child(2n) {
+    border-right: none;
+  }
+
+  /* Remove bottom border from last row items (2 columns) */
+
+  .key-service-item:nth-last-child(-n + 3) {
+    border-bottom: 0.5px solid rgba(194, 194, 194, 1);
+  }
+
+  .key-service-item:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .key-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .key-service-item {
+    padding: 1.25rem;
+    border-right: none;
+  }
+
+  /* Reset all border rules for mobile */
+
+  .key-service-item:nth-child(2n),
+  .key-service-item:nth-child(3n) {
+    border-right: none;
+  }
+
+  /* Remove bottom border only from last item */
+
+  .key-service-item:nth-last-child(-n + 2),
+  .key-service-item:nth-last-child(-n + 3) {
+    border-bottom: 0.5px solid rgba(194, 194, 194, 1);
+  }
+
+  .key-service-item:last-child {
+    border-bottom: none;
+  }
+
+  .key-service-heading {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .key-service-content {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
