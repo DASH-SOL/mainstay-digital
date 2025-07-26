@@ -19,7 +19,7 @@
         {% if services.service_items %}
             <div class="key-services-grid">
                 {% for item in services.service_items %}
-                    <div class="key-service-item {% if loop.last %}key-service-item-highlighted{% endif %}">
+                    <div class="key-service-item">
                         {% if item.service_heading %}
                             <h3 class="key-service-heading">
                                 {{ item.service_heading }}
