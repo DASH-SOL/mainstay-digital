@@ -1,0 +1,58 @@
+</div></div></div>
+<section class="service-text-image-block py-8 lg:py-24">
+        {% if service_text_image.title %}
+            <div class="flex items-center mb-12 lg:mb-16">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {{ service_text_image.title }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        <div class="service-text-image-content lg:grid lg:gap-16 lg:items-top" style="grid-template-columns: 1fr 1fr;">
+            
+            <div class="service-text-content {% if service_text_image.image_position == 'right' %}lg:order-1{% else %}lg:order-2{% endif %} mb-12 lg:mb-0">
+                {% if service_text_image.heading %}
+                    {% if service_text_image.heading_type == 'h3' %}
+                        <h3 class="service-text-image-heading-h3 text-black mb-8">
+                            {{ service_text_image.heading }}
+                        </h3>
+                    {% else %}
+                        <h2 class="service-text-image-heading text-black mb-8">
+                            {{ service_text_image.heading }}
+                        </h2>
+                    {% endif %}
+                {% endif %}
+                
+                {% if service_text_image.text %}
+                    <div class="service-text-image-text text-black">
+                        {{ service_text_image.text|raw }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="service-image-content {% if service_text_image.image_position == 'right' %}lg:order-2{% else %}lg:order-1{% endif %}">
+                {% if service_text_image.image %}
+                    <div class="service-image-wrapper">
+                        <img src="{{ TimberImage(service_text_image.image).src('large') }}" 
+                             alt="{{ TimberImage(service_text_image.image).alt }}"
+                             class="w-full h-auto">
+                    </div>
+                {% else %}
+                    <div class="service-image-placeholder bg-gray-200 rounded-lg flex items-center justify-center h-64 lg:h-80">
+                        <div class="text-center">
+                            <span class="text-4xl font-bold text-gray-400 block mb-2">feature</span>
+                            <span class="text-4xl font-bold text-gray-400">image</span>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            
+        </div>
+</section>
+{# Reopen containers for any following blocks #}
+<div><div><div class="site-container">

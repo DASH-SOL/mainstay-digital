@@ -1,0 +1,37 @@
+</div></div></div>
+<section class="service-process-var2-block py-8 lg:py-8">
+        {% if service_process_var2.title %}
+            <div class="flex items-center mb-12 lg:mb-16">
+                <div class="mr-4 flex-shrink-0">
+                    <svg width="33" height="54" viewBox="0 0 33 54" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-mainstay-green"> 
+                        <path d="M0.00292969 53.428L0.259933 53.558H5.10093L32.1379 0.0939941H26.9749L0.00292969 53.428Z" fill="currentColor"/> 
+                    </svg>
+                </div>
+                <h2 class="section-heading text-black">
+                    {{ service_process_var2.title }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        {% if service_process_var2.process_items %}
+            <div class="service-process-list">
+                {% for item in service_process_var2.process_items %}
+                    <div class="service-process-item">
+                        {% if item.heading %}
+                            <h3 class="service-process-heading text-black mb-4">
+                                {{ item.heading }}
+                            </h3>
+                        {% endif %}
+                        
+                        {% if item.content %}
+                            <div class="service-process-content text-black">
+                                {{ item.content|raw }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+</section>
+{# Reopen containers for any following blocks #}
+<div><div><div class="site-container">

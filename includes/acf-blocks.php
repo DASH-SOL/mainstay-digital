@@ -189,6 +189,63 @@ acf_register_block_type(array(
                 )
             )
         ));
+        acf_register_block_type(array(
+            'name' => 'service-text-image',
+            'title' => 'Service Text-Image Block',
+            'description' => 'A block with heading, text content and an image with flexible positioning.',
+            'render_template' => get_template_directory() . '/templates/blocks/service-text-image.php',
+            'category' => 'mainstay-blocks',
+            'icon' => 'format-image',
+            'keywords' => array('service', 'text', 'image', 'content'),
+            'supports' => array(
+                'align' => false,
+                'mode' => false,
+                'jsx' => true,
+            ),
+            'example' => array(
+                'attributes' => array(
+                    'mode' => 'preview',
+                    'data' => array(
+                        'heading' => 'Reliable, scalable, flexible',
+                        'text' => 'Ensure your website is built the right way. Don\'t risk costly rebuilds, difficult site admin, future bug fixes and breakages, insecure data or poor performance.<br><br>We develop future proof, robust, cleanly coded, upgradable websites built to evolve with your business.',
+                        'image_position' => 'left'
+                    ),
+                ),
+            ),
+        ));
+
+        acf_register_block_type(array(
+            'name' => 'service-process-var2',
+            'title' => 'Service Process Var 2',
+            'description' => 'A block displaying service process items in a grid layout with green borders.',
+            'render_template' => get_template_directory() . '/templates/blocks/service-process-var2.php',
+            'category' => 'mainstay-blocks',
+            'icon' => 'list-view',
+            'keywords' => array('service', 'process', 'steps', 'grid'),
+            'supports' => array(
+                'align' => false,
+                'mode' => false,
+                'jsx' => true,
+            ),
+            'example' => array(
+                'attributes' => array(
+                    'mode' => 'preview',
+                    'data' => array(
+                        'title' => 'Our Development Process',
+                        'process_items' => array(
+                            array(
+                                'heading' => 'Best coding and development practices (H3)',
+                                'content' => 'Time and again we encounter legacy websites and systems which were badly, inefficiently, or lazily implemented. Spaghetti-code situations with cross dependencies which make upgrades next to impossible.'
+                            ),
+                            array(
+                                'heading' => 'Best coding and development practices (H3)',
+                                'content' => 'Time and again we encounter legacy websites and systems which were badly, inefficiently, or lazily implemented. Spaghetti-code situations with cross dependencies which make upgrades next to impossible.'
+                            )
+                        )
+                    ),
+                ),
+            ),
+        ));
     }
 }
 
