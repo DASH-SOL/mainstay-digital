@@ -6,7 +6,7 @@
     initSmoothScrolling();
     initHeaderScroll();
     initMegaMenu();
-
+    initRecentWorkFilters();
     // Simple direct accordion handler for debugging
     setTimeout(() => {
       console.log("Setting up accordion handlers...");
@@ -257,3 +257,45 @@
     });
   }
 })(jQuery);
+
+function initRecentWorkFilters() {
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const workCards = document.querySelectorAll('.recent-work-card');
+    
+    if (filterTabs.length === 0 || workCards.length === 0) return;
+    
+    console.log('Initializing Recent Work Filters');
+    console.log('Found', filterTabs.length, 'filter tabs');
+    console.log('Found', workCards.length, 'work cards');
+    
+    workCards.forEach((card, index) => {
+        const categories = card.getAttribute('data-categories');
+        console.log('Card', index, 'categories:', categories);
+    });
+    
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            console.log('Filter clicked:', filter);
+            
+            filterTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            workCards.forEach((card, index) => {
+                const categories = card.getAttribute('data-categories') || '';
+                console.log('Card', index, '- categories:', categories, '- filter:', filter);
+                
+                if (filter === 'all') {
+                    card.classList.remove('filtered-out');
+                    console.log('Card', index, '- showing (all)');
+                } else if (categories.includes(filter)) {
+                    card.classList.remove('filtered-out');
+                    console.log('Card', index, '- showing (match)');
+                } else {
+                    card.classList.add('filtered-out');
+                    console.log('Card', index, '- hiding (no match)');
+                }
+            });
+        });
+    });
+}

@@ -1,0 +1,19 @@
+{% if breadcrumbs %}
+    <div class="site-container">
+        <nav class="breadcrumbs py-6">
+            {% for crumb in breadcrumbs %}
+                {% if not loop.last %}
+                    {% if crumb.url %}
+                        <a href="{{ crumb.url }}" class="breadcrumb-link">{{ crumb.title }}</a>
+                    {% else %}
+                        <span class="breadcrumb-text">{{ crumb.title }}</span>
+                    {% endif %}
+                    <span class="breadcrumb-separator"> / </span>
+                {% else %}
+                    <span class="breadcrumb-current">{{ crumb.title }}</span>
+                {% endif %}
+            {% endfor %}
+        </nav>
+        
+    </div>
+{% endif %}

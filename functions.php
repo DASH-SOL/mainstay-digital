@@ -592,3 +592,108 @@ function mainstay_fix_svg_display($response, $attachment, $meta) {
 add_filter('wp_prepare_attachment_for_js', 'mainstay_fix_svg_display', 10, 3);
 
 require_once MAINSTAY_THEME_DIR . '/includes/acf-blocks.php';
+
+function mainstay_get_breadcrumbs() {
+    $breadcrumbs = array();
+    
+    $breadcrumbs[] = array(
+        'title' => 'Home',
+        'url' => home_url('/')
+    );
+    
+    if (is_page()) {
+        $post = get_queried_object();
+        $ancestors = get_post_ancestors($post);
+        
+        if ($ancestors) {
+            $ancestors = array_reverse($ancestors);
+            foreach ($ancestors as $ancestor) {
+                $breadcrumbs[] = array(
+                    'title' => get_the_title($ancestor),
+                    'url' => get_permalink($ancestor)
+                );
+            }
+        }
+        
+        $breadcrumbs[] = array(
+            'title' => get_the_title($post),
+            'url' => null
+        );
+    } elseif (is_single()) {
+        $post_type = get_post_type();
+        $post_type_object = get_post_type_object($post_type);
+        
+        if ($post_type_object && $post_type !== 'post') {
+            $breadcrumbs[] = array(
+                'title' => $post_type_object->labels->name,
+                'url' => get_post_type_archive_link($post_type)
+            );
+        }
+        
+        $categories = get_the_category();
+        if ($categories) {
+            $category = $categories[0];
+            if ($category->parent != 0) {
+                $category_parents = get_category_parents($category->parent, true, '|||');
+                $category_parents = explode('|||', $category_parents);
+                foreach ($category_parents as $parent) {
+                    if (!empty($parent)) {
+                        $breadcrumbs[] = array(
+                            'title' => strip_tags($parent),
+                            'url' => null
+                        );
+                    }
+                }
+            }
+            $breadcrumbs[] = array(
+                'title' => $category->name,
+                'url' => get_category_link($category->term_id)
+            );
+        }
+        
+        $breadcrumbs[] = array(
+            'title' => get_the_title(),
+            'url' => null
+        );
+    } elseif (is_category()) {
+        $category = get_queried_object();
+        if ($category->parent != 0) {
+            $category_parents = get_category_parents($category->parent, true, '|||');
+            $category_parents = explode('|||', $category_parents);
+            foreach ($category_parents as $parent) {
+                if (!empty($parent)) {
+                    $breadcrumbs[] = array(
+                        'title' => strip_tags($parent),
+                        'url' => null
+                    );
+                }
+            }
+        }
+        $breadcrumbs[] = array(
+            'title' => $category->name,
+            'url' => null
+        );
+    } elseif (is_archive()) {
+        $post_type = get_post_type();
+        $post_type_object = get_post_type_object($post_type);
+        
+        if ($post_type_object) {
+            $breadcrumbs[] = array(
+                'title' => $post_type_object->labels->name,
+                'url' => null
+            );
+        }
+    } elseif (is_search()) {
+        $breadcrumbs[] = array(
+            'title' => 'Search Results for "' . get_search_query() . '"',
+            'url' => null
+        );
+    } elseif (is_404()) {
+        $breadcrumbs[] = array(
+            'title' => '404 Not Found',
+            'url' => null
+        );
+    }
+    
+    return $breadcrumbs;
+}

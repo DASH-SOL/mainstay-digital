@@ -1,0 +1,94 @@
+<section class="recent-work-section py-16 lg:py-24">
+    <div class="site-container">
+
+        <div class="recent-work-container">
+            {% if categories %}
+                <div class="recent-work-filters mb-8 lg:mb-12">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        {% for category in categories %}
+                            <button class="filter-tab" data-filter="{{ category.slug }}">{{ category.name }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if posts %}
+                <div class="recent-work-grid">
+                    {% for post in posts %}
+                        {% set post_categories = post.terms(taxonomy_used) %}
+                        <div class="recent-work-card" data-categories="{% if post_categories %}{% for cat in post_categories %}{{ cat.slug }}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}">
+                            <div class="recent-work-content">
+                                {% if post_categories %}
+                                    <div class="recent-work-category">
+                                        <span class="category-ribbon">{{ post_categories[0].name|upper }}</span>
+                                    </div>
+                                {% endif %}
+
+                                <h3 class="recent-work-title">
+                                    {{ post.title }}
+                                </h3>
+
+                                <div class="recent-work-excerpt">
+                                    {{ post.preview(25) }}
+                                </div>
+
+                                <div class="recent-work-meta">
+                                    {% set client_name = post.meta('client_name') %}
+                                    {% if client_name %}
+                                        <div class="meta-item">
+                                            <span class="meta-label">Client</span>
+                                            <span class="meta-value">{{ client_name }}</span>
+                                        </div>
+                                    {% endif %}
+
+                                    {% set technology = post.meta('technology') %}
+                                    {% if technology %}
+                                        <div class="meta-item">
+                                            <span class="meta-label">Technology</span>
+                                            <span class="meta-value">{{ technology }}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {% set project_url = post.meta('project_url') %}
+                                {% if project_url %}
+                                    <div class="recent-work-action">
+                                        <div class="view-project">
+                                            <span class="view-project-label">View project</span>
+                                            <a href="{{ project_url }}" class="view-project-link" target="_blank" rel="noopener">
+                                                {{ project_url|replace({'https://': '', 'http://': '', 'www.': ''}) }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            {% set featured_image = post.thumbnail ?: post.meta('featured_image') %}
+                            {% if featured_image %}
+                                <div class="recent-work-image">
+                                    <img src="{{ TimberImage(featured_image).src('large') }}" 
+                                         alt="{{ TimberImage(featured_image).alt }}"
+                                         class="w-full h-full object-cover">
+                                    
+                                    {% set logo = post.meta('logo') %}
+                                    {% if logo %}
+                                        <div class="recent-work-logo">
+                                            <img src="{{ TimberImage(logo).src('medium') }}" 
+                                                 alt="{{ client_name }} logo"
+                                                 class="logo-image">
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-12">
+                    <p class="text-gray-600">No case studies found. <a href="/wp-admin/post-new.php?post_type=case-study" class="text-mainstay-green hover:underline">Create your first case study</a>.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

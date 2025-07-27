@@ -167,6 +167,28 @@ acf_register_block_type(array(
     'icon'              => 'grid-view',
     'keywords'          => array('services', 'grid', 'key'),
 ));
+acf_register_block_type(array(
+            'name'              => 'recent-work',
+            'title'             => __('Recent Work'),
+            'description'       => __('A block to display recent case studies with filtering.'),
+            'render_template'   => 'templates/blocks/recent-work.php',
+            'category'          => 'mainstay-blocks',
+            'icon'              => 'portfolio',
+            'keywords'          => array('recent', 'work', 'case studies', 'portfolio'),
+            'supports'          => array(
+                'align'         => array('wide', 'full'),
+                'mode'          => false,
+                'jsx'           => true
+            ),
+            'example'           => array(
+                'attributes' => array(
+                    'mode' => 'preview',
+                    'data' => array(
+                        'posts_count' => 6
+                    )
+                )
+            )
+        ));
     }
 }
 
