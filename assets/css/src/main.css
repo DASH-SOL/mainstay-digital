@@ -2006,11 +2006,6 @@
   border-bottom: 2px solid rgba(14, 221, 122, 1);
 }
 
-/* Hide vertical slash on mobile */
-.service-header-content::after {
-  display: none;
-}
-
 .service-content-section {
   padding-top: 1rem;
 }
@@ -2127,7 +2122,7 @@
 /* Desktop and larger tablets */
 @media (min-width: 767px) {
   .service-title-container {
-    width: 70%;
+    width: 100%;
   }
 
   /* Show vertical slash on desktop */
@@ -2166,7 +2161,7 @@
   }
 
   .service-title-container {
-    width: 60%;
+    width: 80%;
   }
 
   .service-label::after {
