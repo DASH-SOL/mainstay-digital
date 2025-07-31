@@ -299,3 +299,114 @@ function initRecentWorkFilters() {
         });
     });
 }
+function initTableOfContents() {
+    const tocContainer = document.getElementById('tableOfContents');
+    const contentArea = document.querySelector('.single-blog-template-post-content');
+    
+    if (!tocContainer || !contentArea) return;
+    
+    const headings = contentArea.querySelectorAll('h2, h3');
+    
+    if (headings.length === 0) {
+        tocContainer.innerHTML = '<p class="single-blog-no-headings">No headings found</p>';
+        return;
+    }
+    
+    const tocList = document.createElement('ul');
+    tocList.className = 'single-blog-toc-ul';
+    
+    headings.forEach((heading, index) => {
+        const headingId = `heading-${index}`;
+        heading.id = headingId;
+        
+        const listItem = document.createElement('li');
+        listItem.className = 'single-blog-toc-item';
+        
+        const link = document.createElement('a');
+        link.href = `#${headingId}`;
+        link.textContent = heading.textContent;
+        link.className = 'single-blog-toc-link';
+        
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            document.querySelectorAll('.single-blog-toc-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            document.getElementById(headingId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+        
+        listItem.appendChild(link);
+        tocList.appendChild(listItem);
+    });
+    
+    tocContainer.appendChild(tocList);
+
+    function highlightCurrentSection() {
+        const headings = contentArea.querySelectorAll('h2, h3');
+        const tocLinks = document.querySelectorAll('.single-blog-toc-link');
+        let currentHeading = null;
+        
+        headings.forEach(heading => {
+            const rect = heading.getBoundingClientRect();
+            if (rect.top <= 100) {
+                currentHeading = heading;
+            }
+        });
+        
+        tocLinks.forEach(link => link.classList.remove('active'));
+        
+        if (currentHeading) {
+            const activeLink = document.querySelector(`[href="#${currentHeading.id}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                highlightCurrentSection();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+function initSocialShare() {
+    const facebookBtns = document.querySelectorAll('.facebook');
+    const twitterBtns = document.querySelectorAll('.twitter');
+    const linkedinBtns = document.querySelectorAll('.linkedin');
+    
+    const currentUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title);
+    
+    facebookBtns.forEach(btn => {
+        btn.href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+        btn.target = '_blank';
+        btn.rel = 'noopener';
+    });
+    
+    twitterBtns.forEach(btn => {
+        btn.href = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${pageTitle}`;
+        btn.target = '_blank';
+        btn.rel = 'noopener';
+    });
+    
+    linkedinBtns.forEach(btn => {
+        btn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`;
+        btn.target = '_blank';
+        btn.rel = 'noopener';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initTableOfContents();
+    initSocialShare();
+});

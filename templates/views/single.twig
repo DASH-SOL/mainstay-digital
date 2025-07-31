@@ -1,0 +1,122 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="single-blog-template-page min-h-screen">
+    {% if breadcrumbs %}
+        <div class="site-container">
+            <nav class="breadcrumbs py-6">
+                {% for crumb in breadcrumbs %}
+                    {% if not loop.last %}
+                        {% if crumb.url %}
+                            <a href="{{ crumb.url }}" class="breadcrumb-link">{{ crumb.title }}</a>
+                        {% else %}
+                            <span class="breadcrumb-text">{{ crumb.title }}</span>
+                        {% endif %}
+                        <span class="breadcrumb-separator"> / </span>
+                    {% else %}
+                        <span class="breadcrumb-current">{{ crumb.title }}</span>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+        </div>
+    {% endif %}
+
+    <div class="site-container">
+        <div class="single-blog-author-container">
+            <div class="single-blog-author-info">
+                <div class="single-blog-author-avatar">
+                    {% if post.author.avatar %}
+                        <img src="{{ post.author.avatar.src }}" alt="{{ post.author.display_name }}" class="single-blog-author-image">
+                    {% else %}
+                        <div class="single-blog-author-placeholder"></div>
+                    {% endif %}
+                </div>
+                <div class="single-blog-author-details">
+                    <span class="single-blog-author-name">{{ post.author.display_name }}</span>
+                    <span class="single-blog-post-date">Updated {{ post.date|date("M j, Y") }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-container py-8">
+        <div class="single-blog-template-layout">
+            <aside class="single-blog-template-left-sidebar">
+                <div class="single-blog-sidebar-sticky">
+                    <div class="single-blog-toc-section">
+                        <h3 class="single-blog-sidebar-title">Contents</h3>
+                        <div class="single-blog-toc-list" id="tableOfContents">
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="single-blog-template-main-content">
+                <h1 class="single-blog-template-post-title">{{ post.title }}</h1>
+
+                <div class="single-blog-template-post-content post-content">
+                    {{ post.content }}
+                </div>
+
+                <div class="single-blog-template-post-share">
+                    <span class="single-blog-share-label">Share</span>
+                    <div class="single-blog-share-buttons">
+                        <a href="#" class="single-blog-share-btn single-blog-facebook facebook">f</a>
+                        <a href="#" class="single-blog-share-btn single-blog-twitter twitter">t</a>
+                        <a href="#" class="single-blog-share-btn single-blog-linkedin linkedin">in</a>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="single-blog-template-right-sidebar">
+                <div class="single-blog-sidebar-sticky">
+                    <div class="single-blog-sidebar-widget">
+                        <div class="single-blog-widget-tags">
+                            {% if post_tags %}
+                                {% for tag in post_tags %}
+                                    <div class="single-blog-tag-item">{{ tag }}</div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="single-blog-tag-item">Office</div>
+                                <div class="single-blog-tag-item">Work</div>
+                                <div class="single-blog-tag-item">Tech</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="single-blog-sidebar-widget">
+                        <h4 class="single-blog-widget-title">Share this article</h4>
+                        <div class="single-blog-social-share">
+                            <a href="#" class="single-blog-social-btn single-blog-facebook facebook">f</a>
+                            <a href="#" class="single-blog-social-btn single-blog-twitter twitter">t</a>
+                            <a href="#" class="single-blog-social-btn single-blog-linkedin linkedin">in</a>
+                        </div>
+                    </div>
+
+                    <div class="single-blog-sidebar-widget">
+                        <h4 class="single-blog-widget-title">Subscribe for updates</h4>
+                        <form class="single-blog-subscribe-form">
+                            <button type="submit" class="single-blog-subscribe-btn">Subscribe</button>
+                        </form>
+                    </div>
+
+                    <div class="single-blog-sidebar-widget">
+                        <h4 class="single-blog-widget-title">Free website audit</h4>
+                        <p class="single-blog-widget-description">Get a free high level overview of what's working and what's not on your site. You'll get specific recommendations for improvements.</p>
+                        <form class="single-blog-audit-form">
+                            <input type="text" placeholder="Name" class="single-blog-form-input" required>
+                            <input type="email" placeholder="Email" class="single-blog-form-input" required>
+                            <div class="single-blog-checkbox-container">
+                                <input type="checkbox" id="single-blog-privacy" class="single-blog-form-checkbox" required>
+                                <label for="single-blog-privacy" class="single-blog-checkbox-label">I have read and agree to the privacy policy</label>
+                            </div>
+                            <button type="submit" class="single-blog-audit-btn">GET PROPOSAL</button>
+                        </form>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

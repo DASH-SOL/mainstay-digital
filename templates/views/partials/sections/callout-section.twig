@@ -1,0 +1,28 @@
+<section class="callout-section py-8 px-6 lg:py-8 lg:px-6" style="background-color: #F3F3F3;">
+    <div class="site-container">
+        {% if callout.callout_heading %}
+            <div class="callout-header-container flex items-center justify-center mb-6 lg:mb-6">
+                <div class="mr-1 md:mr-4 flex-shrink-0">
+                    <img class="callout_icon" src="http://test.local/wp-content/uploads/2025/07/M-Type-Logo-Clear-1.svg" />
+                </div>
+                <h2 class="section-heading text-black callout_heading">
+                    {{ callout.callout_heading }}
+                </h2>
+            </div>
+        {% endif %}
+        
+        {% if callout.callout_items %}
+            <div class="callout-items-container">
+                {% for item in callout.callout_items %}
+                    {% if item.content %}
+                        <div class="callout-item">
+                            <div class="callout-item-content section-text text-black">
+                                {{ item.content|raw }}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>

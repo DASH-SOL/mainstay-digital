@@ -246,6 +246,20 @@ acf_register_block_type(array(
                 ),
             ),
         ));
+        acf_register_block_type(array(
+    'name'              => 'callout-section',
+    'title'             => __('Callout Section'),
+    'description'       => __('A callout section with heading and repeatable content items'),
+    'render_template'   => 'templates/blocks/callout-section.php',
+    'category'          => 'formatting',
+    'icon'              => 'megaphone',
+    'keywords'          => array('callout', 'highlight', 'section'),
+    'supports'          => array(
+        'align' => false,
+        'anchor' => true,
+        'customClassName' => true,
+    ),
+));
     }
 }
 
