@@ -2892,9 +2892,8 @@
 
 .single-blog-template-layout {
   display: grid;
-  grid-template-columns: 250px 1fr 300px;
+  grid-template-columns: 200px 1fr 250px;
   gap: 3rem;
-  align-items: start;
 }
 
 .single-blog-template-left-sidebar {
@@ -2903,20 +2902,21 @@
 
 .single-blog-sidebar-sticky {
   position: sticky;
-  top: 6rem;
+  top: 8rem;
 }
 
 .single-blog-sidebar-title {
-  font-family: Rubik, sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 1rem;
+  font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 16px; 
+    color: #000000; 
+    line-height: 1.41; 
+    letter-spacing: -0.01em; 
+    margin-bottom: 1rem;
 }
 
 .single-blog-toc-list {
-  border-left: 2px solid #e5e7eb;
-  padding-left: 1rem;
+  padding-left: 0rem;
 }
 
 .single-blog-toc-ul {
@@ -2931,20 +2931,23 @@
 
 .single-blog-toc-link {
   display: block;
-  font-family: Rubik, sans-serif;
-  font-size: 14px;
-  color: #666;
-  text-decoration: none;
-  padding: 0.25rem 0;
-  transition: color 0.2s ease;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400; 
+    font-size: 14px; 
+    color: #000000; 
+    text-decoration: none;
+    line-height: 1.41; 
+    letter-spacing: -0.01em;
+    padding: 12px 12px;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgb(14, 221, 122);
 }
 
 .single-blog-toc-link:hover,
 .single-blog-toc-link.active {
-  color: #0edd7a;
-  font-weight: 500;
+  background-color: #0EDD7A33;
+  border-bottom: none;
 }
-
 .single-blog-no-headings {
   font-size: 14px;
   color: #999;
@@ -2953,7 +2956,6 @@
 
 .single-blog-template-main-content {
   background: white;
-  padding: 2rem;
   border-radius: 8px;
 }
 
@@ -3077,7 +3079,6 @@
 .single-blog-template-post-content img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
   margin: 1.5rem 0;
 }
 
@@ -3136,20 +3137,34 @@
   position: relative;
 }
 
-.single-blog-sidebar-widget {
+.single-blog-sidebar-contact {
   background: white;
   padding: 1.5rem;
-  border-radius: 8px;
   margin-bottom: 2rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.single-blog-sidebar-widget{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .single-blog-widget-title {
   font-family: Rubik, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: #333;
+font-weight: 700;
+font-style: Bold;
+font-size: 16px;
+leading-trim: NONE;
+line-height: 141%;
+letter-spacing: -1%;
+vertical-align: middle;
+
   margin-bottom: 1rem;
+}
+.form-title-single-page {
+ border-bottom: 1px solid #00B76C;
+ padding-bottom: 10px;
+ width: fit-content;
 }
 
 .single-blog-widget-tags {
@@ -3163,14 +3178,18 @@
   background: #0edd7a;
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
+font-weight: 400;
+font-size: 14px;
+leading-trim: NONE;
+line-height: 108%;
+letter-spacing: 0%;
+vertical-align: middle;
+
 }
 
 .single-blog-social-share {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
 }
 
 .single-blog-social-btn {
@@ -3322,9 +3341,6 @@
 }
 
 @media (max-width: 768px) {
-  .single-blog-template-main-content {
-    padding: 1rem;
-  }
   
   .single-blog-template-post-title {
     font-size: 24px;
@@ -3408,9 +3424,131 @@
     padding-left: 2rem;
   }
 }
+@media (max-width: 1024px) {
+  .single-blog-template-left-sidebar {
+display: none;
+}
+}
 .callout_icon{
   border-radius: 0px !important;
 }
 .callout_heading{
   margin: 0px !important;
+}
+.single-blog-template-page .gform_wrapper {
+    margin-top: 1rem;
+}
+
+/* Style for form input fields */
+.single-blog-template-page .gform_wrapper .gform_fields .gfield input[type="text"],
+.single-blog-template-page .gform_wrapper .gform_fields .gfield input[type="email"] {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    height: 45px;
+    border-radius: 0px;
+}
+
+
+.single-blog-template-page .gform_wrapper .gform_fields .gfield input[type="text"]:focus,
+.single-blog-template-page .gform_wrapper .gform_fields .gfield input[type="email"]:focus {
+    outline: none;
+    border-color: #0edd7a;
+    box-shadow: 0 0 0 2px rgba(14, 221, 122, 0.1);
+}
+
+/* Styling for the checkbox container */
+.single-blog-template-page .gform_wrapper .gfield_checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.single-blog-template-page .gform_wrapper .gfield_checkbox li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* Styling for the checkbox itself */
+.single-blog-template-page .gform_wrapper .gfield_checkbox input[type="checkbox"] {
+    margin-top: 0.25rem;
+}
+
+/* Styling for the checkbox label */
+.single-blog-template-page .gform_wrapper .gfield_checkbox label {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* General button styling to match your theme */
+.single-blog-template-page .gform_wrapper .gform_footer .gform_button {
+    background: #0edd7a;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    width: 100%;
+    transition: background-color 0.2s ease;
+}
+
+.single-blog-template-page .gform_wrapper .gform_footer .gform_button:hover {
+    background: #0cc269;
+}
+
+/* Specific styling for the subscribe button (form ID 2) */
+.single-blog-template-page #gform_wrapper_2 .gform_footer .gform_button {
+    font-weight: 500; /* Matches your original .single-blog-subscribe-btn */
+}
+
+/* Hiding default Gravity Form title and description */
+.single-blog-template-page .gform_wrapper .gform_title,
+.single-blog-template-page .gform_wrapper .gform_description {
+    display: none;
+}
+.single-blog-template-page .gform_wrapper #gform_fields_3 {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+.single-blog-template-page .gform_wrapper input{
+  height: 45px !important;
+}
+.single-blog-widget-description{
+font-family: Rubik, sans-serif;
+font-weight: 300;
+font-style: Light;
+font-size: 14px;
+leading-trim: NONE;
+line-height: 150%;
+letter-spacing: 0%;
+vertical-align: middle;
+color: #000000;
+}
+#gform_2 > div:nth-child(2) {
+margin-top: 10px;
+}
+.single-blog-template-page .gform_wrapper #gform_submit_button_2 {
+width: 100%;
+border-radius: 0px !important;
+background: #0EDD7A33;
+color: black;
+}
+
+
+.single-blog-template-page .gform_wrapper #gform_submit_button_3 {
+
+  width: 100%;
+  background: transparent;
+  color: black;
+  border: solid 2px rgba(14, 221, 122, 1);
 }

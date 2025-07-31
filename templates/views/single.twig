@@ -1,9 +1,8 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="single-blog-template-page min-h-screen">
+<div class="single-blog-template-page min-h-screen site-container">
     {% if breadcrumbs %}
-        <div class="site-container">
             <nav class="breadcrumbs py-6">
                 {% for crumb in breadcrumbs %}
                     {% if not loop.last %}
@@ -18,10 +17,8 @@
                     {% endif %}
                 {% endfor %}
             </nav>
-        </div>
     {% endif %}
 
-    <div class="site-container">
         <div class="single-blog-author-container">
             <div class="single-blog-author-info">
                 <div class="single-blog-author-avatar">
@@ -37,10 +34,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="site-container py-8">
-        <div class="single-blog-template-layout">
+        <div class="single-blog-template-layout py-16">
             <aside class="single-blog-template-left-sidebar">
                 <div class="single-blog-sidebar-sticky">
                     <div class="single-blog-toc-section">
@@ -71,17 +66,13 @@
             <aside class="single-blog-template-right-sidebar">
                 <div class="single-blog-sidebar-sticky">
                     <div class="single-blog-sidebar-widget">
-                        <div class="single-blog-widget-tags">
-                            {% if post_tags %}
-                                {% for tag in post_tags %}
-                                    <div class="single-blog-tag-item">{{ tag }}</div>
+                        {% if post.terms('post_tag') %}
+                            <div class="single-blog-widget-tags">
+                                {% for tag in post.terms('post_tag') %}
+                                    <a href="{{ tag.link }}" class="single-blog-tag-item">{{ tag.name }}</a>
                                 {% endfor %}
-                            {% else %}
-                                <div class="single-blog-tag-item">Office</div>
-                                <div class="single-blog-tag-item">Work</div>
-                                <div class="single-blog-tag-item">Tech</div>
-                            {% endif %}
-                        </div>
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="single-blog-sidebar-widget">
@@ -95,28 +86,17 @@
 
                     <div class="single-blog-sidebar-widget">
                         <h4 class="single-blog-widget-title">Subscribe for updates</h4>
-                        <form class="single-blog-subscribe-form">
-                            <button type="submit" class="single-blog-subscribe-btn">Subscribe</button>
-                        </form>
+                        {{ function('do_shortcode', '[gravityform id="2" title="false" description="false"]') }}
                     </div>
 
-                    <div class="single-blog-sidebar-widget">
-                        <h4 class="single-blog-widget-title">Free website audit</h4>
-                        <p class="single-blog-widget-description">Get a free high level overview of what's working and what's not on your site. You'll get specific recommendations for improvements.</p>
-                        <form class="single-blog-audit-form">
-                            <input type="text" placeholder="Name" class="single-blog-form-input" required>
-                            <input type="email" placeholder="Email" class="single-blog-form-input" required>
-                            <div class="single-blog-checkbox-container">
-                                <input type="checkbox" id="single-blog-privacy" class="single-blog-form-checkbox" required>
-                                <label for="single-blog-privacy" class="single-blog-checkbox-label">I have read and agree to the privacy policy</label>
-                            </div>
-                            <button type="submit" class="single-blog-audit-btn">GET PROPOSAL</button>
-                        </form>
+                    <div class="single-blog-sidebar-contact single-blog-sidebar-widget">
+                        <h4 class="single-blog-widget-title form-title-single-page">Free website audit</h4>
+                        <p class="single-blog-widget-description">Let us take a look under the hood of your website. We’ll review code, security and performance, and provide an analysis report with recommendations.</p>
+                        {{ function('do_shortcode', '[gravityform id="3" title="false" description="false"]') }}
                     </div>
                 </div>
             </aside>
         </div>
     </div>
-</div>
 
 {% endblock %}
