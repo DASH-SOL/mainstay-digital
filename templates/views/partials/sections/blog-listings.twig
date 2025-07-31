@@ -1,0 +1,50 @@
+<section class="blog-listings-section py-6 lg:py-6">
+
+        <div class="blog-listings-container">
+            {% if categories %}
+                <div class="blog-listings-filters mb-8 lg:mb-12">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        {% for category in categories %}
+                            <button class="filter-tab" data-filter="{{ category.slug }}">{{ category.name }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if posts %}
+                <div class="blog-listings-grid">
+                    {% for post in posts %}
+                        <div class="blog-listings-card" data-categories="{% for cat in post.terms('category') %}{{ cat.slug }} {% endfor %}">
+                            <a href="{{ post.link }}" class="blog-listings-card-link">
+                                {% if post.thumbnail %}
+                                    <div class="blog-listings-image">
+                                        <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-full object-cover">
+                                    </div>
+                                {% endif %}
+                                <div class="blog-listings-content">
+                                    {% if post.terms('category') %}
+                                        <div class="blog-listings-category">
+                                            <span class="category-ribbon">{{ post.terms('category')[0].name|upper }}</span>
+                                        </div>
+                                    {% endif %}
+
+                                    <h3 class="blog-listings-title">
+                                        {{ post.title }}
+                                    </h3>
+
+                                    <div class="blog-listings-excerpt">
+                                        {{ post.preview.length(20) }}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-12">
+                    <p class="text-gray-600">No blog posts found.</p>
+                </div>
+            {% endif %}
+        </div>
+</section>

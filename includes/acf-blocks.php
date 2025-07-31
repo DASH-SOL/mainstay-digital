@@ -260,6 +260,15 @@ acf_register_block_type(array(
         'customClassName' => true,
     ),
 ));
+acf_register_block_type(array(
+            'name'              => 'blog-listings',
+            'title'             => __('Blog Listings'),
+            'description'       => __('A block to display recent blog posts with a category filter.'),
+            'render_template'   => 'templates/blocks/blog-listings.php',
+            'category'          => 'formatting',
+            'icon'              => 'admin-post',
+            'keywords'          => array( 'blog', 'posts', 'recent', 'listings' ),
+        ));
     }
 }
 

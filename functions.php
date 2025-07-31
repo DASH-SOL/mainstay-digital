@@ -697,3 +697,43 @@ function mainstay_get_breadcrumbs() {
     
     return $breadcrumbs;
 }
+function enqueue_blog_listings_script() {
+    // Make sure this handle matches the one you use for your main script
+    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), null, true);
+
+    wp_localize_script('main-js', 'blog_listings_ajax', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_blog_listings_script');
+
+
+function filter_blog_posts() {
+    $category_slug = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+
+    $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => -1, // Or a specific number
+        'post_status' => 'publish',
+    );
+
+    if ($category_slug !== 'all') {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'category',
+                'field'    => 'slug',
+                'terms'    => $category_slug,
+            ),
+        );
+    }
+
+    $context = Timber::get_context();
+    $context['posts'] = Timber::get_posts($args);
+
+    // Render a partial Twig file for the loop
+    Timber::render('partials/sections/blog-listings-loop.twig', $context);
+
+    wp_die();
+}
+add_action('wp_ajax_filter_blog_posts', 'filter_blog_posts');
+add_action('wp_ajax_nopriv_filter_blog_posts', 'filter_blog_posts');

@@ -410,3 +410,27 @@ document.addEventListener('DOMContentLoaded', function() {
     initTableOfContents();
     initSocialShare();
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const filterContainer = document.querySelector('.blog-listings-filters');
+    if (filterContainer) {
+        const filterButtons = filterContainer.querySelectorAll('.filter-tab');
+        const blogCards = document.querySelectorAll('.blog-listings-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+
+                blogCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+});
