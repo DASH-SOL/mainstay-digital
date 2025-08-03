@@ -2514,8 +2514,16 @@ video {
   display: inline-flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
@@ -4394,13 +4402,15 @@ video {
   position: relative;
 }
 
+/* Top line - dynamically sized to always be longer than bottom */
+
 .service-label::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 100%;
   transform: translateY(-50%);
-  width: 600px;
+  width: var(--top-line-width, 400px);
   height: 2px;
   background-color: rgba(14, 221, 122, 1);
   margin-left: 1rem;
@@ -4422,7 +4432,47 @@ video {
   margin: 0;
   padding: 1.5rem 0;
   position: relative;
-  border-bottom: 2px solid rgba(14, 221, 122, 1);
+  display: inline-block;
+  width: 90%;
+  /* Set title to 90% width like your working example */
+  max-width: 1206px;
+  /* 90% of 1340px container */
+}
+
+/* Dynamic bottom border with minimum width */
+
+.service-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--bottom-border-width, 250px);
+  height: 2px;
+  background-color: rgba(14, 221, 122, 1);
+}
+
+@media screen and (max-width:766px) {
+  .service-label::after{
+    width: 350px !important;
+  }
+
+  .service-title {
+    width: 80%;
+  }
+}
+
+/* Vertical line positioned dynamically */
+
+.service-header-content::after {
+  content: "";
+  position: absolute;
+  left: var(--vertical-line-position, 55%);
+  top: 0;
+  height: calc(100% + 15px);
+  width: 2px;
+  background-color: rgba(14, 221, 122, 1);
+  z-index: 10;
+  display: block;
 }
 
 .service-content-section {
@@ -4540,28 +4590,6 @@ video {
   border-radius: 8px;
 }
 
-/* Desktop and larger tablets */
-
-@media (min-width: 767px) {
-  .service-title-container {
-    width: 100%;
-  }
-
-  /* Show vertical slash on desktop */
-
-  .service-header-content::after {
-    content: "";
-    position: absolute;
-    left: 55%;
-    top: 0;
-    height: calc(100% + 15px);
-    width: 2px;
-    background-color: rgba(14, 221, 122, 1);
-    z-index: 10;
-    display: block;
-  }
-}
-
 /* Tablet and small desktop - constrained width */
 
 @media (min-width: 767px) {
@@ -4582,14 +4610,6 @@ video {
     line-height: 100%;
     padding-top: 1rem;
     padding-bottom: 1.5rem;
-  }
-
-  .service-title-container {
-    width: 80%;
-  }
-
-  .service-label::after {
-    width: 800px;
   }
 
   .service-content-section {

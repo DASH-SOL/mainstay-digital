@@ -8,6 +8,9 @@
     initMegaMenu();
     initRecentWorkFilters();
     initServicesAccordion();
+    initDynamicServiceHeader();
+    initTableOfContents(); // Add this here
+    initSocialShare(); // Add this here too
   });
 
   function setupAccordionHandlers() {
@@ -254,6 +257,89 @@
     }
   }
 
+  function initDynamicServiceHeader() {
+    const serviceHeader = document.querySelector('.service-header-content');
+    
+    if (!serviceHeader) return;
+
+    function updateVerticalLinePosition() {
+      const serviceLabel = serviceHeader.querySelector('.service-label');
+      const serviceTitle = serviceHeader.querySelector('.service-title');
+      
+      if (!serviceLabel || !serviceTitle) return;
+
+      // Get the container width (assuming max 1340px site container)
+      const containerRect = serviceHeader.getBoundingClientRect();
+      const containerWidth = Math.min(containerRect.width, 1340);
+
+      // Get the widths of both text elements
+      const labelRect = serviceLabel.getBoundingClientRect();
+      const titleRect = serviceTitle.getBoundingClientRect();
+
+      const labelWidth = labelRect.width;
+      const titleWidth = titleRect.width;
+
+      // Based on your working example:
+      // - Title width: 90% of container
+      // - Top line: 1200px
+      // - Bottom border: 1200px  
+      // - Vertical line: 1150px
+
+      // Calculate proportional values based on container width
+      const baseContainerWidth = 1340; // Your site container max width
+      const scaleFactor = containerWidth / baseContainerWidth;
+
+      // Reference values that work (scaled proportionally)
+      const referenceTopLineWidth = Math.min(1200 * scaleFactor, containerWidth * 0.9);
+      const referenceBottomBorderWidth = Math.min(1200 * scaleFactor, containerWidth * 0.9);
+      const referenceVerticalLinePosition = Math.min(1150 * scaleFactor, containerWidth * 0.85);
+
+      // For different title lengths, we'll adjust these values
+      const titleWidthRatio = titleWidth / (containerWidth * 0.9); // How much of 90% does title use
+
+      let topLineWidth, bottomBorderWidth, linePosition;
+
+      if (titleWidthRatio > 0.7) {
+        // Long title case (like your example)
+        topLineWidth = referenceTopLineWidth;
+        bottomBorderWidth = referenceBottomBorderWidth;
+        linePosition = referenceVerticalLinePosition;
+      } else if (titleWidthRatio > 0.4) {
+        // Medium title case
+        topLineWidth = Math.max(referenceTopLineWidth * 0.8, 800 * scaleFactor);
+        bottomBorderWidth = Math.max(referenceBottomBorderWidth * 0.7, 600 * scaleFactor);
+        linePosition = Math.max(referenceVerticalLinePosition * 0.8, 700 * scaleFactor);
+      } else {
+        // Short title case
+        topLineWidth = Math.max(600 * scaleFactor, 400);
+        bottomBorderWidth = Math.max(400 * scaleFactor, 300);
+        linePosition = Math.max(500 * scaleFactor, 450);
+      }
+
+      // Ensure top line is always longer than bottom border
+      topLineWidth = Math.max(topLineWidth, bottomBorderWidth + 50);
+
+      // Keep vertical line within container bounds
+      linePosition = Math.min(linePosition, containerWidth - 50);
+
+      // Set CSS custom properties
+      serviceHeader.style.setProperty('--vertical-line-position', `${linePosition}px`);
+      serviceHeader.style.setProperty('--top-line-width', `${topLineWidth}px`);
+      serviceHeader.style.setProperty('--bottom-border-width', `${bottomBorderWidth}px`);
+    }
+
+    // Update position on load
+    setTimeout(updateVerticalLinePosition, 100);
+
+    // Update position on window resize
+    window.addEventListener('resize', updateVerticalLinePosition);
+
+    // Update position if fonts are loaded later
+    if (document.fonts) {
+      document.fonts.ready.then(updateVerticalLinePosition);
+    }
+  }
+
   function initSmoothScrolling() {
     $('a[href*="#"]:not([href="#"])').on("click", function (e) {
       if (
@@ -352,9 +438,8 @@
       }
     });
   }
-})(jQuery);
 
-function initRecentWorkFilters() {
+  function initRecentWorkFilters() {
     const filterTabs = document.querySelectorAll('.filter-tab');
     const workCards = document.querySelectorAll('.recent-work-card');
     
@@ -380,13 +465,16 @@ function initRecentWorkFilters() {
             });
         });
     });
-}
+  }
 
-function initTableOfContents() {
+  function initTableOfContents() {
     const tocContainer = document.getElementById('tableOfContents');
     const contentArea = document.querySelector('.single-blog-template-post-content');
     
     if (!tocContainer || !contentArea) return;
+    
+    // Clear any existing content first to prevent duplicates
+    tocContainer.innerHTML = '';
     
     const headings = contentArea.querySelectorAll('h2, h3');
     
@@ -460,9 +548,9 @@ function initTableOfContents() {
             ticking = true;
         }
     });
-}
+  }
 
-function initSocialShare() {
+  function initSocialShare() {
     const facebookBtns = document.querySelectorAll('.facebook');
     const twitterBtns = document.querySelectorAll('.twitter');
     const linkedinBtns = document.querySelectorAll('.linkedin');
@@ -487,14 +575,10 @@ function initSocialShare() {
         btn.target = '_blank';
         btn.rel = 'noopener';
     });
-}
+  }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initTableOfContents();
-    initSocialShare();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+  // Blog filter initialization
+  function initBlogFilters() {
     const filterContainer = document.querySelector('.blog-listings-filters');
     if (filterContainer) {
         const filterButtons = filterContainer.querySelectorAll('.filter-tab');
@@ -517,4 +601,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-});
+  }
+
+  // Initialize blog filters when DOM is ready
+  $(document).ready(function() {
+    initBlogFilters();
+  });
+
+})(jQuery);
+
+// Remove the duplicate DOMContentLoaded event listeners below
+// They were causing the table of contents to initialize twice

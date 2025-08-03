@@ -76,15 +76,16 @@
     {% if not post.meta('hero_section') and not post.meta('about_section') and not post.meta('capability_section') and not post.meta('experience_section') and not post.meta('services_section') and not post.meta('testimonials_section') and not post.meta('team_section') and not post.meta('portfolio_section') and not post.meta('features_section') and not post.meta('process_section') and not post.meta('stats_section') and not post.meta('pricing_section') and not post.meta('faq_section') and not post.meta('cta_section') and not post.meta('contact_section') and not post.meta('blog_section') %}
         {% if post.content %}
         <div class="pt-16 lg:pt-24">
-                <div class="page-header-content">
-            <div class="page-category-label">
-                <span class="page-label">PAGE</span>
-            </div>
-            <div class="page-title-container">
-                <h1 class="page-title text-black">
-                    {{ post.title }}
-                </h1>
-            </div>
+                <div class="service-header-content mb-16 lg:mb-24">
+                    <div class="service-category-label">
+                        <span class="service-label">SERVICES</span>
+                    </div>
+                    <div class="service-title-container">
+                        <h1 class="service-title text-black">
+                            {{ post.title }}
+                        </h1>
+                    </div>
+                </div>
         </div>
         </div>
             <section class="page-content">
