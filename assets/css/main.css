@@ -2770,6 +2770,10 @@ video {
   padding-bottom: 2rem;
 }
 
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -2796,6 +2800,10 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
 }
 
 .text-left {
@@ -6068,7 +6076,7 @@ video {
   font-family: Rubik;
   font-weight: 600;
   font-style: SemiBold;
-  font-size: 17px;
+  font-size: 20px;
   leading-trim: NONE;
   line-height: 141%;
   letter-spacing: 0%;
@@ -6081,7 +6089,7 @@ video {
   font-family: Rubik;
   font-weight: 400;
   font-style: Regular;
-  font-size: 12px;
+  font-size: 15px;
   leading-trim: NONE;
   line-height: 141%;
   letter-spacing: 0%;
@@ -6355,6 +6363,10 @@ section.about-section:nth-child(11) > div:nth-child(1) {
     padding-bottom: 2rem;
   }
 
+  .lg\:pb-16 {
+    padding-bottom: 4rem;
+  }
+
   .lg\:pb-24 {
     padding-bottom: 6rem;
   }
@@ -6373,6 +6385,10 @@ section.about-section:nth-child(11) > div:nth-child(1) {
 
   .lg\:pt-24 {
     padding-top: 6rem;
+  }
+
+  .lg\:pt-6 {
+    padding-top: 1.5rem;
   }
 
   .lg\:text-3xl {

@@ -7,73 +7,81 @@
     initHeaderScroll();
     initMegaMenu();
     initRecentWorkFilters();
-    // Simple direct accordion handler for debugging
-    setTimeout(() => {
-      console.log("Setting up accordion handlers...");
-      setupAccordionHandlers();
-    }, 1000);
+    initServicesAccordion();
   });
 
   function setupAccordionHandlers() {
-    // Find all accordion triggers
-    const triggers = document.querySelectorAll(".mobile-accordion-trigger");
-    console.log("Found triggers:", triggers.length);
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (!mobileMenu) {
+      return;
+    }
 
-    triggers.forEach((trigger, index) => {
-      console.log(`Trigger ${index}:`, trigger);
-      console.log(`Data-accordion: ${trigger.getAttribute("data-accordion")}`);
-
-      // Remove any existing event listeners and add new one
-      trigger.removeEventListener("click", handleAccordionClick);
-      trigger.addEventListener("click", handleAccordionClick);
-    });
+    mobileMenu.removeEventListener("click", delegatedAccordionHandler);
+    mobileMenu.addEventListener("click", delegatedAccordionHandler);
   }
 
-  function handleAccordionClick(event) {
+  function delegatedAccordionHandler(event) {
+    const trigger = event.target.closest(".mobile-accordion-trigger");
+    
+    if (!trigger) {
+      return;
+    }
+
     event.preventDefault();
     event.stopPropagation();
+    event.stopImmediatePropagation();
 
-    console.log("Accordion clicked!");
-    console.log("Event target:", event.target);
-    console.log("Current target:", event.currentTarget);
-
-    const trigger = event.currentTarget;
     const accordionId = trigger.getAttribute("data-accordion");
 
-    console.log("Accordion ID:", accordionId);
-
     if (!accordionId) {
-      console.error("No accordion ID found!");
-      return;
+        return;
     }
 
-    // Find the content
     const content = document.querySelector(`[data-content="${accordionId}"]`);
-    console.log("Found content:", content);
 
     if (!content) {
-      console.error("No content found for ID:", accordionId);
+        return;
+    }
+
+    const isCurrentlyActive = trigger.classList.contains("active");
+
+    if (trigger.hasAttribute("data-processing")) {
       return;
     }
 
-    // Check current state
-    const isActive = trigger.classList.contains("active");
-    console.log("Is currently active:", isActive);
+    trigger.setAttribute("data-processing", "true");
 
-    // Toggle the classes
-    if (isActive) {
-      console.log("Removing active class...");
-      trigger.classList.remove("active");
-      content.classList.remove("active");
+    if (isCurrentlyActive) {
+        trigger.classList.remove("active");
+        content.classList.remove("active");
+        
+        const arrow = trigger.querySelector(".accordion-arrow");
+        if (arrow) {
+          arrow.style.transform = "rotate(0deg)";
+        }
     } else {
-      console.log("Adding active class...");
-      trigger.classList.add("active");
-      content.classList.add("active");
+        const allTriggers = document.querySelectorAll(".mobile-accordion-trigger");
+        const allContents = document.querySelectorAll(".mobile-accordion-content");
+        
+        allTriggers.forEach(t => {
+          t.classList.remove("active");
+          const arr = t.querySelector(".accordion-arrow");
+          if (arr) arr.style.transform = "rotate(0deg)";
+        });
+        allContents.forEach(c => c.classList.remove("active"));
+        
+        trigger.classList.add("active");
+        content.classList.add("active");
+        
+        const arrow = trigger.querySelector(".accordion-arrow");
+        if (arrow) {
+          arrow.style.transform = "rotate(180deg)";
+        }
     }
 
-    console.log("Trigger classes after:", trigger.className);
-    console.log("Content classes after:", content.className);
-    console.log("---");
+    setTimeout(() => {
+      trigger.removeAttribute("data-processing");
+    }, 300);
   }
 
   function initMobileMenu() {
@@ -89,9 +97,15 @@
     }
 
     function closeMobileMenu() {
-      if (mobileMenu) mobileMenu.classList.remove("active");
-      if (mobileMenuOverlay) mobileMenuOverlay.classList.remove("active");
-      if (mobileMenuToggle) mobileMenuToggle.classList.remove("active");
+      if (mobileMenu) {
+        mobileMenu.classList.remove("active");
+      }
+      if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.remove("active");
+      }
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.remove("active");
+      }
       document.body.style.overflow = "";
 
       setTimeout(() => {
@@ -100,24 +114,33 @@
     }
 
     function openMobileMenu() {
-      if (mobileMenu) mobileMenu.classList.add("active");
-      if (mobileMenuOverlay) mobileMenuOverlay.classList.add("active");
-      if (mobileMenuToggle) mobileMenuToggle.classList.add("active");
+      if (mobileMenu) {
+        mobileMenu.classList.add("active");
+      }
+      if (mobileMenuOverlay) {
+        mobileMenuOverlay.classList.add("active");
+      }
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.add("active");
+      }
       document.body.style.overflow = "hidden";
       closeAllAccordions();
 
-      // Re-setup accordion handlers when menu opens
       setTimeout(() => {
         setupAccordionHandlers();
-      }, 100);
+      }, 200);
     }
 
     if (mobileMenuClose) {
-      mobileMenuClose.addEventListener("click", closeMobileMenu);
+      mobileMenuClose.addEventListener("click", function() {
+        closeMobileMenu();
+      });
     }
 
     if (mobileMenuOverlay) {
-      mobileMenuOverlay.addEventListener("click", closeMobileMenu);
+      mobileMenuOverlay.addEventListener("click", function() {
+        closeMobileMenu();
+      });
     }
 
     document.addEventListener("keydown", function (e) {
@@ -131,15 +154,13 @@
     });
 
     function closeAllAccordions() {
-      const allTriggers = document.querySelectorAll(
-        ".mobile-accordion-trigger"
-      );
-      const allContents = document.querySelectorAll(
-        ".mobile-accordion-content"
-      );
+      const allTriggers = document.querySelectorAll(".mobile-accordion-trigger");
+      const allContents = document.querySelectorAll(".mobile-accordion-content");
 
       allTriggers.forEach((trigger) => {
         trigger.classList.remove("active");
+        const arrow = trigger.querySelector(".accordion-arrow");
+        if (arrow) arrow.style.transform = "rotate(0deg)";
       });
 
       allContents.forEach((content) => {
@@ -156,6 +177,81 @@
         closeMobileMenu();
       }
     });
+  }
+
+  function initServicesAccordion() {
+    const servicesAccordion = document.querySelector('.services-accordion');
+    
+    if (!servicesAccordion) return;
+
+    // Remove any existing listeners first
+    servicesAccordion.removeEventListener('click', handleServicesAccordionClick);
+    servicesAccordion.addEventListener('click', handleServicesAccordionClick);
+  }
+
+  function handleServicesAccordionClick(event) {
+    const trigger = event.target.closest('.service-accordion-trigger');
+    
+    if (!trigger) return;
+
+    // Stop all event propagation immediately
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    // Prevent rapid clicks
+    if (trigger.hasAttribute('data-processing')) {
+      return;
+    }
+    
+    trigger.setAttribute('data-processing', 'true');
+
+    const accordionId = trigger.getAttribute('data-service-accordion');
+    if (!accordionId) {
+      trigger.removeAttribute('data-processing');
+      return;
+    }
+
+    const content = document.querySelector(`[data-service-content="${accordionId}"]`);
+    if (!content) {
+      trigger.removeAttribute('data-processing');
+      return;
+    }
+
+    const isCurrentlyOpen = content.style.maxHeight && content.style.maxHeight !== "0px" && content.style.maxHeight !== "0";
+
+    // Close all service accordions first
+    const servicesAccordion = document.querySelector('.services-accordion');
+    const allTriggers = servicesAccordion.querySelectorAll('.service-accordion-trigger');
+    const allContents = servicesAccordion.querySelectorAll('.service-accordion-content');
+    
+    allTriggers.forEach(t => {
+      t.removeAttribute('data-processing');
+      const plus = t.querySelector('.accordion-plus');
+      const minus = t.querySelector('.accordion-minus');
+      if (plus) plus.style.opacity = '1';
+      if (minus) minus.style.opacity = '0';
+    });
+    
+    allContents.forEach(c => {
+      c.style.maxHeight = '0px';
+    });
+
+    // Open this accordion if it wasn't already open
+    if (!isCurrentlyOpen) {
+      setTimeout(() => {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        
+        const plus = trigger.querySelector('.accordion-plus');
+        const minus = trigger.querySelector('.accordion-minus');
+        if (plus) plus.style.opacity = '0';
+        if (minus) minus.style.opacity = '1';
+        
+        trigger.removeAttribute('data-processing');
+      }, 50);
+    } else {
+      trigger.removeAttribute('data-processing');
+    }
   }
 
   function initSmoothScrolling() {
@@ -264,41 +360,28 @@ function initRecentWorkFilters() {
     
     if (filterTabs.length === 0 || workCards.length === 0) return;
     
-    console.log('Initializing Recent Work Filters');
-    console.log('Found', filterTabs.length, 'filter tabs');
-    console.log('Found', workCards.length, 'work cards');
-    
-    workCards.forEach((card, index) => {
-        const categories = card.getAttribute('data-categories');
-        console.log('Card', index, 'categories:', categories);
-    });
-    
     filterTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            console.log('Filter clicked:', filter);
             
             filterTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             
-            workCards.forEach((card, index) => {
+            workCards.forEach((card) => {
                 const categories = card.getAttribute('data-categories') || '';
-                console.log('Card', index, '- categories:', categories, '- filter:', filter);
                 
                 if (filter === 'all') {
                     card.classList.remove('filtered-out');
-                    console.log('Card', index, '- showing (all)');
                 } else if (categories.includes(filter)) {
                     card.classList.remove('filtered-out');
-                    console.log('Card', index, '- showing (match)');
                 } else {
                     card.classList.add('filtered-out');
-                    console.log('Card', index, '- hiding (no match)');
                 }
             });
         });
     });
 }
+
 function initTableOfContents() {
     const tocContainer = document.getElementById('tableOfContents');
     const contentArea = document.querySelector('.single-blog-template-post-content');
@@ -410,6 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTableOfContents();
     initSocialShare();
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     const filterContainer = document.querySelector('.blog-listings-filters');
     if (filterContainer) {

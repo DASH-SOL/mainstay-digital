@@ -4,7 +4,6 @@
     <div class="service-single-page">
         <!-- Breadcrumbs -->
         {% if breadcrumbs %}
-            <div class="site-container">
                 <nav class="breadcrumbs py-6">
                     {% for crumb in breadcrumbs %}
                         {% if not loop.last %}
@@ -19,12 +18,10 @@
                         {% endif %}
                     {% endfor %}
                 </nav>
-            </div>
         {% endif %}
         
         <!-- Service Header Section --> 
         <section class="service-header py-16 lg:py-24">
-            <div class="site-container">
                 <!-- Service Category Label and Title -->
                 <div class="service-header-content mb-16 lg:mb-24">
                     <div class="service-category-label">
@@ -60,7 +57,6 @@
                     {% endif %}
                     
                 </div>
-            </div>
         </section>
 
 
