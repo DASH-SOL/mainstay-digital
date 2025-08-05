@@ -4,36 +4,16 @@
 <div class="single-blog-template-page min-h-screen">
     {% if breadcrumbs %}
             <nav class="breadcrumbs py-6">
-                {% for crumb in breadcrumbs %}
-                    {% if not loop.last %}
-                        {% if crumb.url %}
-                            <a href="{{ crumb.url }}" class="breadcrumb-link">{{ crumb.title }}</a>
-                        {% else %}
-                            <span class="breadcrumb-text">{{ crumb.title }}</span>
-                        {% endif %}
-                        <span class="breadcrumb-separator"> / </span>
-                    {% else %}
-                        <span class="breadcrumb-current">{{ crumb.title }}</span>
-                    {% endif %}
-                {% endfor %}
-            </nav>
+        <a href="{{ site.url }}" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator"> / </span>
+        
+        <a href="/articles-insights-and-guides" class="breadcrumb-link">Insights</a>
+        <span class="breadcrumb-separator"> / </span>
+        
+        <span class="breadcrumb-current">{{ post.title }}</span>
+    </nav>
     {% endif %}
 
-        <div class="single-blog-author-container">
-            <div class="single-blog-author-info">
-                <div class="single-blog-author-avatar">
-                    {% if post.author.avatar %}
-                        <img src="{{ post.author.avatar.src }}" alt="{{ post.author.display_name }}" class="single-blog-author-image">
-                    {% else %}
-                        <div class="single-blog-author-placeholder"></div>
-                    {% endif %}
-                </div>
-                <div class="single-blog-author-details">
-                    <span class="single-blog-author-name">{{ post.author.display_name }}</span>
-                    <span class="single-blog-post-date">Updated {{ post.date|date("M j, Y") }}</span>
-                </div>
-            </div>
-        </div>
 
         <div class="single-blog-template-layout py-16">
             <aside class="single-blog-template-left-sidebar">
@@ -57,7 +37,7 @@
                     <span class="single-blog-share-label">Share</span>
                     <div class="single-blog-share-buttons">
                         <a href="#" class="single-blog-share-btn single-blog-facebook facebook">f</a>
-                        <a href="#" class="single-blog-share-btn single-blog-twitter twitter">t</a>
+                        <a href="#" class="single-blog-share-btn single-blog-twitter twitter">X</a>
                         <a href="#" class="single-blog-share-btn single-blog-linkedin linkedin">in</a>
                     </div>
                 </div>
@@ -79,7 +59,7 @@
                         <h4 class="single-blog-widget-title">Share this article</h4>
                         <div class="single-blog-social-share">
                             <a href="#" class="single-blog-social-btn single-blog-facebook facebook">f</a>
-                            <a href="#" class="single-blog-social-btn single-blog-twitter twitter">t</a>
+                            <a href="#" class="single-blog-social-btn single-blog-twitter twitter">X</a>
                             <a href="#" class="single-blog-social-btn single-blog-linkedin linkedin">in</a>
                         </div>
                     </div>

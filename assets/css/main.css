@@ -2979,6 +2979,11 @@ video {
     top: 46px;
     height: calc(100vh - 46px);
   }
+
+  .hero-section {
+    position: relative;
+    min-height: 0 !important;
+  }
 }
 
 .hero-section {
@@ -4705,7 +4710,7 @@ video {
   }
 
   .process-item-text {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 26px;
   }
 }
