@@ -417,7 +417,7 @@
 
   .admin-bar .main-content {
     padding-top: calc(5rem + 32px);
-    padding-bottom: calc(5rem + 32px);
+    padding-bottom: calc(5rem);
   }
 
   .site-header.scrolled {
@@ -2006,7 +2006,7 @@
   padding: 1.5rem 0;
   position: relative;
   display: inline-block;
-  width: 90%; /* Set title to 90% width like your working example */
+  width: 70%; /* Set title to 90% width like your working example */
   max-width: 1206px; /* 90% of 1340px container */
 }
 
@@ -2021,11 +2021,8 @@
   background-color: rgba(14, 221, 122, 1);
 }
 @media screen and (max-width:766px) {
-  .service-label::after{
-    width: 350px !important;
-  }
-  .service-title {
-  width: 80%; 
+.service-title::after {
+  height: 1.5px;
 }
 }
 /* Vertical line positioned dynamically */
@@ -2033,9 +2030,9 @@
   content: "";
   position: absolute;
   left: var(--vertical-line-position, 55%);
-  top: 0;
-  height: calc(100% + 15px);
-  width: 2px;
+  top: -10px;
+  height: calc(100% + 35px);
+  width: 1px;
   background-color: rgba(14, 221, 122, 1);
   z-index: 10;
   display: block;
@@ -3713,4 +3710,8 @@ section.about-section:nth-child(11) > div:nth-child(1) {
   /* padding: 0px; */
   /* padding: 0px inherit; */
   padding: 0px !important;
+}
+.service-text-image-block ~ .service-content-section,
+.service-content-section:has(~ .service-text-image-block) {
+    display: none;
 }

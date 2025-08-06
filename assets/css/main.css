@@ -1611,7 +1611,7 @@ video {
 
 .admin-bar .main-content {
   padding-top: calc(5rem + 32px);
-  padding-bottom: calc(5rem + 32px);
+  padding-bottom: calc(5rem);
 }
 
 .site-header.scrolled {
@@ -2789,10 +2789,6 @@ video {
 
 .pb-6 {
   padding-bottom: 1.5rem;
-}
-
-.pb-8 {
-  padding-bottom: 2rem;
 }
 
 .pl-0 {
@@ -4443,7 +4439,7 @@ video {
   padding: 1.5rem 0;
   position: relative;
   display: inline-block;
-  width: 90%;
+  width: 70%;
   /* Set title to 90% width like your working example */
   max-width: 1206px;
   /* 90% of 1340px container */
@@ -4462,12 +4458,8 @@ video {
 }
 
 @media screen and (max-width:766px) {
-  .service-label::after{
-    width: 350px !important;
-  }
-
-  .service-title {
-    width: 80%;
+  .service-title::after {
+    height: 1.5px;
   }
 }
 
@@ -4477,9 +4469,9 @@ video {
   content: "";
   position: absolute;
   left: var(--vertical-line-position, 55%);
-  top: 0;
-  height: calc(100% + 15px);
-  width: 2px;
+  top: -10px;
+  height: calc(100% + 35px);
+  width: 1px;
   background-color: rgba(14, 221, 122, 1);
   z-index: 10;
   display: block;
@@ -6200,6 +6192,11 @@ section.about-section:nth-child(11) > div:nth-child(1) {
   padding: 0px !important;
 }
 
+.service-text-image-block ~ .service-content-section,
+.service-content-section:has(~ .service-text-image-block) {
+  display: none;
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -6265,6 +6262,10 @@ section.about-section:nth-child(11) > div:nth-child(1) {
 
   .lg\:mb-20 {
     margin-bottom: 5rem;
+  }
+
+  .lg\:mb-24 {
+    margin-bottom: 6rem;
   }
 
   .lg\:mb-6 {
@@ -6394,12 +6395,12 @@ section.about-section:nth-child(11) > div:nth-child(1) {
     padding-bottom: 2rem;
   }
 
-  .lg\:pb-16 {
-    padding-bottom: 4rem;
+  .lg\:pb-12 {
+    padding-bottom: 3rem;
   }
 
-  .lg\:pb-24 {
-    padding-bottom: 6rem;
+  .lg\:pb-16 {
+    padding-bottom: 4rem;
   }
 
   .lg\:pb-6 {

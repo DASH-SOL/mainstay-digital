@@ -259,86 +259,142 @@
 
   function initDynamicServiceHeader() {
     const serviceHeader = document.querySelector('.service-header-content');
-    
+   
     if (!serviceHeader) return;
-
+    
     function updateVerticalLinePosition() {
-      const serviceLabel = serviceHeader.querySelector('.service-label');
-      const serviceTitle = serviceHeader.querySelector('.service-title');
-      
-      if (!serviceLabel || !serviceTitle) return;
-
-      // Get the container width (assuming max 1340px site container)
-      const containerRect = serviceHeader.getBoundingClientRect();
-      const containerWidth = Math.min(containerRect.width, 1340);
-
-      // Get the widths of both text elements
-      const labelRect = serviceLabel.getBoundingClientRect();
-      const titleRect = serviceTitle.getBoundingClientRect();
-
-      const labelWidth = labelRect.width;
-      const titleWidth = titleRect.width;
-
-      // Based on your working example:
-      // - Title width: 90% of container
-      // - Top line: 1200px
-      // - Bottom border: 1200px  
-      // - Vertical line: 1150px
-
-      // Calculate proportional values based on container width
-      const baseContainerWidth = 1340; // Your site container max width
-      const scaleFactor = containerWidth / baseContainerWidth;
-
-      // Reference values that work (scaled proportionally)
-      const referenceTopLineWidth = Math.min(1200 * scaleFactor, containerWidth * 0.9);
-      const referenceBottomBorderWidth = Math.min(1200 * scaleFactor, containerWidth * 0.9);
-      const referenceVerticalLinePosition = Math.min(1150 * scaleFactor, containerWidth * 0.85);
-
-      // For different title lengths, we'll adjust these values
-      const titleWidthRatio = titleWidth / (containerWidth * 0.9); // How much of 90% does title use
-
-      let topLineWidth, bottomBorderWidth, linePosition;
-
-      if (titleWidthRatio > 0.7) {
-        // Long title case (like your example)
-        topLineWidth = referenceTopLineWidth;
-        bottomBorderWidth = referenceBottomBorderWidth;
-        linePosition = referenceVerticalLinePosition;
-      } else if (titleWidthRatio > 0.4) {
-        // Medium title case
-        topLineWidth = Math.max(referenceTopLineWidth * 0.8, 800 * scaleFactor);
-        bottomBorderWidth = Math.max(referenceBottomBorderWidth * 0.7, 600 * scaleFactor);
-        linePosition = Math.max(referenceVerticalLinePosition * 0.8, 700 * scaleFactor);
-      } else {
-        // Short title case
-        topLineWidth = Math.max(600 * scaleFactor, 400);
-        bottomBorderWidth = Math.max(400 * scaleFactor, 300);
-        linePosition = Math.max(500 * scaleFactor, 450);
-      }
-
-      // Ensure top line is always longer than bottom border
-      topLineWidth = Math.max(topLineWidth, bottomBorderWidth + 50);
-
-      // Keep vertical line within container bounds
-      linePosition = Math.min(linePosition, containerWidth - 50);
-
-      // Set CSS custom properties
-      serviceHeader.style.setProperty('--vertical-line-position', `${linePosition}px`);
-      serviceHeader.style.setProperty('--top-line-width', `${topLineWidth}px`);
-      serviceHeader.style.setProperty('--bottom-border-width', `${bottomBorderWidth}px`);
+        const serviceLabel = serviceHeader.querySelector('.service-label');
+        const serviceTitle = serviceHeader.querySelector('.service-title');
+       
+        if (!serviceLabel || !serviceTitle) return;
+        
+        // Get the pure screen width for percentage calculations
+        const pureScreenWidth = window.innerWidth;
+        
+        // Get the actual available screen width
+        const screenWidth = window.innerWidth;
+        const viewportWidth = document.documentElement.clientWidth;
+        const availableWidth = Math.min(screenWidth, viewportWidth);
+        
+        // Get the container width (respecting max site container width)
+        const containerRect = serviceHeader.getBoundingClientRect();
+        const maxContainerWidth = Math.min(1340, availableWidth - 48); // 48px for padding (24px each side)
+        const containerWidth = Math.min(containerRect.width, maxContainerWidth);
+        
+        // Get the widths of both text elements
+        const labelRect = serviceLabel.getBoundingClientRect();
+        const titleRect = serviceTitle.getBoundingClientRect();
+        const labelWidth = labelRect.width;
+        const titleWidth = titleRect.width;
+        
+        // Calculate proportional values based on container width
+        const baseContainerWidth = 1340;
+        const scaleFactor = containerWidth / baseContainerWidth;
+        
+        // Reference values that work (scaled proportionally)
+        const referenceTopLineWidth = Math.min(
+            1200 * scaleFactor, 
+            containerWidth * 0.9,
+            availableWidth * 0.85  // Never exceed 85% of screen width
+        );
+        const referenceBottomBorderWidth = Math.min(
+            1200 * scaleFactor, 
+            containerWidth * 0.9,
+            availableWidth * 0.8   // Never exceed 80% of screen width
+        );
+        const referenceVerticalLinePosition = Math.min(
+            1150 * scaleFactor, 
+            containerWidth * 0.85,
+            availableWidth * 0.75  // Never exceed 75% of screen width
+        );
+        
+        // For different title lengths, adjust these values
+        const titleWidthRatio = titleWidth / (containerWidth * 0.9);
+        let topLineWidth, linePosition;
+        
+        if (titleWidthRatio > 0.7) {
+            // Long title case
+            topLineWidth = referenceTopLineWidth;
+            linePosition = referenceVerticalLinePosition;
+        } else if (titleWidthRatio > 0.4) {
+            // Medium title case
+            topLineWidth = Math.min(
+                Math.max(referenceTopLineWidth * 0.8, 800 * scaleFactor),
+                availableWidth * 0.8
+            );
+            linePosition = Math.min(
+                Math.max(referenceVerticalLinePosition * 0.8, 700 * scaleFactor),
+                availableWidth * 0.7
+            );
+        } else {
+            // Short title case
+            topLineWidth = Math.min(
+                Math.max(600 * scaleFactor, 400),
+                availableWidth * 0.6
+            );
+            linePosition = Math.min(
+                Math.max(500 * scaleFactor, 450),
+                availableWidth * 0.6
+            );
+        }
+        
+        // Ensure top line doesn't exceed screen width
+        topLineWidth = Math.min(
+            topLineWidth,
+            availableWidth - 100  // Leave at least 100px margin from screen edge
+        );
+        
+        // Calculate bottom border width as 95% of top line width (5% smaller)
+        let bottomBorderWidth = topLineWidth * 0.95;
+        
+        // Keep vertical line within safe bounds
+        linePosition = Math.min(
+            linePosition, 
+            containerWidth - 50,
+            availableWidth - 150  // Leave safe margin from screen edge
+        );
+        
+        // Additional safety checks for very small screens
+        if (pureScreenWidth < 768) {
+            // Mobile adjustments - calculate based on pure screen width
+            topLineWidth = pureScreenWidth * 0.60; // 75% of actual screen width
+            // On mobile, make bottom border slightly larger than top (110% instead of 95%)
+            bottomBorderWidth = topLineWidth * 1.2;
+            // On mobile, make vertical line 10% less than bottom border width
+            linePosition = bottomBorderWidth * 0.9; // Explicitly set to 90% of bottom border
+        } else if (pureScreenWidth < 1024) {
+            // Tablet adjustments - calculate based on pure screen width
+            topLineWidth = pureScreenWidth * 0.75; // 85% of actual screen width
+            // Keep the 5% difference for tablets
+            bottomBorderWidth = topLineWidth * 0.95;
+            // Ensure vertical line is always smaller (left position) than bottom border
+            linePosition = Math.min(linePosition, bottomBorderWidth * 0.9, availableWidth * 0.65);
+        } else {
+            // Desktop - ensure vertical line is always positioned before bottom border ends
+            linePosition = Math.min(linePosition, bottomBorderWidth * 0.85, availableWidth * 0.75);
+        }
+        
+        // Set CSS custom properties
+        serviceHeader.style.setProperty('--vertical-line-position', `${linePosition}px`);
+        serviceHeader.style.setProperty('--top-line-width', `${topLineWidth}px`);
+        serviceHeader.style.setProperty('--bottom-border-width', `${bottomBorderWidth}px`);
     }
-
+    
     // Update position on load
     setTimeout(updateVerticalLinePosition, 100);
-
-    // Update position on window resize
-    window.addEventListener('resize', updateVerticalLinePosition);
-
+    
+    // Update position on window resize with debouncing
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateVerticalLinePosition, 150);
+    });
+    
     // Update position if fonts are loaded later
     if (document.fonts) {
-      document.fonts.ready.then(updateVerticalLinePosition);
+        document.fonts.ready.then(updateVerticalLinePosition);
     }
-  }
+}
 
   function initSmoothScrolling() {
     $('a[href*="#"]:not([href="#"])').on("click", function (e) {
