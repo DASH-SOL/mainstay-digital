@@ -1611,6 +1611,7 @@ video {
 
 .admin-bar .main-content {
   padding-top: calc(5rem + 32px);
+  padding-bottom: calc(5rem + 32px);
 }
 
 .site-header.scrolled {
@@ -2800,6 +2801,10 @@ video {
 
 .pl-6 {
   padding-left: 1.5rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
 }
 
 .pt-16 {
@@ -6262,10 +6267,6 @@ section.about-section:nth-child(11) > div:nth-child(1) {
     margin-bottom: 5rem;
   }
 
-  .lg\:mb-24 {
-    margin-bottom: 6rem;
-  }
-
   .lg\:mb-6 {
     margin-bottom: 1.5rem;
   }
@@ -6363,6 +6364,11 @@ section.about-section:nth-child(11) > div:nth-child(1) {
     padding-bottom: 2.5rem;
   }
 
+  .lg\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .lg\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
@@ -6404,12 +6410,16 @@ section.about-section:nth-child(11) > div:nth-child(1) {
     padding-bottom: 2rem;
   }
 
+  .lg\:pl-12 {
+    padding-left: 3rem;
+  }
+
   .lg\:pl-8 {
     padding-left: 2rem;
   }
 
-  .lg\:pt-24 {
-    padding-top: 6rem;
+  .lg\:pt-12 {
+    padding-top: 3rem;
   }
 
   .lg\:pt-6 {

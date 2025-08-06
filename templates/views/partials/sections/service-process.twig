@@ -15,7 +15,7 @@
             </div>
         {% endif %}
         {% if process.process_items %}
-            <div class="process-items-container">
+            <div class="process-items-container pl-6 lg:pl-12">
                 {% for item in process.process_items %}
                     <div class="process-item {% if not loop.last %}process-item-border{% endif %}">
                         <div class="process-item-content lg:grid lg:gap-16" style="grid-template-columns: 1fr 2fr;">

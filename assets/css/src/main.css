@@ -417,6 +417,7 @@
 
   .admin-bar .main-content {
     padding-top: calc(5rem + 32px);
+    padding-bottom: calc(5rem + 32px);
   }
 
   .site-header.scrolled {
