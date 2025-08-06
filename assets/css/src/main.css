@@ -1218,7 +1218,6 @@
 
 .blog-post-content-wrapper {
   @apply flex flex-col justify-center;
-  min-height: 200px;
 }
 
 .blog-post-content {
@@ -1263,11 +1262,9 @@
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
     padding-left: 0 !important;
+    min-height: 120px;
   }
 
-  .blog-post-content-wrapper {
-    min-height: 200px;
-  }
 
   .blog-post-title {
     font-size: 16px;
@@ -1288,10 +1285,7 @@
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
     padding-left: 1.5rem !important;
-  }
-
-  .blog-post-content-wrapper {
-    min-height: 210px;
+    min-height: 150px;
   }
 
   .blog-post-title {
@@ -1310,11 +1304,9 @@
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
     padding-left: 2rem !important;
-  }
-
-  .blog-post-content-wrapper {
     min-height: 220px;
   }
+
 
   .blog-post-title {
     font-size: 21px;
