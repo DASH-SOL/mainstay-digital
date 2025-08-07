@@ -15,7 +15,7 @@
     {% endif %}
 
 
-        <div class="single-blog-template-layout pt-16">
+        <div class="single-blog-template-layout pt-3 lg:pt-16">
             <aside class="single-blog-template-left-sidebar">
                 <div class="single-blog-sidebar-sticky">
                     <div class="single-blog-toc-section">
@@ -36,9 +36,21 @@
                 <div class="single-blog-template-post-share">
                     <span class="single-blog-share-label">Share</span>
                     <div class="single-blog-share-buttons">
-                        <a href="#" class="single-blog-share-btn single-blog-facebook facebook">f</a>
-                        <a href="#" class="single-blog-share-btn single-blog-twitter twitter">X</a>
-                        <a href="#" class="single-blog-share-btn single-blog-linkedin linkedin">in</a>
+                        <a href="#" class="single-blog-share-btn single-blog-facebook facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="single-blog-share-btn single-blog-twitter twitter">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="single-blog-share-btn single-blog-linkedin linkedin">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                <path d="M6.5 21.5h-5v-13h5v13zM4 6.48C2.62 6.48 1.5 5.36 1.5 3.98S2.62 1.48 4 1.48s2.5 1.12 2.5 2.5S5.38 6.48 4 6.48zM22.5 21.5h-5v-6.32c0-1.51-.03-3.46-2.11-3.46s-2.43 1.65-2.43 3.35v6.43h-5v-13h4.8v1.78h.07c.67-1.27 2.31-2.61 4.75-2.61 5.08 0 6.02 3.34 6.02 7.68v6.15z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </main>
@@ -58,9 +70,21 @@
                     <div class="single-blog-sidebar-widget">
                         <h4 class="single-blog-widget-title">Share this article</h4>
                         <div class="single-blog-social-share">
-                            <a href="#" class="single-blog-social-btn single-blog-facebook facebook">f</a>
-                            <a href="#" class="single-blog-social-btn single-blog-twitter twitter">X</a>
-                            <a href="#" class="single-blog-social-btn single-blog-linkedin linkedin">in</a>
+                            <a href="#" class="single-blog-social-btn single-blog-facebook facebook">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                <path d="M9.198 21.5h4v-8.01h3.604l.396-3.98h-4V7.5a1 1 0 0 1 1-1h3v-4h-3a5 5 0 0 0-5 5v2.01h-2l-.396 3.98h2.396v8.01Z"/>
+                            </svg>
+                            </a>
+                            <a href="#" class="single-blog-social-btn single-blog-twitter twitter">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="single-blog-social-btn single-blog-linkedin linkedin">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                <path d="M6.5 21.5h-5v-13h5v13zM4 6.48C2.62 6.48 1.5 5.36 1.5 3.98S2.62 1.48 4 1.48s2.5 1.12 2.5 2.5S5.38 6.48 4 6.48zM22.5 21.5h-5v-6.32c0-1.51-.03-3.46-2.11-3.46s-2.43 1.65-2.43 3.35v6.43h-5v-13h4.8v1.78h.07c.67-1.27 2.31-2.61 4.75-2.61 5.08 0 6.02 3.34 6.02 7.68v6.15z"/>
+                            </svg>
+                            </a>
                         </div>
                     </div>
 
@@ -71,7 +95,7 @@
 
                     <div class="single-blog-sidebar-contact single-blog-sidebar-widget">
                         <h4 class="single-blog-widget-title form-title-single-page">Free website audit</h4>
-                        <p class="single-blog-widget-description">Let us take a look under the hood of your website. We’ll review code, security and performance, and provide an analysis report with recommendations.</p>
+                        <p class="single-blog-widget-description">Let us take a look under the hood of your website. We'll review code, security and performance, and provide an analysis report with recommendations.</p>
                         {{ function('do_shortcode', '[gravityform id="3" title="false" description="false"]') }}
                     </div>
                 </div>

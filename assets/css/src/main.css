@@ -907,20 +907,10 @@
 }
 }
 
-.hero-section {
-  position: relative;
-  min-height: 60vh;
-}
-
 .hero-section .site-container {
   position: relative;
 }
 
-@media (min-width: 1024px) {
-  .hero-section {
-    min-height: 70vh;
-  }
-}
 
 .hero-section h1 {
   font-family: Rubik, Helvetica, Arial, Lucida, sans-serif;
@@ -1064,7 +1054,7 @@
   }
 
   .section-text {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 25px;
   }
 }
@@ -1076,7 +1066,7 @@
   }
 
   .section-text {
-    font-size: 21px;
+    font-size: 22px;
     line-height: 27px;
   }
 }
@@ -1149,7 +1139,7 @@
   }
 
   .capability-text {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 26px;
   }
 
@@ -1171,7 +1161,7 @@
   }
 
   .capability-text {
-    font-size: 21px;
+    font-size: 22px;
     line-height: 30px;
   }
 
@@ -1187,12 +1177,7 @@
 
 .experience-logo-item img {
   transition: all 0.3s ease;
-  opacity: 0.7;
-}
-
-.experience-logo-item:hover img {
   opacity: 1;
-  transform: scale(1.05);
 }
 
 .insights-link {
@@ -1436,7 +1421,7 @@
   }
 
   .case-study-text {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 26px;
   }
 }
@@ -1457,7 +1442,7 @@
   }
 
   .case-study-text {
-    font-size: 21px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -1595,7 +1580,7 @@
   }
 
   .guarantee-list-text {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 26px;
   }
 }
@@ -1620,7 +1605,7 @@
   }
 
   .guarantee-list-text {
-    font-size: 21px;
+    font-size: 22px;
     line-height: 30px;
   }
 }
@@ -1677,6 +1662,7 @@
   line-height: 100% !important;
   letter-spacing: 0% !important;
   color: rgba(0, 0, 0, 1) !important;
+  font-size: 19px !important;
 }
 
 .contact-form-container .ginput_container input[type="text"],
@@ -3346,6 +3332,7 @@ vertical-align: middle;
   
   .single-blog-template-post-title {
     font-size: 24px;
+    margin-bottom: 1rem;
   }
   
   .single-blog-template-post-content h2 {

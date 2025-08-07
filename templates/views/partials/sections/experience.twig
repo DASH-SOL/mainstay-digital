@@ -18,10 +18,10 @@
             <div class="experience-logos-grid grid grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-12 items-center justify-items-center">
                 {% for logo in experience.logos %}
                     {% if logo %}
-                        <div class="experience-logo-item flex items-center justify-center p-4">
+                        <div class="experience-logo-item flex items-center justify-center lg:p-4">
                             <img src="{{ TimberImage(logo).src('medium') }}" 
                                  alt="{{ TimberImage(logo).alt }}"
-                                 class="max-w-full h-auto max-h-16 lg:max-h-20 object-contain filter grayscale hover:filter-none transition-all duration-300">
+                                 class="max-w-full h-auto max-h-16 lg:max-h-20 object-contain">
                         </div>
                     {% endif %}
                 {% endfor %}
