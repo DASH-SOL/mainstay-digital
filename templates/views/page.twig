@@ -78,7 +78,9 @@
         <div class="pt-12 lg:pt-12">
                 <div class="service-header-content mb-16 lg:mb-12">
                     <div class="service-category-label">
-                        <span class="service-label">SERVICES</span>
+                        <span class="service-label">
+    {{ post.meta('page_category_label') ? post.meta('page_category_label') : 'SERVICES' }}
+</span>
                     </div>
                     <div class="service-title-container">
                         <h1 class="service-title text-black">
