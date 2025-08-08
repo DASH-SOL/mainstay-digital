@@ -345,7 +345,7 @@
         );
         
         // Calculate bottom border width as 95% of top line width (5% smaller)
-        let bottomBorderWidth = topLineWidth * 0.95;
+        let bottomBorderWidth = topLineWidth * 1.03;
         
         // Keep vertical line within safe bounds
         linePosition = Math.min(
@@ -357,21 +357,22 @@
         // Additional safety checks for very small screens
         if (pureScreenWidth < 768) {
             // Mobile adjustments - calculate based on pure screen width
-            topLineWidth = pureScreenWidth * 0.60; // 75% of actual screen width
+            topLineWidth = pureScreenWidth * 0.75; // 75% of actual screen width
             // On mobile, make bottom border slightly larger than top (110% instead of 95%)
-            bottomBorderWidth = topLineWidth * 1.2;
+            bottomBorderWidth = topLineWidth * 1.25;
             // On mobile, make vertical line 10% less than bottom border width
             linePosition = bottomBorderWidth * 0.9; // Explicitly set to 90% of bottom border
         } else if (pureScreenWidth < 1024) {
             // Tablet adjustments - calculate based on pure screen width
-            topLineWidth = pureScreenWidth * 0.75; // 85% of actual screen width
+            topLineWidth = pureScreenWidth * 0.85; // 85% of actual screen width
             // Keep the 5% difference for tablets
-            bottomBorderWidth = topLineWidth * 0.95;
+            bottomBorderWidth = topLineWidth * 1;
             // Ensure vertical line is always smaller (left position) than bottom border
             linePosition = Math.min(linePosition, bottomBorderWidth * 0.9, availableWidth * 0.65);
         } else {
-            // Desktop - ensure vertical line is always positioned before bottom border ends
-            linePosition = Math.min(linePosition, bottomBorderWidth * 0.85, availableWidth * 0.75);
+            // Desktop - position vertical line much closer to the title
+            // Use a fixed percentage of the title width itself, not the borders
+            linePosition = titleWidth + 50; // Just 50px after the title ends
         }
         
         // Set CSS custom properties
